@@ -1,0 +1,177 @@
+WordControlpyName - English
+========================
+
+.. toctree::
+   :hidden:
+
+   index_j
+
+
+Introduction
+============
+
+
+For a full list of classes and functions, see the `API documentation`_.
+
+.. _`API Documentation`:
+   doxygen/html/index.html
+
+Requirements
+============
+
+WordControlpy uses the `CMake build system`. You will need at least version
+2.8 to be able to build the component.
+
+.. _`CMAke build system`:
+   http://www.cmake.org
+
+
+Installation
+============
+
+Binary
+------
+
+Users of Windows can install the component using the binary installer. This
+will install the component and all its necessary dependencies. It is the
+recommended method of installation in Windows.
+
+- Download the installer from the website.
+- Double-click the executable file to begin installation.
+- Follow the instructions to install the component.
+- You may need to restart your computer for environment variable changes
+  to take effect before using the component.
+
+The component can be launched by double-clicking the
+``WordControlpyComp`` executable. The ``WordControlpy`` library
+is available for loading into a manager, using the initialisation function
+``WordControlpyInit``.
+
+From source
+-----------
+
+Follow these steps to install WordControlpy from source in any operating
+system:
+
+- Download the source, either from the repository or a source archive,
+  and extract it somewhere::
+
+    tar -xvzf WordControlpy-1.0.0.tar.gz
+
+- Change to the directory containing the extracted source::
+
+    cd WordControlpy-1.0.0
+
+- Create a directory called ``build``::
+
+    mkdir build
+
+- Change to that directory::
+
+    cd build
+
+- Run cmake or cmake-gui::
+
+    cmake ../
+
+- If no errors occurred, run make::
+
+    make
+
+- Finally, install the component. Ensure the necessary permissions to
+  install into the chosen prefix are available::
+
+    make install
+
+- The install destination can be changed by executing ccmake and changing
+  the variable ``CMAKE_INSTALL_PREFIX``::
+
+    ccmake ../
+
+The component is now ready for use. See the next section for instructions on
+configuring the component.
+
+WordControlpy can be launched in stand-alone mode by executing the
+``WordControlpyComp`` executable (installed into ``${prefix}/components/bin``).
+Alternatively, ``libWordControlpy.so`` can be loaded into a manager, using the
+initialisation function ``WordControlpyInit``. This shared object can be found in
+``${prefix}/components/lib`` or ``${prefix}/components/lib64``.
+
+
+Configuration
+=============
+
+The available configuration parameters are described below:
+
+================ ================== ================ ======
+Parameter        Data type          Default Value    Effect
+================ ================== ================ ======
+file_path        string             NewFile          開くExcelファイルの名前。<br/>"NewFile"と入力すると新規作成。
+fontsize         float              16               アクティブ化したときの文字のサイズ
+char_Red         int                0                アクティブ化したときの文字の色(0～255)
+char_Blue        int                0                アクティブ化したときの文字の色(0～255)
+char_Green       int                0                アクティブ化したときの文字の色(0～255)
+italic           int                0                アクティブ化したときに1ならば文字を斜体、0なら立体にする。
+bold             int                0                アクティブ化したときに1ならば文字を太字に、0ならば細字にする
+underline        int                0                アクティブ化したときに1ならば文字に下線を引く
+shadow           int                0                アクティブ化したときに1ならば文字に影をつける
+strikeout        int                0                アクティブ化したときに1ならば文字に取り消し線を付ける
+contoured        int                0                アクティブ化したときに1ならば中抜き文字にする
+emphasis         int                0                アクティブ化したときに1ならば上付きDOTの強調文字にする
+back_Red         int                255              アクティブ化したときの背景の色
+back_Blue        int                255              アクティブ化したときの背景の色
+back_Green       int                255              アクティブ化したときの背景の色
+code             string             shift_jis        受信する文字列の文字コード<br/>utf-8<br/>shift_jis<br/>の2種類から選択できます。
+================ ================== ================ ======
+
+Ports
+=====
+
+The ports provided by the component are described below:
+
+=============== =========== ============================== =======
+Name            Type        Data type                      Purpose
+=============== =========== ============================== =======
+word            InPort      RTC::TimedString               入力する文字列
+fontSize        InPort      RTC::TimedFloat                フォントの大きさ。入力された時点でその大きさに設定される。
+fontName        InPort      RTC::TimedString               
+wsCharacter     InPort      RTC::TimedShort                カーソルを文字単位で移動させる。
+wsWord          InPort      RTC::TimedShort                カーソルを単語単位で移動させる。
+wsLine          InPort      RTC::TimedShort                カーソルを行単位で移動させる。
+wsParagraph     InPort      RTC::TimedShort                カーソルを段落単位で移動させる。
+wsWindow        InPort      RTC::TimedShort                カーソルをウインドウ単位で移動させる。
+wsScreen        InPort      RTC::TimedShort                カーソルを画面単位で移動させる。
+Char_color      InPort      RTC::TimedRGBColour            文字の色
+MovementType    InPort      RTC::TimedBoolean              カーソルを移動させる時に移動した範囲を選択するか
+Italic          InPort      RTC::TimedBoolean              Trueで文字をイタリックにする
+Bold            InPort      RTC::TimedBoolean              Trueで文字を太字にする
+Underline       InPort      RTC::TimedBoolean              Trueで文字に下線を引く
+Shadow          InPort      RTC::TimedBoolean              Trueで文字に影を付ける
+Strikeout       InPort      RTC::TimedBoolean              Trueで文字に取り消し線をつける
+Contoured       InPort      RTC::TimedBoolean              Trueで中抜き文字にする
+Emphasis        InPort      RTC::TimedBoolean              Trueで上付きDOTの強調文字にする
+Back_color      InPort      RTC::TimedRGBColour            背景の色
+selWord         OutPort     RTC::TimedString               選択中の文字列を出力
+copyWord        OutPort     RTC::TimedString               コピーした文字列を出力
+writer          ServicePort Writer::mWriter                カーソルの位置取得、移動するためのインターフェースです。
+=============== =========== ============================== =======
+
+Examples
+========
+
+An example configuration file is provided in the
+``${prefix}/components/share/WordControlpy/examples/conf/`` directory.
+
+Changelog
+=========
+
+
+
+License
+=======
+
+This software is developed at the National Institute of Advanced
+Industrial Science and Technology. Approval number H23PRO-????. This
+software is licensed under the Lesser General Public License. See
+COPYING.LESSER.
+
