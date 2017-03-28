@@ -1,6 +1,13 @@
 cmake_minimum_required (VERSION 2.6)
 
-find_package(OpenRTM REQUIRED)
+find_package(OpenRTM HINTS /usr/lib64/openrtm-1.1/cmake)
+if(${OpenRTM_FOUND})
+  MESSAGE(STATUS "OpenRTM configuration Found")
+else(${OpenRTM_FOUND})
+  message(STATUS "Use cmake/Modules/FindOpenRTM.cmake in the project")
+  list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
+  find_package(OpenRTM REQUIRED)
+endif(${OpenRTM_FOUND})
 
 
 

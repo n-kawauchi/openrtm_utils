@@ -38,7 +38,7 @@ set OpenRTM_DIR=%RTM_ROOT%\cmake
 set OMNI_ROOT=%RTM_ROOT%\omniORB
 
 
-set PATH=%OMNI_ROOT%\bin\x86_win32;%PATH%;%PYTHON_DIR%;
+set PATH=%RTM_ROOT%\bin;%OMNI_ROOT%\bin\x86_win32;%PATH%;%PYTHON_DIR%;
 
 
 
