@@ -1,0 +1,33 @@
+
+
+
+typedef sequence<string> StringSeq;
+
+typedef sequence<StringSeq> StringList;
+
+
+typedef sequence<float> FloatSeq;
+
+
+typedef sequence<FloatSeq> FloatList;
+
+
+
+module SpreadSheet {
+	
+
+	interface mSpreadSheet
+	{
+		string get_string(in string l, in string c, in string sn);
+		void set_value(in string l, in string c, in string sn, in float v);
+
+		StringList get_string_range(in string l1, in string c1, in string l2, in string c2, in string sn);
+		void set_value_range(in string l, in string c, in string sn, in FloatList v);
+
+
+		void set_string(in string l, in string c, in string sn, in string v);
+
+
+		void set_string_range(in string l, in string c, in string sn, in StringList v);
+	};
+};

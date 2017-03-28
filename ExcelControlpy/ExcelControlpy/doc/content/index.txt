@@ -1,0 +1,153 @@
+ExcelControlpyName - English
+========================
+
+.. toctree::
+   :hidden:
+
+   index_j
+
+
+Introduction
+============
+
+
+For a full list of classes and functions, see the `API documentation`_.
+
+.. _`API Documentation`:
+   doxygen/html/index.html
+
+Requirements
+============
+
+ExcelControlpy uses the `CMake build system`. You will need at least version
+2.8 to be able to build the component.
+
+.. _`CMAke build system`:
+   http://www.cmake.org
+
+
+Installation
+============
+
+Binary
+------
+
+Users of Windows can install the component using the binary installer. This
+will install the component and all its necessary dependencies. It is the
+recommended method of installation in Windows.
+
+- Download the installer from the website.
+- Double-click the executable file to begin installation.
+- Follow the instructions to install the component.
+- You may need to restart your computer for environment variable changes
+  to take effect before using the component.
+
+The component can be launched by double-clicking the
+``ExcelControlpyComp`` executable. The ``ExcelControlpy`` library
+is available for loading into a manager, using the initialisation function
+``ExcelControlpyInit``.
+
+From source
+-----------
+
+Follow these steps to install ExcelControlpy from source in any operating
+system:
+
+- Download the source, either from the repository or a source archive,
+  and extract it somewhere::
+
+    tar -xvzf ExcelControlpy-1.0.0.tar.gz
+
+- Change to the directory containing the extracted source::
+
+    cd ExcelControlpy-1.0.0
+
+- Create a directory called ``build``::
+
+    mkdir build
+
+- Change to that directory::
+
+    cd build
+
+- Run cmake or cmake-gui::
+
+    cmake ../
+
+- If no errors occurred, run make::
+
+    make
+
+- Finally, install the component. Ensure the necessary permissions to
+  install into the chosen prefix are available::
+
+    make install
+
+- The install destination can be changed by executing ccmake and changing
+  the variable ``CMAKE_INSTALL_PREFIX``::
+
+    ccmake ../
+
+The component is now ready for use. See the next section for instructions on
+configuring the component.
+
+ExcelControlpy can be launched in stand-alone mode by executing the
+``ExcelControlpyComp`` executable (installed into ``${prefix}/components/bin``).
+Alternatively, ``libExcelControlpy.so`` can be loaded into a manager, using the
+initialisation function ``ExcelControlpyInit``. This shared object can be found in
+``${prefix}/components/lib`` or ``${prefix}/components/lib64``.
+
+
+Configuration
+=============
+
+The available configuration parameters are described below:
+
+================ ================== ================ ======
+Parameter        Data type          Default Value    Effect
+================ ================== ================ ======
+file_path        string             NewFile          開くExcelファイルの名前。"NewFile"と入力すると新規作成。
+actionLock       int                0                1でセルの値を変更しているときに画面の更新を止めます。<br/>※ExcelRTCでこの値を1にして画面の更新を止めるようにすると著しく処理に時間がかかることがあるため0に設定することをお勧めします。
+red              int                255              値を読み込んでいるセルの色
+green            int                255              値を読み込んでいるセルの色
+blue             int                0                値を読み込んでいるセルの色
+port_type        string             DataInPort       追加するデータポートのデータ型
+data_type        string             TimedFloat       追加するデータポートのデータ型
+column           int                1                関連付けするセルの行番号
+start_row        string             A                関連付けするセルの列番号
+end_row          string             A                関連付けするセルの範囲の終わりの列番号<br/>複数のセルを関連付けする場合、start_rowで設定した列番号からend_rowで設定した行番号のセルまで設定されます。
+sheetname        string             Sheet1           関連付けするセルの存在するシートの名前
+c_move           int                1                1の場合はデータの入出力をする度に列を移動します。
+attach_Port      string             None             関連付けするデータポート。データポート(コンフィギュレーションセットの複製を用いて作成したデータポート名はコンフィギュレーションセット名になります)の名前を入力します。複数関連付ける場合は","で区切ってください。"None"と入力した場合は無視します。
+================ ================== ================ ======
+
+Ports
+=====
+
+The ports provided by the component are described below:
+
+=============== =========== ============================== =======
+Name            Type        Data type                      Purpose
+=============== =========== ============================== =======
+spreadsheet     ServicePort SpreadSheet::mSpreadSheet      指定したセルの値の取得、入力するためのインターフェースです。
+=============== =========== ============================== =======
+
+Examples
+========
+
+An example configuration file is provided in the
+``${prefix}/components/share/ExcelControlpy/examples/conf/`` directory.
+
+Changelog
+=========
+
+
+
+License
+=======
+
+This software is developed at the National Institute of Advanced
+Industrial Science and Technology. Approval number H23PRO-????. This
+software is licensed under the Lesser General Public License. See
+COPYING.LESSER.
+
