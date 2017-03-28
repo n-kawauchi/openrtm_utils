@@ -55,13 +55,15 @@ xcopy /y/q %SettingRTSystem%\startNamingService.py %SettingRTSystem_Copy%
 
 
 xcopy /y/q %SettingRTSystem%\Composite\ECandStateSharedComposite\src\Release\ECandStateSharedCompositeComp.exe %SettingRTSystem_Copy%\Composite\ECandStateSharedComposite\Release\
-xcopy /y/q %SettingRTSystem%\Composite\ECandStateSharedCompositePy\ECandStateSharedComposite.py %SettingRTSystem_Copy%\Composite\ECandStateSharedCompositePy\ECandStateSharedCompositePy\
+xcopy /y/q %SettingRTSystem%\Composite\ECandStateSharedCompositePy\ECandStateSharedComposite.py %SettingRTSystem_Copy%\Composite\ECandStateSharedCompositePy\
 
 xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-C++\release\MultipleOrderedEC.dll %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-C++\release\
 xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-C++\release\loadLua.lua %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-C++\release\
 xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-C++\release\CompList.lua %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-C++\release\
 xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-C++\release\rtc.conf %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-C++\release\
-xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-Python\* %SettingRTSystem_Copy%\MultipleOrderedEC-Python\
+xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-Python\*.py %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-Python\
+xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-Python\MultipleOrderedEC.qrc %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-Python\
+xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-Python\rtc.conf %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-Python\
 xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-Python\images\arrow.png %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-Python\images\
 xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-Python\MultipleOrderedEC_Lib\*.py %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-Python\MultipleOrderedEC_Lib\
 

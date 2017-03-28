@@ -16,7 +16,6 @@ cmd /c DataBaseOutPut\build_all.bat
 cmd /c DeadZone\build_all.bat
 cmd /c DemuxFunction\build_all.bat
 cmd /c Derivative\build_all.bat
-cmd /c Dilationerosion\build_all.bat
 cmd /c EncodeData\build_all.bat
 cmd /c EncodeSeqData\build_all.bat
 cmd /c EV3SampleCPP\build_all.bat
