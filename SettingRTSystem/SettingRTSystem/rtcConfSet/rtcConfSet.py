@@ -23,6 +23,7 @@ import glob
 
 sys.path.append(os.environ["SettingRTSystemPath"])
 sys.path.append(os.path.join(os.environ["SettingRTSystemPath"],"RTCD_IDL"))
+sys.path.append(os.path.join(os.environ["SettingRTSystemPath"],"rtcConfSet"))
 
 
 import datetime
@@ -65,7 +66,8 @@ import RTCConfData, RTCConfData__POA
 import rtcControl, rtcControl__POA
 
 
-from wasanbon.core.rtc.rtcprofile import RTCProfile
+#from wasanbon.core.rtc.rtcprofile import RTCProfile
+from rtcprofile_plugin import rtcprofile
 
 defaultPath = os.environ["SettingRTSystemPath"]
 defaultCompPath = os.path.join(defaultPath,"Components")
@@ -441,9 +443,9 @@ class RTComponentProfile():
         filename = searchFile("RTC.xml",os.path.join(compPath,name))
         ans = True
         if filename != "":
-            rp = RTCProfile(filename)
+            rp = rtcprofile.RTCProfile(filename)
         else:
-            rp = RTCProfile()
+            rp = rtcprofile.RTCProfile()
             ans = False
             
         info = self.setBasicInfo(rp)

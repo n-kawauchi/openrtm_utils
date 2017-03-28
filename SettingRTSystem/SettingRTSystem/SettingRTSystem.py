@@ -59,7 +59,10 @@ def main():
     elif os.name == 'nt':
         #process_rtcd = subprocess.Popen("python Manager/Python/rtcd.py -f Manager/Python/rtc.conf")
         #process_rtcd = os.system("start python Manager/Python/rtcd.py -f Manager/Python/rtc.conf")
-        cmd = str(os.path.join(os.environ["SettingRTSystemPath"],"rtcConfSet_exe.bat"))
+        if os.environ["TOOLEXE"] == "TRUE":
+            cmd = str(os.path.join(os.environ["SettingRTSystemPath"],"rtcConfSet_exe.bat"))
+        else:
+            cmd = str(os.path.join(os.environ["SettingRTSystemPath"],"rtcConfSet.bat"))
         process_confset = subprocess.Popen(cmd)
         #process_confset = os.system("start rtcConfSet.bat")
     
