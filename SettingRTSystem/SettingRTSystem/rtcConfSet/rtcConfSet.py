@@ -19,6 +19,11 @@ import subprocess
 import glob
 
 
+if "PACKAGE_DIRECTORIY" in os.environ:
+	sys.path.append(os.environ["PACKAGE_DIRECTORIY"])
+	sys.path.append(os.path.join(os.environ["PACKAGE_DIRECTORIY"],"wasanbon/wasanbon/core/plugins/admin"))
+
+
 
 
 sys.path.append(os.environ["SettingRTSystemPath"])
@@ -65,9 +70,6 @@ from omniORB import CORBA, PortableServer
 import RTCConfData, RTCConfData__POA
 import rtcControl, rtcControl__POA
 
-if "WASANBON_DIRECTORIY" in os.environ:
-	sys.path.append(os.environ["WASANBON_DIRECTORIY"])
-	sys.path.append(os.path.join(os.environ["WASANBON_DIRECTORIY"],"wasanbon/core/plugins/admin"))
 
 #from wasanbon.core.rtc.rtcprofile import RTCProfile
 from rtcprofile_plugin import rtcprofile

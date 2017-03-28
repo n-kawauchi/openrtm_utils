@@ -19,9 +19,8 @@ import time
 import os
 sys.path.append(".")
 
-if "WASANBON_DIRECTORIY" in os.environ:
-	sys.path.append(os.environ["WASANBON_DIRECTORIY"])
-	sys.path.append(os.path.join(os.environ["WASANBON_DIRECTORIY"],"wasanbon/core/plugins/admin"))
+if "PACKAGE_DIRECTORIY" in os.environ:
+	sys.path.append(os.path.join(os.environ["PACKAGE_DIRECTORIY"],"wasanbon/core/plugins/admin"))
 
 # Import RTM module
 import RTC

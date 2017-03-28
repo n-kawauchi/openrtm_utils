@@ -6,7 +6,7 @@ set RTCDT_Copy=utils\RTCDT
 set Tool_Copy=utils\python_dist
 set GLOBAL_Tool_Copy=..\python_dist\utils\python_dist
 
-if not DEFINED WASANBON_DIRECTORIY set WASANBON_DIRECTORIY="C:\workspace\wasanbon"
+if not DEFINED PACKAGE_DIRECTORIY set PACKAGE_DIRECTORIY="C:\workspace\site-packages"
 
 
 cd %RTCDT%
