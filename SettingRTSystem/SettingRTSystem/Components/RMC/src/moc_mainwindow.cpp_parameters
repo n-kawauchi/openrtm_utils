@@ -1,0 +1,26 @@
+-IC:/workspace/MSMTest/SettingRTSystem/Components/RMC/include
+-IC:/workspace/MSMTest/SettingRTSystem/Components/RMC/include/RMC
+-IC:/workspace/MSMTest/SettingRTSystem/Components/RMC
+-IC:/workspace/MSMTest/SettingRTSystem/Components/RMC/idl
+-IC:/Program Files (x86)/OpenRTM-aist/1.1.2
+-IC:/Program Files (x86)/OpenRTM-aist/1.1.2/rtm/idl
+-IC:/Program Files (x86)/OpenRTM-aist/1.1.2/rtm/ext
+-IC:/Program Files (x86)/OpenRTM-aist/1.1.2/omniORB/4.2.1_vc12/include
+-D__WIN32__
+-D__x86__
+-D__NT__
+-D__OSVERSION__=4
+-D_CRT_SECURE_NO_DEPRECATE
+-DINCLUDE_stub_in_nt_dll
+-DRTC_CORBA_CXXMAPPING11
+-D_WIN32_WINNT=0x0500
+-D__WIN32__
+-D__x86__
+-D__NT__
+-D__OSVERSION__=4
+-D_CRT_SECURE_NO_DEPRECATE
+-DNOMINMAX
+-DWIN32
+-o
+C:/workspace/MSMTest/SettingRTSystem/Components/RMC/src/moc_mainwindow.cpp
+C:/workspace/MSMTest/SettingRTSystem/Components/RMC/src/mainwindow.h

@@ -1,0 +1,54 @@
+# Gain CMake config file
+#
+# This file sets the following variables:
+# Gain_FOUND - Always TRUE.
+# Gain_INCLUDE_DIRS - Directories containing the Gain include files.
+# Gain_IDL_DIRS - Directories containing the Gain IDL files.
+# Gain_LIBRARIES - Libraries needed to use Gain.
+# Gain_DEFINITIONS - Compiler flags for Gain.
+# Gain_VERSION - The version of Gain found.
+# Gain_VERSION_MAJOR - The major version of Gain found.
+# Gain_VERSION_MINOR - The minor version of Gain found.
+# Gain_VERSION_REVISION - The revision version of Gain found.
+# Gain_VERSION_CANDIDATE - The candidate version of Gain found.
+
+message(STATUS "Found Gain-@PROJECT_VERSION@")
+set(Gain_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(Gain_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(Gain_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(Gain_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(Gain_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(Gain_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(Gain_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(Gain_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(Gain_VERSION @PROJECT_VERSION@)
+set(Gain_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(Gain_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(Gain_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(Gain_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+

@@ -1,0 +1,29 @@
+-IC:/workspace/MSMTest/SettingRTSystem/Components/Scope/include
+-IC:/workspace/MSMTest/SettingRTSystem/Components/Scope/include/Scope
+-IC:/workspace/MSMTest/SettingRTSystem/Components/Scope
+-IC:/workspace/MSMTest/SettingRTSystem/Components/Scope/idl
+-IC:/Program Files (x86)/OpenRTM-aist/1.1.2
+-IC:/Program Files (x86)/OpenRTM-aist/1.1.2/rtm/idl
+-IC:/Program Files (x86)/OpenRTM-aist/1.1.2/rtm/ext
+-IC:/Program Files (x86)/OpenRTM-aist/1.1.2/omniORB/4.2.1_vc12/include
+-IC:/workspace/MSMTest/SettingRTSystem/Components/Scope/src/../RTMath
+-IC:/workspace/Qwt/src
+-D__WIN32__
+-D__x86__
+-D__NT__
+-D__OSVERSION__=4
+-D_CRT_SECURE_NO_DEPRECATE
+-DINCLUDE_stub_in_nt_dll
+-DRTC_CORBA_CXXMAPPING11
+-D_WIN32_WINNT=0x0500
+-D__WIN32__
+-D__x86__
+-D__NT__
+-D__OSVERSION__=4
+-D_CRT_SECURE_NO_DEPRECATE
+-DQWT_DLL
+-DNOMINMAX
+-DWIN32
+-o
+C:/workspace/MSMTest/SettingRTSystem/Components/Scope/src/moc_panel.cpp
+C:/workspace/MSMTest/SettingRTSystem/Components/Scope/src/panel.h

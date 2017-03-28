@@ -1,0 +1,54 @@
+# Crawl_Gait_Controller CMake config file
+#
+# This file sets the following variables:
+# Crawl_Gait_Controller_FOUND - Always TRUE.
+# Crawl_Gait_Controller_INCLUDE_DIRS - Directories containing the Crawl_Gait_Controller include files.
+# Crawl_Gait_Controller_IDL_DIRS - Directories containing the Crawl_Gait_Controller IDL files.
+# Crawl_Gait_Controller_LIBRARIES - Libraries needed to use Crawl_Gait_Controller.
+# Crawl_Gait_Controller_DEFINITIONS - Compiler flags for Crawl_Gait_Controller.
+# Crawl_Gait_Controller_VERSION - The version of Crawl_Gait_Controller found.
+# Crawl_Gait_Controller_VERSION_MAJOR - The major version of Crawl_Gait_Controller found.
+# Crawl_Gait_Controller_VERSION_MINOR - The minor version of Crawl_Gait_Controller found.
+# Crawl_Gait_Controller_VERSION_REVISION - The revision version of Crawl_Gait_Controller found.
+# Crawl_Gait_Controller_VERSION_CANDIDATE - The candidate version of Crawl_Gait_Controller found.
+
+message(STATUS "Found Crawl_Gait_Controller-@PROJECT_VERSION@")
+set(Crawl_Gait_Controller_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(Crawl_Gait_Controller_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(Crawl_Gait_Controller_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(Crawl_Gait_Controller_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(Crawl_Gait_Controller_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(Crawl_Gait_Controller_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(Crawl_Gait_Controller_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(Crawl_Gait_Controller_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(Crawl_Gait_Controller_VERSION @PROJECT_VERSION@)
+set(Crawl_Gait_Controller_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(Crawl_Gait_Controller_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(Crawl_Gait_Controller_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(Crawl_Gait_Controller_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+

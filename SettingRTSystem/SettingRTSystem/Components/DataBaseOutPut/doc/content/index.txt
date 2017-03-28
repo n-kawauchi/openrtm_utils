@@ -1,0 +1,149 @@
+DataBaseOutPutName - English
+========================
+
+.. toctree::
+   :hidden:
+
+   index_j
+
+
+Introduction
+============
+
+
+For a full list of classes and functions, see the `API documentation`_.
+
+.. _`API Documentation`:
+   doxygen/html/index.html
+
+Requirements
+============
+
+DataBaseOutPut uses the `CMake build system`. You will need at least version
+2.8 to be able to build the component.
+
+.. _`CMAke build system`:
+   http://www.cmake.org
+
+
+Installation
+============
+
+Binary
+------
+
+Users of Windows can install the component using the binary installer. This
+will install the component and all its necessary dependencies. It is the
+recommended method of installation in Windows.
+
+- Download the installer from the website.
+- Double-click the executable file to begin installation.
+- Follow the instructions to install the component.
+- You may need to restart your computer for environment variable changes
+  to take effect before using the component.
+
+The component can be launched by double-clicking the
+``DataBaseOutPutComp`` executable. The ``DataBaseOutPut`` library
+is available for loading into a manager, using the initialisation function
+``DataBaseOutPutInit``.
+
+From source
+-----------
+
+Follow these steps to install DataBaseOutPut from source in any operating
+system:
+
+- Download the source, either from the repository or a source archive,
+  and extract it somewhere::
+
+    tar -xvzf DataBaseOutPut-1.0.0.tar.gz
+
+- Change to the directory containing the extracted source::
+
+    cd DataBaseOutPut-1.0.0
+
+- Create a directory called ``build``::
+
+    mkdir build
+
+- Change to that directory::
+
+    cd build
+
+- Run cmake or cmake-gui::
+
+    cmake ../
+
+- If no errors occurred, run make::
+
+    make
+
+- Finally, install the component. Ensure the necessary permissions to
+  install into the chosen prefix are available::
+
+    make install
+
+- The install destination can be changed by executing ccmake and changing
+  the variable ``CMAKE_INSTALL_PREFIX``::
+
+    ccmake ../
+
+The component is now ready for use. See the next section for instructions on
+configuring the component.
+
+DataBaseOutPut can be launched in stand-alone mode by executing the
+``DataBaseOutPutComp`` executable (installed into ``${prefix}/components/bin``).
+Alternatively, ``libDataBaseOutPut.so`` can be loaded into a manager, using the
+initialisation function ``DataBaseOutPutInit``. This shared object can be found in
+``${prefix}/components/lib`` or ``${prefix}/components/lib64``.
+
+
+Configuration
+=============
+
+The available configuration parameters are described below:
+
+================ ================== ================ ======
+Parameter        Data type          Default Value    Effect
+================ ================== ================ ======
+DataBase_Name    string             None             接続するデータベースの登録名
+Table_Name       string             None             データを抽出するテーブルの名前
+row_out          string             None             出力するデータのフィールドの名前
+row_in           string             None             入力データと条件に合致するか調べるフィールドの名前
+OutPortDataType  string             TimedStringSeq   outのデータ型
+InPortDataType   string             TimedString      inのデータ型
+conditional      string             0                条件式
+================ ================== ================ ======
+
+Ports
+=====
+
+The ports provided by the component are described below:
+
+=============== =========== ============================== =======
+Name            Type        Data type                      Purpose
+=============== =========== ============================== =======
+in              InPort      RTC::TimedString               条件式の左辺になります。<br/>条件式の右辺はコンフィギュレーションパラメータrow_inで設定したフィールドのデータです。
+out             OutPort     RTC::TimedString               抽出条件と合致したデータを全て配列に格納して出力します。
+database        ServicePort DataBase::mDataBase            データベースへの接続、抽出、更新、追加、削除、テーブルの追加、削除のインターフェースです。
+=============== =========== ============================== =======
+
+Examples
+========
+
+An example configuration file is provided in the
+``${prefix}/components/share/DataBaseOutPut/examples/conf/`` directory.
+
+Changelog
+=========
+
+
+
+License
+=======
+
+This software is developed at the National Institute of Advanced
+Industrial Science and Technology. Approval number H23PRO-????. This
+software is licensed under the Lesser General Public License. See
+COPYING.LESSER.
+

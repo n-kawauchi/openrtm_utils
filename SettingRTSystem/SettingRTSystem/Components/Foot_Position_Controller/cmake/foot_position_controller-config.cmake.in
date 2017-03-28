@@ -1,0 +1,54 @@
+# Foot_Position_Controller CMake config file
+#
+# This file sets the following variables:
+# Foot_Position_Controller_FOUND - Always TRUE.
+# Foot_Position_Controller_INCLUDE_DIRS - Directories containing the Foot_Position_Controller include files.
+# Foot_Position_Controller_IDL_DIRS - Directories containing the Foot_Position_Controller IDL files.
+# Foot_Position_Controller_LIBRARIES - Libraries needed to use Foot_Position_Controller.
+# Foot_Position_Controller_DEFINITIONS - Compiler flags for Foot_Position_Controller.
+# Foot_Position_Controller_VERSION - The version of Foot_Position_Controller found.
+# Foot_Position_Controller_VERSION_MAJOR - The major version of Foot_Position_Controller found.
+# Foot_Position_Controller_VERSION_MINOR - The minor version of Foot_Position_Controller found.
+# Foot_Position_Controller_VERSION_REVISION - The revision version of Foot_Position_Controller found.
+# Foot_Position_Controller_VERSION_CANDIDATE - The candidate version of Foot_Position_Controller found.
+
+message(STATUS "Found Foot_Position_Controller-@PROJECT_VERSION@")
+set(Foot_Position_Controller_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(Foot_Position_Controller_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(Foot_Position_Controller_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(Foot_Position_Controller_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(Foot_Position_Controller_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(Foot_Position_Controller_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(Foot_Position_Controller_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(Foot_Position_Controller_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(Foot_Position_Controller_VERSION @PROJECT_VERSION@)
+set(Foot_Position_Controller_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(Foot_Position_Controller_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(Foot_Position_Controller_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(Foot_Position_Controller_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+

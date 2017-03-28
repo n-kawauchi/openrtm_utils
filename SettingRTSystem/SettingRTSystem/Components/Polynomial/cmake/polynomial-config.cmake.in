@@ -1,0 +1,54 @@
+# Polynomial CMake config file
+#
+# This file sets the following variables:
+# Polynomial_FOUND - Always TRUE.
+# Polynomial_INCLUDE_DIRS - Directories containing the Polynomial include files.
+# Polynomial_IDL_DIRS - Directories containing the Polynomial IDL files.
+# Polynomial_LIBRARIES - Libraries needed to use Polynomial.
+# Polynomial_DEFINITIONS - Compiler flags for Polynomial.
+# Polynomial_VERSION - The version of Polynomial found.
+# Polynomial_VERSION_MAJOR - The major version of Polynomial found.
+# Polynomial_VERSION_MINOR - The minor version of Polynomial found.
+# Polynomial_VERSION_REVISION - The revision version of Polynomial found.
+# Polynomial_VERSION_CANDIDATE - The candidate version of Polynomial found.
+
+message(STATUS "Found Polynomial-@PROJECT_VERSION@")
+set(Polynomial_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(Polynomial_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(Polynomial_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(Polynomial_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(Polynomial_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(Polynomial_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(Polynomial_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(Polynomial_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(Polynomial_VERSION @PROJECT_VERSION@)
+set(Polynomial_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(Polynomial_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(Polynomial_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(Polynomial_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+

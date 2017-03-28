@@ -1,0 +1,54 @@
+# Saturation CMake config file
+#
+# This file sets the following variables:
+# Saturation_FOUND - Always TRUE.
+# Saturation_INCLUDE_DIRS - Directories containing the Saturation include files.
+# Saturation_IDL_DIRS - Directories containing the Saturation IDL files.
+# Saturation_LIBRARIES - Libraries needed to use Saturation.
+# Saturation_DEFINITIONS - Compiler flags for Saturation.
+# Saturation_VERSION - The version of Saturation found.
+# Saturation_VERSION_MAJOR - The major version of Saturation found.
+# Saturation_VERSION_MINOR - The minor version of Saturation found.
+# Saturation_VERSION_REVISION - The revision version of Saturation found.
+# Saturation_VERSION_CANDIDATE - The candidate version of Saturation found.
+
+message(STATUS "Found Saturation-@PROJECT_VERSION@")
+set(Saturation_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(Saturation_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(Saturation_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(Saturation_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(Saturation_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(Saturation_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(Saturation_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(Saturation_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(Saturation_VERSION @PROJECT_VERSION@)
+set(Saturation_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(Saturation_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(Saturation_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(Saturation_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+

@@ -1,0 +1,54 @@
+# EncodeData CMake config file
+#
+# This file sets the following variables:
+# EncodeData_FOUND - Always TRUE.
+# EncodeData_INCLUDE_DIRS - Directories containing the EncodeData include files.
+# EncodeData_IDL_DIRS - Directories containing the EncodeData IDL files.
+# EncodeData_LIBRARIES - Libraries needed to use EncodeData.
+# EncodeData_DEFINITIONS - Compiler flags for EncodeData.
+# EncodeData_VERSION - The version of EncodeData found.
+# EncodeData_VERSION_MAJOR - The major version of EncodeData found.
+# EncodeData_VERSION_MINOR - The minor version of EncodeData found.
+# EncodeData_VERSION_REVISION - The revision version of EncodeData found.
+# EncodeData_VERSION_CANDIDATE - The candidate version of EncodeData found.
+
+message(STATUS "Found EncodeData-@PROJECT_VERSION@")
+set(EncodeData_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(EncodeData_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(EncodeData_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(EncodeData_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(EncodeData_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(EncodeData_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(EncodeData_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(EncodeData_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(EncodeData_VERSION @PROJECT_VERSION@)
+set(EncodeData_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(EncodeData_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(EncodeData_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(EncodeData_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+

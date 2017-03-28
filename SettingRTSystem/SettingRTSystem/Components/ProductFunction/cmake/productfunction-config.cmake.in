@@ -1,0 +1,54 @@
+# ProductFunction CMake config file
+#
+# This file sets the following variables:
+# ProductFunction_FOUND - Always TRUE.
+# ProductFunction_INCLUDE_DIRS - Directories containing the ProductFunction include files.
+# ProductFunction_IDL_DIRS - Directories containing the ProductFunction IDL files.
+# ProductFunction_LIBRARIES - Libraries needed to use ProductFunction.
+# ProductFunction_DEFINITIONS - Compiler flags for ProductFunction.
+# ProductFunction_VERSION - The version of ProductFunction found.
+# ProductFunction_VERSION_MAJOR - The major version of ProductFunction found.
+# ProductFunction_VERSION_MINOR - The minor version of ProductFunction found.
+# ProductFunction_VERSION_REVISION - The revision version of ProductFunction found.
+# ProductFunction_VERSION_CANDIDATE - The candidate version of ProductFunction found.
+
+message(STATUS "Found ProductFunction-@PROJECT_VERSION@")
+set(ProductFunction_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(ProductFunction_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(ProductFunction_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(ProductFunction_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(ProductFunction_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(ProductFunction_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(ProductFunction_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(ProductFunction_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(ProductFunction_VERSION @PROJECT_VERSION@)
+set(ProductFunction_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(ProductFunction_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(ProductFunction_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(ProductFunction_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+

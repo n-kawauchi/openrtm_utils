@@ -1,0 +1,54 @@
+# EV3SamplePy CMake config file
+#
+# This file sets the following variables:
+# EV3SamplePy_FOUND - Always TRUE.
+# EV3SamplePy_INCLUDE_DIRS - Directories containing the EV3SamplePy include files.
+# EV3SamplePy_IDL_DIRS - Directories containing the EV3SamplePy IDL files.
+# EV3SamplePy_LIBRARIES - Libraries needed to use EV3SamplePy.
+# EV3SamplePy_DEFINITIONS - Compiler flags for EV3SamplePy.
+# EV3SamplePy_VERSION - The version of EV3SamplePy found.
+# EV3SamplePy_VERSION_MAJOR - The major version of EV3SamplePy found.
+# EV3SamplePy_VERSION_MINOR - The minor version of EV3SamplePy found.
+# EV3SamplePy_VERSION_REVISION - The revision version of EV3SamplePy found.
+# EV3SamplePy_VERSION_CANDIDATE - The candidate version of EV3SamplePy found.
+
+message(STATUS "Found EV3SamplePy-@PROJECT_VERSION@")
+set(EV3SamplePy_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(EV3SamplePy_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(EV3SamplePy_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(EV3SamplePy_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(EV3SamplePy_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(EV3SamplePy_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(EV3SamplePy_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(EV3SamplePy_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(EV3SamplePy_VERSION @PROJECT_VERSION@)
+set(EV3SamplePy_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(EV3SamplePy_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(EV3SamplePy_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(EV3SamplePy_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+

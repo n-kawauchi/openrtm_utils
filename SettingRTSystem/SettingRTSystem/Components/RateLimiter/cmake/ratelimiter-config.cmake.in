@@ -1,0 +1,54 @@
+# RateLimiter CMake config file
+#
+# This file sets the following variables:
+# RateLimiter_FOUND - Always TRUE.
+# RateLimiter_INCLUDE_DIRS - Directories containing the RateLimiter include files.
+# RateLimiter_IDL_DIRS - Directories containing the RateLimiter IDL files.
+# RateLimiter_LIBRARIES - Libraries needed to use RateLimiter.
+# RateLimiter_DEFINITIONS - Compiler flags for RateLimiter.
+# RateLimiter_VERSION - The version of RateLimiter found.
+# RateLimiter_VERSION_MAJOR - The major version of RateLimiter found.
+# RateLimiter_VERSION_MINOR - The minor version of RateLimiter found.
+# RateLimiter_VERSION_REVISION - The revision version of RateLimiter found.
+# RateLimiter_VERSION_CANDIDATE - The candidate version of RateLimiter found.
+
+message(STATUS "Found RateLimiter-@PROJECT_VERSION@")
+set(RateLimiter_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(RateLimiter_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(RateLimiter_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(RateLimiter_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(RateLimiter_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(RateLimiter_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(RateLimiter_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(RateLimiter_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(RateLimiter_VERSION @PROJECT_VERSION@)
+set(RateLimiter_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(RateLimiter_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(RateLimiter_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(RateLimiter_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+

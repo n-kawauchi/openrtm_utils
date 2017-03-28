@@ -1,0 +1,54 @@
+# ExcelControlpy CMake config file
+#
+# This file sets the following variables:
+# ExcelControlpy_FOUND - Always TRUE.
+# ExcelControlpy_INCLUDE_DIRS - Directories containing the ExcelControlpy include files.
+# ExcelControlpy_IDL_DIRS - Directories containing the ExcelControlpy IDL files.
+# ExcelControlpy_LIBRARIES - Libraries needed to use ExcelControlpy.
+# ExcelControlpy_DEFINITIONS - Compiler flags for ExcelControlpy.
+# ExcelControlpy_VERSION - The version of ExcelControlpy found.
+# ExcelControlpy_VERSION_MAJOR - The major version of ExcelControlpy found.
+# ExcelControlpy_VERSION_MINOR - The minor version of ExcelControlpy found.
+# ExcelControlpy_VERSION_REVISION - The revision version of ExcelControlpy found.
+# ExcelControlpy_VERSION_CANDIDATE - The candidate version of ExcelControlpy found.
+
+message(STATUS "Found ExcelControlpy-@PROJECT_VERSION@")
+set(ExcelControlpy_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(ExcelControlpy_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(ExcelControlpy_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(ExcelControlpy_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(ExcelControlpy_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(ExcelControlpy_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(ExcelControlpy_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(ExcelControlpy_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(ExcelControlpy_VERSION @PROJECT_VERSION@)
+set(ExcelControlpy_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(ExcelControlpy_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(ExcelControlpy_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(ExcelControlpy_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+

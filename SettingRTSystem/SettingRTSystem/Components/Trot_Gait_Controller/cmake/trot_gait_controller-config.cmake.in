@@ -1,0 +1,54 @@
+# Trot_Gait_Controller CMake config file
+#
+# This file sets the following variables:
+# Trot_Gait_Controller_FOUND - Always TRUE.
+# Trot_Gait_Controller_INCLUDE_DIRS - Directories containing the Trot_Gait_Controller include files.
+# Trot_Gait_Controller_IDL_DIRS - Directories containing the Trot_Gait_Controller IDL files.
+# Trot_Gait_Controller_LIBRARIES - Libraries needed to use Trot_Gait_Controller.
+# Trot_Gait_Controller_DEFINITIONS - Compiler flags for Trot_Gait_Controller.
+# Trot_Gait_Controller_VERSION - The version of Trot_Gait_Controller found.
+# Trot_Gait_Controller_VERSION_MAJOR - The major version of Trot_Gait_Controller found.
+# Trot_Gait_Controller_VERSION_MINOR - The minor version of Trot_Gait_Controller found.
+# Trot_Gait_Controller_VERSION_REVISION - The revision version of Trot_Gait_Controller found.
+# Trot_Gait_Controller_VERSION_CANDIDATE - The candidate version of Trot_Gait_Controller found.
+
+message(STATUS "Found Trot_Gait_Controller-@PROJECT_VERSION@")
+set(Trot_Gait_Controller_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(Trot_Gait_Controller_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(Trot_Gait_Controller_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(Trot_Gait_Controller_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(Trot_Gait_Controller_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(Trot_Gait_Controller_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(Trot_Gait_Controller_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(Trot_Gait_Controller_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(Trot_Gait_Controller_VERSION @PROJECT_VERSION@)
+set(Trot_Gait_Controller_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(Trot_Gait_Controller_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(Trot_Gait_Controller_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(Trot_Gait_Controller_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+

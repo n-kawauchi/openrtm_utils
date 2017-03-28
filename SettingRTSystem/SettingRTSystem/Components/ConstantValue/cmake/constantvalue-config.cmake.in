@@ -1,0 +1,54 @@
+# ConstantValue CMake config file
+#
+# This file sets the following variables:
+# ConstantValue_FOUND - Always TRUE.
+# ConstantValue_INCLUDE_DIRS - Directories containing the ConstantValue include files.
+# ConstantValue_IDL_DIRS - Directories containing the ConstantValue IDL files.
+# ConstantValue_LIBRARIES - Libraries needed to use ConstantValue.
+# ConstantValue_DEFINITIONS - Compiler flags for ConstantValue.
+# ConstantValue_VERSION - The version of ConstantValue found.
+# ConstantValue_VERSION_MAJOR - The major version of ConstantValue found.
+# ConstantValue_VERSION_MINOR - The minor version of ConstantValue found.
+# ConstantValue_VERSION_REVISION - The revision version of ConstantValue found.
+# ConstantValue_VERSION_CANDIDATE - The candidate version of ConstantValue found.
+
+message(STATUS "Found ConstantValue-@PROJECT_VERSION@")
+set(ConstantValue_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(ConstantValue_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(ConstantValue_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(ConstantValue_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(ConstantValue_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(ConstantValue_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(ConstantValue_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(ConstantValue_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(ConstantValue_VERSION @PROJECT_VERSION@)
+set(ConstantValue_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(ConstantValue_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(ConstantValue_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(ConstantValue_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+

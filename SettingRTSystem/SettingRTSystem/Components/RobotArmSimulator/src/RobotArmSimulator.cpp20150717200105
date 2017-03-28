@@ -1,0 +1,170 @@
+// -*- C++ -*-
+/*!
+ * @file  RobotArmSimulator.cpp
+ * @brief Robot Arm Simulator
+ * @date $Date$
+ *
+ * $Id$
+ */
+
+#include "RobotArmSimulator.h"
+
+// Module specification
+// <rtc-template block="module_spec">
+static const char* robotarmsimulator_spec[] =
+  {
+    "implementation_id", "RobotArmSimulator",
+    "type_name",         "RobotArmSimulator",
+    "description",       "Robot Arm Simulator",
+    "version",           "1.0.0",
+    "vendor",            "Miyamoto Nobuhiko",
+    "category",          "TES",
+    "activity_type",     "PERIODIC",
+    "kind",              "DataFlowComponent",
+    "max_instance",      "1",
+    "language",          "C++",
+    "lang_type",         "compile",
+    ""
+  };
+// </rtc-template>
+
+/*!
+ * @brief constructor
+ * @param manager Maneger Object
+ */
+RobotArmSimulator::RobotArmSimulator(RTC::Manager* manager)
+    // <rtc-template block="initializer">
+  : RTC::DataFlowComponentBase(manager),
+    m_jposOut("jpos", m_jpos),
+    m_ManipulatorCommonInterface_CommonPort("ManipulatorCommonInterface_Common"),
+    m_ManipulatorCommonInterface_MiddlePort("ManipulatorCommonInterface_Middle")
+
+    // </rtc-template>
+{
+}
+
+/*!
+ * @brief destructor
+ */
+RobotArmSimulator::~RobotArmSimulator()
+{
+}
+
+
+
+RTC::ReturnCode_t RobotArmSimulator::onInitialize()
+{
+  // Registration: InPort/OutPort/Service
+  // <rtc-template block="registration">
+  // Set InPort buffers
+  
+  // Set OutPort buffer
+  addOutPort("jpos", m_jposOut);
+  
+  // Set service provider to Ports
+  m_ManipulatorCommonInterface_CommonPort.registerProvider("ManipulatorCommonInterface_Common", "JARA_ARM::ManipulatorCommonInterface_Common", m_ManipulatorCommonInterface_Common);
+  m_ManipulatorCommonInterface_MiddlePort.registerProvider("ManipulatorCommonInterface_Middle", "JARA_ARM::ManipulatorCommonInterface_Middle", m_ManipulatorCommonInterface_Middle);
+  
+  // Set service consumers to Ports
+  
+  // Set CORBA Service Ports
+  addPort(m_ManipulatorCommonInterface_CommonPort);
+  addPort(m_ManipulatorCommonInterface_MiddlePort);
+  
+  // </rtc-template>
+
+  // <rtc-template block="bind_config">
+  // </rtc-template>
+  
+  return RTC::RTC_OK;
+}
+
+/*
+RTC::ReturnCode_t RobotArmSimulator::onFinalize()
+{
+  return RTC::RTC_OK;
+}
+*/
+
+/*
+RTC::ReturnCode_t RobotArmSimulator::onStartup(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+
+RTC::ReturnCode_t RobotArmSimulator::onShutdown(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RobotArmSimulator::onActivated(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RobotArmSimulator::onDeactivated(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RobotArmSimulator::onExecute(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+/*
+RTC::ReturnCode_t RobotArmSimulator::onAborting(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+/*
+RTC::ReturnCode_t RobotArmSimulator::onError(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+/*
+RTC::ReturnCode_t RobotArmSimulator::onReset(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+/*
+RTC::ReturnCode_t RobotArmSimulator::onStateUpdate(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+/*
+RTC::ReturnCode_t RobotArmSimulator::onRateChanged(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+
+
+extern "C"
+{
+ 
+  void RobotArmSimulatorInit(RTC::Manager* manager)
+  {
+    coil::Properties profile(robotarmsimulator_spec);
+    manager->registerFactory(profile,
+                             RTC::Create<RobotArmSimulator>,
+                             RTC::Delete<RobotArmSimulator>);
+  }
+  
+};
+
+

@@ -1,0 +1,31 @@
+2017-03-27 11:10:11,569 manager INFO 1.1.0
+2017-03-27 11:10:11,569 manager INFO Copyright (C) 2003-2010
+2017-03-27 11:10:11,569 manager INFO   Noriaki Ando
+2017-03-27 11:10:11,569 manager INFO   Intelligent Systems Research Institute, AIST
+2017-03-27 11:10:11,569 manager INFO Manager starting.
+2017-03-27 11:10:11,569 manager INFO Starting local logging.
+2017-03-27 11:10:13,579 manager.namingmanager INFO NameServer connection failed: corba/localhost
+2017-03-27 11:10:15,588 ManagerServant INFO Master manager not found
+2017-03-27 11:10:15,589 manager WARNING Traceback (most recent call last):
+  File "C:\Python27\lib\site-packages\OpenRTM_aist\Manager.py", line 1991, in initManagerServant
+    reffile = file(self._config.getProperty("manager.refstring_path"),'w')
+IOError: [Errno 2] No such file or directory: '/var/log/rtcmanager.ref'
+
+2017-03-27 11:10:15,591 LocalServiceAdmin INFO All the local services are enabled.
+2017-03-27 11:10:15,608 manager INFO Component type conf file: WordControlpy.conf loaded.
+2017-03-27 11:10:15,611 ec_base INFO setRate(1000000.000000) done
+2017-03-27 11:10:15,611 ec_base INFO setRate(1000.000000) done
+2017-03-27 11:10:15,611 rtobject INFO 1 execution context was created.
+2017-03-27 11:10:18,230 rtobject INFO Initial active configuration set is default.
+2017-03-27 11:10:25,579 manager.namingmanager INFO NameServer connection failed: corba/localhost
+2017-03-27 11:10:25,579 manager.namingmanager INFO Connected to a name server: corba/localhost
+2017-03-27 11:10:35,676 manager.namingmanager INFO Name server: localhost (corba) disappeared.
+2017-03-27 11:10:45,825 manager.namingmanager INFO NameServer connection succeeded: corba/localhost
+2017-03-27 11:10:45,826 manager.namingmanager INFO Connected to a name server: corba/localhost
+2017-03-27 11:10:49,801 SdoServiceAdmin WARNING No available SDO service in the factory: 
+2017-03-27 11:10:49,801 SdoServiceAdmin ERROR type  already exists.
+2017-03-27 11:10:49,828 SdoServiceAdmin WARNING No available SDO service in the factory: IDL:OpenRTM/ComponentObserver:1.0
+2017-03-27 11:10:49,828 SdoServiceAdmin ERROR type 439de324-a6d1-47a6-ab53-1982fba602ea already exists.
+2017-03-27 11:10:54,351 ec_worker ERROR State of the RTC is not ACTIVE_STATE.
+2017-03-27 11:10:54,367 ec_worker WARNING ExecutionContext is already stopped.
+2017-03-27 11:10:54,367 ec_base ERROR Invoking on_shutdown() for each RTC failed.

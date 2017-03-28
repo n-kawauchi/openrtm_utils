@@ -1,0 +1,54 @@
+# MuxFunction CMake config file
+#
+# This file sets the following variables:
+# MuxFunction_FOUND - Always TRUE.
+# MuxFunction_INCLUDE_DIRS - Directories containing the MuxFunction include files.
+# MuxFunction_IDL_DIRS - Directories containing the MuxFunction IDL files.
+# MuxFunction_LIBRARIES - Libraries needed to use MuxFunction.
+# MuxFunction_DEFINITIONS - Compiler flags for MuxFunction.
+# MuxFunction_VERSION - The version of MuxFunction found.
+# MuxFunction_VERSION_MAJOR - The major version of MuxFunction found.
+# MuxFunction_VERSION_MINOR - The minor version of MuxFunction found.
+# MuxFunction_VERSION_REVISION - The revision version of MuxFunction found.
+# MuxFunction_VERSION_CANDIDATE - The candidate version of MuxFunction found.
+
+message(STATUS "Found MuxFunction-@PROJECT_VERSION@")
+set(MuxFunction_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(MuxFunction_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(MuxFunction_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(MuxFunction_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(MuxFunction_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(MuxFunction_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(MuxFunction_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(MuxFunction_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(MuxFunction_VERSION @PROJECT_VERSION@)
+set(MuxFunction_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(MuxFunction_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(MuxFunction_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(MuxFunction_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+

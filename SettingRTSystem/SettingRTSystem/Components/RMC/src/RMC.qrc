@@ -1,0 +1,35 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>images/splashscreen.png</file>
+    <file>images/pointer.png</file>
+    <file>images/bringtofront.png</file>
+    <file>images/delete.png</file>
+    <file>images/sendtoback.png</file>
+    <file>images/Body.png</file>
+    <file>images/check.png</file>
+    <file>images/link.png</file>
+    <file>images/JointE.png</file>
+    <file>images/joint.png</file>
+    <file>images/SensorE.png</file>
+    <file>images/sensor.png</file>
+    <file>images/Acce.png</file>
+    <file>images/Box.png</file>
+    <file>images/Cone.png</file>
+    <file>images/scale.png</file>
+    <file>images/ban.png</file>
+    <file>images/Cylinder.png</file>
+    <file>images/Fix.png</file>
+    <file>images/Force.png</file>
+    <file>images/Gyro.png</file>
+    <file>images/Hinge.png</file>
+    <file>images/Pressure.png</file>
+    <file>images/Sphere.png</file>
+    <file>images/Slider.png</file>
+    <file>images/VS.png</file>
+    <file>images/vision.png</file>
+    <file>images/JH.png</file>
+    <file>images/Polygon.png</file>
+    <file>images/BH.png</file>
+</qresource>
+</RCC>
+

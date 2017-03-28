@@ -1,0 +1,165 @@
+// -*- C++ -*-
+/*!
+ * @file  RasPiMouseSampleCPP.cpp
+ * @brief Raspberry Pi Mouse Sample
+ * @date $Date$
+ *
+ * @author 宮本　信彦　n-miyamoto@aist.go.jp
+ * 産業技術総合研究所　ロボットイノベーション研究センター
+ * ロボットソフトウエアプラットフォーム研究チーム
+ *
+ * LGPL
+ *
+ * $Id$
+ */
+
+#include "RasPiMouseSampleCPP.h"
+
+// Module specification
+// <rtc-template block="module_spec">
+static const char* raspimousesamplecpp_spec[] =
+  {
+    "implementation_id", "RasPiMouseSampleCPP",
+    "type_name",         "RasPiMouseSampleCPP",
+    "description",       "Raspberry Pi Mouse Sample",
+    "version",           "1.0.0",
+    "vendor",            "AIST",
+    "category",          "TEST",
+    "activity_type",     "PERIODIC",
+    "kind",              "DataFlowComponent",
+    "max_instance",      "1",
+    "language",          "C++",
+    "lang_type",         "compile",
+    ""
+  };
+// </rtc-template>
+
+/*!
+ * @brief constructor
+ * @param manager Maneger Object
+ */
+RasPiMouseSampleCPP::RasPiMouseSampleCPP(RTC::Manager* manager)
+    // <rtc-template block="initializer">
+  : RTC::DataFlowComponentBase(manager),
+    m_distance_sensorIn("distance_sensor", m_distance_sensor),
+    m_target_velocityOut("target_velocity", m_target_velocity)
+
+    // </rtc-template>
+{
+}
+
+/*!
+ * @brief destructor
+ */
+RasPiMouseSampleCPP::~RasPiMouseSampleCPP()
+{
+}
+
+
+
+RTC::ReturnCode_t RasPiMouseSampleCPP::onInitialize()
+{
+  // Registration: InPort/OutPort/Service
+  // <rtc-template block="registration">
+  // Set InPort buffers
+  addInPort("distance_sensor", m_distance_sensorIn);
+  
+  // Set OutPort buffer
+  addOutPort("target_velocity", m_target_velocityOut);
+  
+  // Set service provider to Ports
+  
+  // Set service consumers to Ports
+  
+  // Set CORBA Service Ports
+  
+  // </rtc-template>
+
+  // <rtc-template block="bind_config">
+  // </rtc-template>
+  
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RasPiMouseSampleCPP::onFinalize()
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RasPiMouseSampleCPP::onStartup(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RasPiMouseSampleCPP::onShutdown(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RasPiMouseSampleCPP::onActivated(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RasPiMouseSampleCPP::onDeactivated(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RasPiMouseSampleCPP::onExecute(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RasPiMouseSampleCPP::onAborting(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RasPiMouseSampleCPP::onError(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RasPiMouseSampleCPP::onReset(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RasPiMouseSampleCPP::onStateUpdate(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RasPiMouseSampleCPP::onRateChanged(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+
+extern "C"
+{
+ 
+  void RasPiMouseSampleCPPInit(RTC::Manager* manager)
+  {
+    coil::Properties profile(raspimousesamplecpp_spec);
+    manager->registerFactory(profile,
+                             RTC::Create<RasPiMouseSampleCPP>,
+                             RTC::Delete<RasPiMouseSampleCPP>);
+  }
+  
+};
+
+

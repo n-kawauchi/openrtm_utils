@@ -1,0 +1,144 @@
+Foot_Position_ControllerName - English
+========================
+
+.. toctree::
+   :hidden:
+
+   index_j
+
+
+Introduction
+============
+
+
+For a full list of classes and functions, see the `API documentation`_.
+
+.. _`API Documentation`:
+   doxygen/html/index.html
+
+Requirements
+============
+
+Foot_Position_Controller uses the `CMake build system`. You will need at least version
+2.8 to be able to build the component.
+
+.. _`CMAke build system`:
+   http://www.cmake.org
+
+
+Installation
+============
+
+Binary
+------
+
+Users of Windows can install the component using the binary installer. This
+will install the component and all its necessary dependencies. It is the
+recommended method of installation in Windows.
+
+- Download the installer from the website.
+- Double-click the executable file to begin installation.
+- Follow the instructions to install the component.
+- You may need to restart your computer for environment variable changes
+  to take effect before using the component.
+
+The component can be launched by double-clicking the
+``Foot_Position_ControllerComp`` executable. The ``Foot_Position_Controller`` library
+is available for loading into a manager, using the initialisation function
+``Foot_Position_ControllerInit``.
+
+From source
+-----------
+
+Follow these steps to install Foot_Position_Controller from source in any operating
+system:
+
+- Download the source, either from the repository or a source archive,
+  and extract it somewhere::
+
+    tar -xvzf Foot_Position_Controller-1.0.0.tar.gz
+
+- Change to the directory containing the extracted source::
+
+    cd Foot_Position_Controller-1.0.0
+
+- Create a directory called ``build``::
+
+    mkdir build
+
+- Change to that directory::
+
+    cd build
+
+- Run cmake or cmake-gui::
+
+    cmake ../
+
+- If no errors occurred, run make::
+
+    make
+
+- Finally, install the component. Ensure the necessary permissions to
+  install into the chosen prefix are available::
+
+    make install
+
+- The install destination can be changed by executing ccmake and changing
+  the variable ``CMAKE_INSTALL_PREFIX``::
+
+    ccmake ../
+
+The component is now ready for use. See the next section for instructions on
+configuring the component.
+
+Foot_Position_Controller can be launched in stand-alone mode by executing the
+``Foot_Position_ControllerComp`` executable (installed into ``${prefix}/components/bin``).
+Alternatively, ``libFoot_Position_Controller.so`` can be loaded into a manager, using the
+initialisation function ``Foot_Position_ControllerInit``. This shared object can be found in
+``${prefix}/components/lib`` or ``${prefix}/components/lib64``.
+
+
+Configuration
+=============
+
+The available configuration parameters are described below:
+
+================ ================== ================ ======
+Parameter        Data type          Default Value    Effect
+================ ================== ================ ======
+================ ================== ================ ======
+
+Ports
+=====
+
+The ports provided by the component are described below:
+
+=============== =========== ============================== =======
+Name            Type        Data type                      Purpose
+=============== =========== ============================== =======
+foot_pos_rf     InPort      RTC::TimedPose3D               足先位置(右前、ロボット中心座標系での第四象限)
+foot_pos_lf     InPort      RTC::TimedPose3D               足先位置(左前、ロボット中心座標系での第一象限)
+foot_pos_rb     InPort      RTC::TimedPose3D               足先位置(右後、ロボット中心座標系での第三象限)
+foot_pos_lb     InPort      RTC::TimedPose3D               足先位置(左後、ロボット中心座標系での第二象限)
+motor_pos       OutPort     RTC::TimedDoubleSeq            RCサーボの角度
+=============== =========== ============================== =======
+
+Examples
+========
+
+An example configuration file is provided in the
+``${prefix}/components/share/Foot_Position_Controller/examples/conf/`` directory.
+
+Changelog
+=========
+
+
+
+License
+=======
+
+This software is developed at the National Institute of Advanced
+Industrial Science and Technology. Approval number H23PRO-????. This
+software is licensed under the Lesser General Public License. See
+COPYING.LESSER.
+

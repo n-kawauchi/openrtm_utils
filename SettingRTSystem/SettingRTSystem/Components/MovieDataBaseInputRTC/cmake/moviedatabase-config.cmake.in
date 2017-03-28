@@ -1,0 +1,54 @@
+# MovieDataBase CMake config file
+#
+# This file sets the following variables:
+# MovieDataBase_FOUND - Always TRUE.
+# MovieDataBase_INCLUDE_DIRS - Directories containing the MovieDataBase include files.
+# MovieDataBase_IDL_DIRS - Directories containing the MovieDataBase IDL files.
+# MovieDataBase_LIBRARIES - Libraries needed to use MovieDataBase.
+# MovieDataBase_DEFINITIONS - Compiler flags for MovieDataBase.
+# MovieDataBase_VERSION - The version of MovieDataBase found.
+# MovieDataBase_VERSION_MAJOR - The major version of MovieDataBase found.
+# MovieDataBase_VERSION_MINOR - The minor version of MovieDataBase found.
+# MovieDataBase_VERSION_REVISION - The revision version of MovieDataBase found.
+# MovieDataBase_VERSION_CANDIDATE - The candidate version of MovieDataBase found.
+
+message(STATUS "Found MovieDataBase-@PROJECT_VERSION@")
+set(MovieDataBase_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(MovieDataBase_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(MovieDataBase_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(MovieDataBase_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(MovieDataBase_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(MovieDataBase_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(MovieDataBase_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(MovieDataBase_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(MovieDataBase_VERSION @PROJECT_VERSION@)
+set(MovieDataBase_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(MovieDataBase_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(MovieDataBase_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(MovieDataBase_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+

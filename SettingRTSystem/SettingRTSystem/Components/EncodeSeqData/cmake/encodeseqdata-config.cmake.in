@@ -1,0 +1,54 @@
+# EncodeSeqData CMake config file
+#
+# This file sets the following variables:
+# EncodeSeqData_FOUND - Always TRUE.
+# EncodeSeqData_INCLUDE_DIRS - Directories containing the EncodeSeqData include files.
+# EncodeSeqData_IDL_DIRS - Directories containing the EncodeSeqData IDL files.
+# EncodeSeqData_LIBRARIES - Libraries needed to use EncodeSeqData.
+# EncodeSeqData_DEFINITIONS - Compiler flags for EncodeSeqData.
+# EncodeSeqData_VERSION - The version of EncodeSeqData found.
+# EncodeSeqData_VERSION_MAJOR - The major version of EncodeSeqData found.
+# EncodeSeqData_VERSION_MINOR - The minor version of EncodeSeqData found.
+# EncodeSeqData_VERSION_REVISION - The revision version of EncodeSeqData found.
+# EncodeSeqData_VERSION_CANDIDATE - The candidate version of EncodeSeqData found.
+
+message(STATUS "Found EncodeSeqData-@PROJECT_VERSION@")
+set(EncodeSeqData_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(EncodeSeqData_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(EncodeSeqData_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(EncodeSeqData_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(EncodeSeqData_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(EncodeSeqData_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(EncodeSeqData_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(EncodeSeqData_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(EncodeSeqData_VERSION @PROJECT_VERSION@)
+set(EncodeSeqData_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(EncodeSeqData_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(EncodeSeqData_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(EncodeSeqData_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+

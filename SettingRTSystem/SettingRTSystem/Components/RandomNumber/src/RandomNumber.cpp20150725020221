@@ -1,0 +1,182 @@
+// -*- C++ -*-
+/*!
+ * @file  RandomNumber.cpp
+ * @brief Random Number
+ * @date $Date$
+ *
+ * LGPL
+ *
+ * $Id$
+ */
+
+#include "RandomNumber.h"
+
+// Module specification
+// <rtc-template block="module_spec">
+static const char* randomnumber_spec[] =
+  {
+    "implementation_id", "RandomNumber",
+    "type_name",         "RandomNumber",
+    "description",       "Random Number",
+    "version",           "1.0.0",
+    "vendor",            "Miyamoto Nobuhiko",
+    "category",          "Math",
+    "activity_type",     "PERIODIC",
+    "kind",              "DataFlowComponent",
+    "max_instance",      "1",
+    "language",          "C++",
+    "lang_type",         "compile",
+    // Configuration variables
+    "conf.default.dataType", "TimedDouble",
+    "conf.default.maximum", "1",
+    "conf.default.minimum", "-1",
+    "conf.default.seed", "0",
+    "conf.default.randomSeedGenerator", "OFF",
+    "conf.default.data_size", "1",
+    // Widget
+    "conf.__widget__.dataType", "radio",
+    "conf.__widget__.maximum", "text",
+    "conf.__widget__.minimum", "text",
+    "conf.__widget__.seed", "text",
+    "conf.__widget__.randomSeedGenerator", "radio",
+    "conf.__widget__.data_size", "spin",
+    // Constraints
+    "conf.__constraints__.dataType", "(TimedDouble,TimedLong,TimedFloat,TimedShort,TimedULong,TimedUShort,TimedDoubleSeq,TimedLongSeq,TimedFloatSeq,TimedShortSeq,TimedULongSeq,TimedUShortSeq)",
+    "conf.__constraints__.randomSeedGenerator", "(ON,OFF)",
+    "conf.__constraints__.data_size", "1<=x<=1000",
+    ""
+  };
+// </rtc-template>
+
+/*!
+ * @brief constructor
+ * @param manager Maneger Object
+ */
+RandomNumber::RandomNumber(RTC::Manager* manager)
+    // <rtc-template block="initializer">
+  : RTC::DataFlowComponentBase(manager)
+
+    // </rtc-template>
+{
+}
+
+/*!
+ * @brief destructor
+ */
+RandomNumber::~RandomNumber()
+{
+}
+
+
+
+RTC::ReturnCode_t RandomNumber::onInitialize()
+{
+  // Registration: InPort/OutPort/Service
+  // <rtc-template block="registration">
+  // Set InPort buffers
+  
+  // Set OutPort buffer
+  
+  // Set service provider to Ports
+  
+  // Set service consumers to Ports
+  
+  // Set CORBA Service Ports
+  
+  // </rtc-template>
+
+  // <rtc-template block="bind_config">
+  // Bind variables and configuration variable
+  bindParameter("dataType", m_dataType, "TimedDouble");
+  bindParameter("maximum", m_maximum, "1");
+  bindParameter("minimum", m_minimum, "-1");
+  bindParameter("seed", m_seed, "0");
+  bindParameter("randomSeedGenerator", m_randomSeedGenerator, "OFF");
+  bindParameter("data_size", m_data_size, "1");
+  // </rtc-template>
+  
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RandomNumber::onFinalize()
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RandomNumber::onStartup(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RandomNumber::onShutdown(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RandomNumber::onActivated(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RandomNumber::onDeactivated(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RandomNumber::onExecute(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RandomNumber::onAborting(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RandomNumber::onError(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RandomNumber::onReset(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RandomNumber::onStateUpdate(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t RandomNumber::onRateChanged(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+
+extern "C"
+{
+ 
+  void RandomNumberInit(RTC::Manager* manager)
+  {
+    coil::Properties profile(randomnumber_spec);
+    manager->registerFactory(profile,
+                             RTC::Create<RandomNumber>,
+                             RTC::Delete<RandomNumber>);
+  }
+  
+};
+
+

@@ -1,0 +1,54 @@
+# RaspberryPiMouseController_DistanceSensor CMake config file
+#
+# This file sets the following variables:
+# RaspberryPiMouseController_DistanceSensor_FOUND - Always TRUE.
+# RaspberryPiMouseController_DistanceSensor_INCLUDE_DIRS - Directories containing the RaspberryPiMouseController_DistanceSensor include files.
+# RaspberryPiMouseController_DistanceSensor_IDL_DIRS - Directories containing the RaspberryPiMouseController_DistanceSensor IDL files.
+# RaspberryPiMouseController_DistanceSensor_LIBRARIES - Libraries needed to use RaspberryPiMouseController_DistanceSensor.
+# RaspberryPiMouseController_DistanceSensor_DEFINITIONS - Compiler flags for RaspberryPiMouseController_DistanceSensor.
+# RaspberryPiMouseController_DistanceSensor_VERSION - The version of RaspberryPiMouseController_DistanceSensor found.
+# RaspberryPiMouseController_DistanceSensor_VERSION_MAJOR - The major version of RaspberryPiMouseController_DistanceSensor found.
+# RaspberryPiMouseController_DistanceSensor_VERSION_MINOR - The minor version of RaspberryPiMouseController_DistanceSensor found.
+# RaspberryPiMouseController_DistanceSensor_VERSION_REVISION - The revision version of RaspberryPiMouseController_DistanceSensor found.
+# RaspberryPiMouseController_DistanceSensor_VERSION_CANDIDATE - The candidate version of RaspberryPiMouseController_DistanceSensor found.
+
+message(STATUS "Found RaspberryPiMouseController_DistanceSensor-@PROJECT_VERSION@")
+set(RaspberryPiMouseController_DistanceSensor_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(RaspberryPiMouseController_DistanceSensor_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(RaspberryPiMouseController_DistanceSensor_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(RaspberryPiMouseController_DistanceSensor_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(RaspberryPiMouseController_DistanceSensor_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(RaspberryPiMouseController_DistanceSensor_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(RaspberryPiMouseController_DistanceSensor_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(RaspberryPiMouseController_DistanceSensor_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(RaspberryPiMouseController_DistanceSensor_VERSION @PROJECT_VERSION@)
+set(RaspberryPiMouseController_DistanceSensor_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(RaspberryPiMouseController_DistanceSensor_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(RaspberryPiMouseController_DistanceSensor_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(RaspberryPiMouseController_DistanceSensor_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+

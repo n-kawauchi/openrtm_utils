@@ -1,0 +1,156 @@
+Trot_Gait_ControllerName - English
+========================
+
+.. toctree::
+   :hidden:
+
+   index_j
+
+
+Introduction
+============
+
+
+For a full list of classes and functions, see the `API documentation`_.
+
+.. _`API Documentation`:
+   doxygen/html/index.html
+
+Requirements
+============
+
+Trot_Gait_Controller uses the `CMake build system`. You will need at least version
+2.8 to be able to build the component.
+
+.. _`CMAke build system`:
+   http://www.cmake.org
+
+
+Installation
+============
+
+Binary
+------
+
+Users of Windows can install the component using the binary installer. This
+will install the component and all its necessary dependencies. It is the
+recommended method of installation in Windows.
+
+- Download the installer from the website.
+- Double-click the executable file to begin installation.
+- Follow the instructions to install the component.
+- You may need to restart your computer for environment variable changes
+  to take effect before using the component.
+
+The component can be launched by double-clicking the
+``Trot_Gait_ControllerComp`` executable. The ``Trot_Gait_Controller`` library
+is available for loading into a manager, using the initialisation function
+``Trot_Gait_ControllerInit``.
+
+From source
+-----------
+
+Follow these steps to install Trot_Gait_Controller from source in any operating
+system:
+
+- Download the source, either from the repository or a source archive,
+  and extract it somewhere::
+
+    tar -xvzf Trot_Gait_Controller-1.0.0.tar.gz
+
+- Change to the directory containing the extracted source::
+
+    cd Trot_Gait_Controller-1.0.0
+
+- Create a directory called ``build``::
+
+    mkdir build
+
+- Change to that directory::
+
+    cd build
+
+- Run cmake or cmake-gui::
+
+    cmake ../
+
+- If no errors occurred, run make::
+
+    make
+
+- Finally, install the component. Ensure the necessary permissions to
+  install into the chosen prefix are available::
+
+    make install
+
+- The install destination can be changed by executing ccmake and changing
+  the variable ``CMAKE_INSTALL_PREFIX``::
+
+    ccmake ../
+
+The component is now ready for use. See the next section for instructions on
+configuring the component.
+
+Trot_Gait_Controller can be launched in stand-alone mode by executing the
+``Trot_Gait_ControllerComp`` executable (installed into ``${prefix}/components/bin``).
+Alternatively, ``libTrot_Gait_Controller.so`` can be loaded into a manager, using the
+initialisation function ``Trot_Gait_ControllerInit``. This shared object can be found in
+``${prefix}/components/lib`` or ``${prefix}/components/lib64``.
+
+
+Configuration
+=============
+
+The available configuration parameters are described below:
+
+================ ================== ================ ======
+Parameter        Data type          Default Value    Effect
+================ ================== ================ ======
+sampling_time    double             -1               シミュレーションのステップ時間<br/>0以下の場合は実行周期
+stride           double             0.08             歩幅
+center_pos_x     double             0.077            脚先基準位置(X軸)
+center_pos_y     double             0.096            脚先基準位置(Y軸)
+center_pos_z     double             -0.079           脚先基準位置(Z軸)
+lift_height      double             0.05             遊脚高さ
+upper_limit_x    double             0.04             脚基準位置からみた可動範囲上限(X軸)
+upper_limit_y    double             0.04             脚基準位置からみた可動範囲上限(Y軸)
+upper_limit_z    double             0.04             脚基準位置からみた可動範囲上限(Z軸)
+lower_limit_x    double             -0.04            脚基準位置からみた可動範囲下限(X軸)
+lower_limit_y    double             -0.04            脚基準位置からみた可動範囲下限(Y軸)
+lower_limit_z    double             -0.04            脚基準位置からみた可動範囲下限(Z軸)
+move_limit       short              0                脚の可動範囲を制御時に考慮するかの設定。<br/>1の時に可動範囲を考慮した制御を行う。
+================ ================== ================ ======
+
+Ports
+=====
+
+The ports provided by the component are described below:
+
+=============== =========== ============================== =======
+Name            Type        Data type                      Purpose
+=============== =========== ============================== =======
+target_velocity InPort      RTC::TimedVelocity2D           目標速度
+update_pose     InPort      RTC::TimedPose2D               位置の再設定
+Trajectory      OutPort     RTC::LeggedRobot               足先軌道
+current_pose    OutPort     RTC::TimedPose2D               現在位置
+=============== =========== ============================== =======
+
+Examples
+========
+
+An example configuration file is provided in the
+``${prefix}/components/share/Trot_Gait_Controller/examples/conf/`` directory.
+
+Changelog
+=========
+
+
+
+License
+=======
+
+This software is developed at the National Institute of Advanced
+Industrial Science and Technology. Approval number H23PRO-????. This
+software is licensed under the Lesser General Public License. See
+COPYING.LESSER.
+

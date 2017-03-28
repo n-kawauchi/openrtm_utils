@@ -1,0 +1,54 @@
+# DataBaseInPut CMake config file
+#
+# This file sets the following variables:
+# DataBaseInPut_FOUND - Always TRUE.
+# DataBaseInPut_INCLUDE_DIRS - Directories containing the DataBaseInPut include files.
+# DataBaseInPut_IDL_DIRS - Directories containing the DataBaseInPut IDL files.
+# DataBaseInPut_LIBRARIES - Libraries needed to use DataBaseInPut.
+# DataBaseInPut_DEFINITIONS - Compiler flags for DataBaseInPut.
+# DataBaseInPut_VERSION - The version of DataBaseInPut found.
+# DataBaseInPut_VERSION_MAJOR - The major version of DataBaseInPut found.
+# DataBaseInPut_VERSION_MINOR - The minor version of DataBaseInPut found.
+# DataBaseInPut_VERSION_REVISION - The revision version of DataBaseInPut found.
+# DataBaseInPut_VERSION_CANDIDATE - The candidate version of DataBaseInPut found.
+
+message(STATUS "Found DataBaseInPut-@PROJECT_VERSION@")
+set(DataBaseInPut_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(DataBaseInPut_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(DataBaseInPut_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(DataBaseInPut_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(DataBaseInPut_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(DataBaseInPut_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(DataBaseInPut_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(DataBaseInPut_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(DataBaseInPut_VERSION @PROJECT_VERSION@)
+set(DataBaseInPut_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(DataBaseInPut_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(DataBaseInPut_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(DataBaseInPut_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+

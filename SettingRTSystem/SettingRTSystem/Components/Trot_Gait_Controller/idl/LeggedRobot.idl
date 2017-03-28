@@ -1,0 +1,64 @@
+// -*- IDL -*-
+
+#ifndef LEGGEDROBOTINTERFACE_IDL
+#define LEGGEDROBOTINTERFACE_IDL
+
+#include "BasicDataType.idl"
+#include "ExtendedDataTypes.idl"
+#include "ModelLoader.idl"
+
+
+module WalkingRobot {
+	struct Leg
+	{
+		RTC::Pose3D pose;
+		RTC::Velocity3D velocity;
+		//boolean onGround;
+	};
+
+	typedef sequence<Leg> LegList;
+
+	struct LeggedRobot
+	{
+		RTC::Time tm;
+		LegList leg_data;
+		RTC::Velocity3D body_velocity;
+		RTC::Pose3D body_pose;
+	};
+
+
+	
+
+	
+
+	typedef sequence<double> JointPos;
+
+	interface LeggedRobotCommonInterface_Servo
+	{
+		boolean setSoftLimitJoint(in JointPos pos);
+		JointPos getSoftLimitjoint();
+		boolean servoOFF();
+		boolean servoON();
+	};
+
+	struct RobotInfo
+	{
+		string manufacturer;
+		string type;
+		OpenHRP::LinkInfoSequence legData;
+		sequence<short> firstJointList;
+	};
+
+	interface LeggedRobotCommonInterface_Robot
+	{
+		RobotInfo getRobotInfo();
+		LegList getFeedbackPos();
+	};
+
+
+
+}; /* module */
+
+
+
+#endif /* LEGGEDROBOTINTERFACE_IDL */

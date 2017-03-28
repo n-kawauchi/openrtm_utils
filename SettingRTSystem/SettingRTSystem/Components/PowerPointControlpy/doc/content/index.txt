@@ -1,0 +1,146 @@
+PowerPointControlpyName - English
+========================
+
+.. toctree::
+   :hidden:
+
+   index_j
+
+
+Introduction
+============
+
+
+For a full list of classes and functions, see the `API documentation`_.
+
+.. _`API Documentation`:
+   doxygen/html/index.html
+
+Requirements
+============
+
+PowerPointControlpy uses the `CMake build system`. You will need at least version
+2.8 to be able to build the component.
+
+.. _`CMAke build system`:
+   http://www.cmake.org
+
+
+Installation
+============
+
+Binary
+------
+
+Users of Windows can install the component using the binary installer. This
+will install the component and all its necessary dependencies. It is the
+recommended method of installation in Windows.
+
+- Download the installer from the website.
+- Double-click the executable file to begin installation.
+- Follow the instructions to install the component.
+- You may need to restart your computer for environment variable changes
+  to take effect before using the component.
+
+The component can be launched by double-clicking the
+``PowerPointControlpyComp`` executable. The ``PowerPointControlpy`` library
+is available for loading into a manager, using the initialisation function
+``PowerPointControlpyInit``.
+
+From source
+-----------
+
+Follow these steps to install PowerPointControlpy from source in any operating
+system:
+
+- Download the source, either from the repository or a source archive,
+  and extract it somewhere::
+
+    tar -xvzf PowerPointControlpy-1.0.0.tar.gz
+
+- Change to the directory containing the extracted source::
+
+    cd PowerPointControlpy-1.0.0
+
+- Create a directory called ``build``::
+
+    mkdir build
+
+- Change to that directory::
+
+    cd build
+
+- Run cmake or cmake-gui::
+
+    cmake ../
+
+- If no errors occurred, run make::
+
+    make
+
+- Finally, install the component. Ensure the necessary permissions to
+  install into the chosen prefix are available::
+
+    make install
+
+- The install destination can be changed by executing ccmake and changing
+  the variable ``CMAKE_INSTALL_PREFIX``::
+
+    ccmake ../
+
+The component is now ready for use. See the next section for instructions on
+configuring the component.
+
+PowerPointControlpy can be launched in stand-alone mode by executing the
+``PowerPointControlpyComp`` executable (installed into ``${prefix}/components/bin``).
+Alternatively, ``libPowerPointControlpy.so`` can be loaded into a manager, using the
+initialisation function ``PowerPointControlpyInit``. This shared object can be found in
+``${prefix}/components/lib`` or ``${prefix}/components/lib64``.
+
+
+Configuration
+=============
+
+The available configuration parameters are described below:
+
+================ ================== ================ ======
+Parameter        Data type          Default Value    Effect
+================ ================== ================ ======
+file_path        string             NewFile          スライドショー開始時のスライド番号
+SlideFileInitialNumber int                0                0のときはSlideNumberInが最初のスライドからの番号になり、1のときは現在のスライド番号からの番号になる。
+SlideNumberInRelative int                1                0のときはSlideNumberInが最初のスライドからの番号になり、1のときは現在のスライド番号からの番号になる。
+================ ================== ================ ======
+
+Ports
+=====
+
+The ports provided by the component are described below:
+
+=============== =========== ============================== =======
+Name            Type        Data type                      Purpose
+=============== =========== ============================== =======
+SlideNumberIn   InPort      RTC::TimedShort                コンフィギュレーションパラメータSlideNumberInRelativeが0のときは最初のスライドからの番号、1のときは現在のスライド番号からの番号
+EffectNumberIn  InPort      RTC::TimedShort                実行するアニメーションの数
+Pen             InPort      RTC::TimedShortSeq             描画する線の座標
+SlideNumberOut  OutPort     RTC::TimedShort                現在のスライド番号
+=============== =========== ============================== =======
+
+Examples
+========
+
+An example configuration file is provided in the
+``${prefix}/components/share/PowerPointControlpy/examples/conf/`` directory.
+
+Changelog
+=========
+
+
+
+License
+=======
+
+This software is developed at the National Institute of Advanced
+Industrial Science and Technology. Approval number H23PRO-????. This
+software is licensed under the Lesser General Public License. See
+COPYING.LESSER.
+

@@ -1,0 +1,54 @@
+# DataBaseOutPut CMake config file
+#
+# This file sets the following variables:
+# DataBaseOutPut_FOUND - Always TRUE.
+# DataBaseOutPut_INCLUDE_DIRS - Directories containing the DataBaseOutPut include files.
+# DataBaseOutPut_IDL_DIRS - Directories containing the DataBaseOutPut IDL files.
+# DataBaseOutPut_LIBRARIES - Libraries needed to use DataBaseOutPut.
+# DataBaseOutPut_DEFINITIONS - Compiler flags for DataBaseOutPut.
+# DataBaseOutPut_VERSION - The version of DataBaseOutPut found.
+# DataBaseOutPut_VERSION_MAJOR - The major version of DataBaseOutPut found.
+# DataBaseOutPut_VERSION_MINOR - The minor version of DataBaseOutPut found.
+# DataBaseOutPut_VERSION_REVISION - The revision version of DataBaseOutPut found.
+# DataBaseOutPut_VERSION_CANDIDATE - The candidate version of DataBaseOutPut found.
+
+message(STATUS "Found DataBaseOutPut-@PROJECT_VERSION@")
+set(DataBaseOutPut_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(DataBaseOutPut_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(DataBaseOutPut_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(DataBaseOutPut_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(DataBaseOutPut_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(DataBaseOutPut_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(DataBaseOutPut_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(DataBaseOutPut_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(DataBaseOutPut_VERSION @PROJECT_VERSION@)
+set(DataBaseOutPut_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(DataBaseOutPut_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(DataBaseOutPut_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(DataBaseOutPut_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+
