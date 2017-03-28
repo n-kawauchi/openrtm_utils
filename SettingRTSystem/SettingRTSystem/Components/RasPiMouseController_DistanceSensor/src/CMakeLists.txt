@@ -1,5 +1,5 @@
-set(comp_srcs RaspberryPiMouseController_DistanceSensor.cpp )
-set(standalone_srcs RaspberryPiMouseController_DistanceSensorComp.cpp)
+set(comp_srcs RasPiMouseController_DistanceSensor.cpp )
+set(standalone_srcs RasPiMouseController_DistanceSensorComp.cpp)
 
 if (DEFINED OPENRTM_INCLUDE_DIRS)
   string(REGEX REPLACE "-I" ";"

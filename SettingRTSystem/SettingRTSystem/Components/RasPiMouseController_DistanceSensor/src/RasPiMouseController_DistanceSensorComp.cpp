@@ -1,6 +1,6 @@
 // -*- C++ -*-
 /*!
- * @file RaspberryPiMouseController_DistanceSensorComp.cpp
+ * @file RasPiMouseController_DistanceSensorComp.cpp
  * @brief Standalone component
  * @date $Date$
  *
@@ -17,16 +17,16 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
-#include "RaspberryPiMouseController_DistanceSensor.h"
+#include "RasPiMouseController_DistanceSensor.h"
 
 
 void MyModuleInit(RTC::Manager* manager)
 {
-  RaspberryPiMouseController_DistanceSensorInit(manager);
+  RasPiMouseController_DistanceSensorInit(manager);
   RTC::RtcBase* comp;
 
   // Create a component
-  comp = manager->createComponent("RaspberryPiMouseController_DistanceSensor");
+  comp = manager->createComponent("RasPiMouseController_DistanceSensor");
 
   if (comp==NULL)
   {

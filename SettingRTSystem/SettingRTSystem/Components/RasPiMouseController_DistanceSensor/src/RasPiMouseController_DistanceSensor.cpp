@@ -1,6 +1,6 @@
 // -*- C++ -*-
 /*!
- * @file  RaspberryPiMouseController_DistanceSensor.cpp
+ * @file  RasPiMouseController_DistanceSensor.cpp
  * @brief Raspberry Pi Mouse Controller
  * @date $Date$
  *
@@ -14,14 +14,14 @@
  */
 
 #include <math.h>
-#include "RaspberryPiMouseController_DistanceSensor.h"
+#include "RasPiMouseController_DistanceSensor.h"
 
 // Module specification
 // <rtc-template block="module_spec">
-static const char* raspberrypimousecontroller_distancesensor_spec[] =
+static const char* raspimousecontroller_distancesensor_spec[] =
   {
-    "implementation_id", "RaspberryPiMouseController_DistanceSensor",
-    "type_name",         "RaspberryPiMouseController_DistanceSensor",
+    "implementation_id", "RasPiMouseController_DistanceSensor",
+    "type_name",         "RasPiMouseController_DistanceSensor",
     "description",       "Raspberry Pi Mouse Controller",
     "version",           "1.0.0",
     "vendor",            "AIST",
@@ -48,7 +48,7 @@ static const char* raspberrypimousecontroller_distancesensor_spec[] =
  * @brief constructor
  * @param manager Maneger Object
  */
-RaspberryPiMouseController_DistanceSensor::RaspberryPiMouseController_DistanceSensor(RTC::Manager* manager)
+RasPiMouseController_DistanceSensor::RasPiMouseController_DistanceSensor(RTC::Manager* manager)
     // <rtc-template block="initializer">
   : RTC::DataFlowComponentBase(manager),
     m_target_velocity_inIn("target_velocity_in", m_target_velocity_in),
@@ -62,13 +62,13 @@ RaspberryPiMouseController_DistanceSensor::RaspberryPiMouseController_DistanceSe
 /*!
  * @brief destructor
  */
-RaspberryPiMouseController_DistanceSensor::~RaspberryPiMouseController_DistanceSensor()
+RasPiMouseController_DistanceSensor::~RasPiMouseController_DistanceSensor()
 {
 }
 
 
 
-RTC::ReturnCode_t RaspberryPiMouseController_DistanceSensor::onInitialize()
+RTC::ReturnCode_t RasPiMouseController_DistanceSensor::onInitialize()
 {
   // Registration: InPort/OutPort/Service
   // <rtc-template block="registration">
@@ -98,25 +98,25 @@ RTC::ReturnCode_t RaspberryPiMouseController_DistanceSensor::onInitialize()
 }
 
 
-RTC::ReturnCode_t RaspberryPiMouseController_DistanceSensor::onFinalize()
+RTC::ReturnCode_t RasPiMouseController_DistanceSensor::onFinalize()
 {
   return RTC::RTC_OK;
 }
 
 
-RTC::ReturnCode_t RaspberryPiMouseController_DistanceSensor::onStartup(RTC::UniqueId ec_id)
+RTC::ReturnCode_t RasPiMouseController_DistanceSensor::onStartup(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 
 
-RTC::ReturnCode_t RaspberryPiMouseController_DistanceSensor::onShutdown(RTC::UniqueId ec_id)
+RTC::ReturnCode_t RasPiMouseController_DistanceSensor::onShutdown(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 
 
-RTC::ReturnCode_t RaspberryPiMouseController_DistanceSensor::onActivated(RTC::UniqueId ec_id)
+RTC::ReturnCode_t RasPiMouseController_DistanceSensor::onActivated(RTC::UniqueId ec_id)
 {
 	m_target_vx = 0;
 	m_target_vy = 0;
@@ -130,7 +130,7 @@ RTC::ReturnCode_t RaspberryPiMouseController_DistanceSensor::onActivated(RTC::Un
 }
 
 
-RTC::ReturnCode_t RaspberryPiMouseController_DistanceSensor::onDeactivated(RTC::UniqueId ec_id)
+RTC::ReturnCode_t RasPiMouseController_DistanceSensor::onDeactivated(RTC::UniqueId ec_id)
 {
 	m_target_velocity_out.data.vx = 0;
 	m_target_velocity_out.data.vy = 0;
@@ -142,7 +142,7 @@ RTC::ReturnCode_t RaspberryPiMouseController_DistanceSensor::onDeactivated(RTC::
 }
 
 
-RTC::ReturnCode_t RaspberryPiMouseController_DistanceSensor::onExecute(RTC::UniqueId ec_id)
+RTC::ReturnCode_t RasPiMouseController_DistanceSensor::onExecute(RTC::UniqueId ec_id)
 {
 	if (m_ir_sensorIn.isNew())
 	{
@@ -198,31 +198,31 @@ RTC::ReturnCode_t RaspberryPiMouseController_DistanceSensor::onExecute(RTC::Uniq
 }
 
 
-RTC::ReturnCode_t RaspberryPiMouseController_DistanceSensor::onAborting(RTC::UniqueId ec_id)
+RTC::ReturnCode_t RasPiMouseController_DistanceSensor::onAborting(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 
 
-RTC::ReturnCode_t RaspberryPiMouseController_DistanceSensor::onError(RTC::UniqueId ec_id)
+RTC::ReturnCode_t RasPiMouseController_DistanceSensor::onError(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 
 
-RTC::ReturnCode_t RaspberryPiMouseController_DistanceSensor::onReset(RTC::UniqueId ec_id)
+RTC::ReturnCode_t RasPiMouseController_DistanceSensor::onReset(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 
 
-RTC::ReturnCode_t RaspberryPiMouseController_DistanceSensor::onStateUpdate(RTC::UniqueId ec_id)
+RTC::ReturnCode_t RasPiMouseController_DistanceSensor::onStateUpdate(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 
 
-RTC::ReturnCode_t RaspberryPiMouseController_DistanceSensor::onRateChanged(RTC::UniqueId ec_id)
+RTC::ReturnCode_t RasPiMouseController_DistanceSensor::onRateChanged(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
@@ -232,12 +232,12 @@ RTC::ReturnCode_t RaspberryPiMouseController_DistanceSensor::onRateChanged(RTC::
 extern "C"
 {
  
-  void RaspberryPiMouseController_DistanceSensorInit(RTC::Manager* manager)
+  void RasPiMouseController_DistanceSensorInit(RTC::Manager* manager)
   {
-    coil::Properties profile(raspberrypimousecontroller_distancesensor_spec);
+    coil::Properties profile(raspimousecontroller_distancesensor_spec);
     manager->registerFactory(profile,
-                             RTC::Create<RaspberryPiMouseController_DistanceSensor>,
-                             RTC::Delete<RaspberryPiMouseController_DistanceSensor>);
+                             RTC::Create<RasPiMouseController_DistanceSensor>,
+                             RTC::Delete<RasPiMouseController_DistanceSensor>);
   }
   
 };

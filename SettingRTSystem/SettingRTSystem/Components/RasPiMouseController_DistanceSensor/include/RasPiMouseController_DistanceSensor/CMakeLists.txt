@@ -1,4 +1,4 @@
-set(hdrs RaspberryPiMouseController_DistanceSensor.h
+set(hdrs RasPiMouseController_DistanceSensor.h
     PARENT_SCOPE
     )
 

@@ -1,4 +1,4 @@
-RaspberryPiMouseController_DistanceSensorName - English
+RasPiMouseController_DistanceSensorName - English
 ========================
 
 .. toctree::
@@ -19,7 +19,7 @@ For a full list of classes and functions, see the `API documentation`_.
 Requirements
 ============
 
-RaspberryPiMouseController_DistanceSensor uses the `CMake build system`. You will need at least version
+RasPiMouseController_DistanceSensor uses the `CMake build system`. You will need at least version
 2.8 to be able to build the component.
 
 .. _`CMAke build system`:
@@ -43,24 +43,24 @@ recommended method of installation in Windows.
   to take effect before using the component.
 
 The component can be launched by double-clicking the
-``RaspberryPiMouseController_DistanceSensorComp`` executable. The ``RaspberryPiMouseController_DistanceSensor`` library
+``RasPiMouseController_DistanceSensorComp`` executable. The ``RasPiMouseController_DistanceSensor`` library
 is available for loading into a manager, using the initialisation function
-``RaspberryPiMouseController_DistanceSensorInit``.
+``RasPiMouseController_DistanceSensorInit``.
 
 From source
 -----------
 
-Follow these steps to install RaspberryPiMouseController_DistanceSensor from source in any operating
+Follow these steps to install RasPiMouseController_DistanceSensor from source in any operating
 system:
 
 - Download the source, either from the repository or a source archive,
   and extract it somewhere::
 
-    tar -xvzf RaspberryPiMouseController_DistanceSensor-1.0.0.tar.gz
+    tar -xvzf RasPiMouseController_DistanceSensor-1.0.0.tar.gz
 
 - Change to the directory containing the extracted source::
 
-    cd RaspberryPiMouseController_DistanceSensor-1.0.0
+    cd RasPiMouseController_DistanceSensor-1.0.0
 
 - Create a directory called ``build``::
 
@@ -91,10 +91,10 @@ system:
 The component is now ready for use. See the next section for instructions on
 configuring the component.
 
-RaspberryPiMouseController_DistanceSensor can be launched in stand-alone mode by executing the
-``RaspberryPiMouseController_DistanceSensorComp`` executable (installed into ``${prefix}/components/bin``).
-Alternatively, ``libRaspberryPiMouseController_DistanceSensor.so`` can be loaded into a manager, using the
-initialisation function ``RaspberryPiMouseController_DistanceSensorInit``. This shared object can be found in
+RasPiMouseController_DistanceSensor can be launched in stand-alone mode by executing the
+``RasPiMouseController_DistanceSensorComp`` executable (installed into ``${prefix}/components/bin``).
+Alternatively, ``libRasPiMouseController_DistanceSensor.so`` can be loaded into a manager, using the
+initialisation function ``RasPiMouseController_DistanceSensorInit``. This shared object can be found in
 ``${prefix}/components/lib`` or ``${prefix}/components/lib64``.
 
 
@@ -128,7 +128,7 @@ Examples
 ========
 
 An example configuration file is provided in the
-``${prefix}/components/share/RaspberryPiMouseController_DistanceSensor/examples/conf/`` directory.
+``${prefix}/components/share/RasPiMouseController_DistanceSensor/examples/conf/`` directory.
 
 Changelog
 =========

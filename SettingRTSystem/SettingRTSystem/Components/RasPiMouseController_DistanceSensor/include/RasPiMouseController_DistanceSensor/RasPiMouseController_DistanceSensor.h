@@ -1,6 +1,6 @@
 // -*- C++ -*-
 /*!
- * @file  RaspberryPiMouseController_DistanceSensor.h
+ * @file  RasPiMouseController_DistanceSensor.h
  * @brief Raspberry Pi Mouse Controller
  * @date  $Date$
  *
@@ -13,8 +13,8 @@
  * $Id$
  */
 
-#ifndef RASPBERRYPIMOUSECONTROLLER_DISTANCESENSOR_H
-#define RASPBERRYPIMOUSECONTROLLER_DISTANCESENSOR_H
+#ifndef RasPiMouseController_DistanceSensor_H
+#define RasPiMouseController_DistanceSensor_H
 
 #include <rtm/idl/BasicDataTypeSkel.h>
 #include <rtm/idl/ExtendedDataTypesSkel.h>
@@ -43,14 +43,14 @@ using namespace RTC;
 #include <rtm/DataOutPort.h>
 
 /*!
- * @class RaspberryPiMouseController_DistanceSensor
+ * @class RasPiMouseController_DistanceSensor
  * @brief Raspberry Pi Mouse Controller
  *
  * Raspberry Pi Mouseの制御RTC。
  * IRセンサで物体を検知すると回転して回避します。
  *
  */
-class RaspberryPiMouseController_DistanceSensor
+class RasPiMouseController_DistanceSensor
   : public RTC::DataFlowComponentBase
 {
  public:
@@ -58,12 +58,12 @@ class RaspberryPiMouseController_DistanceSensor
    * @brief constructor
    * @param manager Maneger Object
    */
-  RaspberryPiMouseController_DistanceSensor(RTC::Manager* manager);
+  RasPiMouseController_DistanceSensor(RTC::Manager* manager);
 
   /*!
    * @brief destructor
    */
-  ~RaspberryPiMouseController_DistanceSensor();
+  ~RasPiMouseController_DistanceSensor();
 
   // <rtc-template block="public_attribute">
   
@@ -332,7 +332,7 @@ class RaspberryPiMouseController_DistanceSensor
 
 extern "C"
 {
-  DLL_EXPORT void RaspberryPiMouseController_DistanceSensorInit(RTC::Manager* manager);
+  DLL_EXPORT void RasPiMouseController_DistanceSensorInit(RTC::Manager* manager);
 };
 
-#endif // RASPBERRYPIMOUSECONTROLLER_DISTANCESENSOR_H
+#endif // RasPiMouseController_DistanceSensor_H

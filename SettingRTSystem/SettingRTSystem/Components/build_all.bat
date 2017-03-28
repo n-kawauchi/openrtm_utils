@@ -42,7 +42,7 @@ cmd /c ProductFunction\build_all.bat
 cmd /c PulseGenerator\build_all.bat
 cmd /c RampFunction\build_all.bat
 cmd /c RandomNumber\build_all.bat
-cmd /c RaspberryPiMouseController_DistanceSensor\build_all.bat
+cmd /c RasPiMouseController_DistanceSensor\build_all.bat
 cmd /c RaspberryPiMouseController_Joystick\build_all.bat
 cmd /c RaspberryPiMouseGUI\build_all.bat
 cmd /c RasPiMouseSampleCPP\build_all.bat
