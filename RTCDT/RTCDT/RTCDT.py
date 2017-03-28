@@ -20,7 +20,9 @@ import os
 sys.path.append(".")
 
 if "PACKAGE_DIRECTORIY" in os.environ:
-	sys.path.append(os.path.join(os.environ["PACKAGE_DIRECTORIY"],"wasanbon/core/plugins/admin"))
+	package_dir = os.environ["PACKAGE_DIRECTORIY"].replace("\"","")
+	sys.path.append(package_dir)
+	sys.path.append(os.path.join(package_dir,"wasanbon/core/plugins/admin"))
 
 # Import RTM module
 import RTC
