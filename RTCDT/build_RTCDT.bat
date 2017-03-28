@@ -6,12 +6,15 @@ set RTCDT_Copy=utils\RTCDT
 set Tool_Copy=utils\python_dist
 set GLOBAL_Tool_Copy=..\python_dist\utils\python_dist
 
+if not DEFINED WASANBON_DIRECTORIY set WASANBON_DIRECTORIY="C:\workspace\wasanbon"
+
 
 cd %RTCDT%
 
 IF EXIST "dist" (
 	rmdir /s/q dist
 )
+
 python setup.py py2exe
 
 xcopy /y/q C:\Python27\Lib\site-packages\numpy\core\numpy-atlas.dll .

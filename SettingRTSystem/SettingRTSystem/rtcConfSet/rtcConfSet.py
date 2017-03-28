@@ -65,6 +65,9 @@ from omniORB import CORBA, PortableServer
 import RTCConfData, RTCConfData__POA
 import rtcControl, rtcControl__POA
 
+if "WASANBON_DIRECTORIY" in os.environ:
+	sys.path.append(os.environ["WASANBON_DIRECTORIY"])
+	sys.path.append(os.path.join(os.environ["WASANBON_DIRECTORIY"],"wasanbon/core/plugins/admin"))
 
 #from wasanbon.core.rtc.rtcprofile import RTCProfile
 from rtcprofile_plugin import rtcprofile
@@ -75,6 +78,8 @@ defaultCompositePath = os.path.join(defaultPath,"Composite")
 defaultRtcdControlPath = os.path.join(defaultPath,"rtcdControl")
 defaultRtcdPyControlPath = os.path.join(defaultPath,"rtcdControlPy")
 defaultDllPath = os.path.join(defaultPath,"Dll")
+
+
 
 ##
 # @brief サービスポート接続

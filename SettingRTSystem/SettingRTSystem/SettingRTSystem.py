@@ -50,19 +50,23 @@ def main():
     #splash.setMask(splash_pix.mask())
     #splash.show()
     #app.processEvents()
+    if "SettingRTSystemPath" in os.environ:
+        tool_path = os.environ["SettingRTSystemPath"]
+    else:
+        tool_path = "./"
     
     if os.name == 'posix':
         #process_rtcd = subprocess.Popen("python Manager/Python/rtcd.py -f Manager/Python/rtc.conf".split(" "))
-        cmd = "sh " + str(os.path.join(os.environ["SettingRTSystemPath"],"rtcConfSet.sh"))
+        cmd = "sh " + str(os.path.join(tool_path,"rtcConfSet.sh"))
         process_confset = subprocess.Popen(cmd.split(" "))
         #process_confset = os.system("sh rtcConfSet.sh&")
     elif os.name == 'nt':
         #process_rtcd = subprocess.Popen("python Manager/Python/rtcd.py -f Manager/Python/rtc.conf")
         #process_rtcd = os.system("start python Manager/Python/rtcd.py -f Manager/Python/rtc.conf")
-        if os.environ["TOOLEXE"] == "TRUE":
-            cmd = str(os.path.join(os.environ["SettingRTSystemPath"],"rtcConfSet_exe.bat"))
+        if "TOOLEXE" in os.environ:
+            cmd = str(os.path.join(tool_path,"rtcConfSet_exe.bat"))
         else:
-            cmd = str(os.path.join(os.environ["SettingRTSystemPath"],"rtcConfSet.bat"))
+            cmd = str(os.path.join(tool_path,"rtcConfSet.bat"))
         process_confset = subprocess.Popen(cmd)
         #process_confset = os.system("start rtcConfSet.bat")
     
@@ -77,10 +81,10 @@ def main():
     
 
     if os.name == 'posix':
-        cmd = "python " + str(os.path.join(os.environ["SettingRTSystemPath"],"exitRTCs.py"))
+        cmd = "python " + str(os.path.join(tool_path,"exitRTCs.py"))
         subprocess.Popen(cmd.split(" "))
     elif os.name == 'nt':
-        cmd = "python " + str(os.path.join(os.environ["SettingRTSystemPath"],"exitRTCs.py"))
+        cmd = "python " + str(os.path.join(tool_path,"exitRTCs.py"))
         subprocess.Popen(cmd)
         
     

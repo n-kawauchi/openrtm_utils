@@ -9,4 +9,3 @@ cd "%SettingRTSystemWorkspace%"
 copy "%SettingRTSystemPath%\workspace\rtc.conf" rtc.conf
 start "" "%SettingRTSystemPath%runManager.bat"
 python "%SettingRTSystemPath%SettingRTSystem.py" -f rtc.conf
-pause
