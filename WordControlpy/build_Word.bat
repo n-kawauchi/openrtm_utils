@@ -2,9 +2,9 @@ cd /d %~dp0
 set WorkDir=%~dp0
 
 set WordControlpy=WordControlpy
-set WordControlpy_Copy=WordControlpy_Copy
-set Tool_Copy=python_dist
-set Tool_Dir_Name=python_dist
+set WordControlpy_Copy=utils\WordControlpy
+set Tool_Copy=utils\python_dist
+set GLOBAL_Tool_Copy=..\python_dist\utils\python_dist
 
 cd %WordControlpy%
 
@@ -22,24 +22,31 @@ IF EXIST "%WordControlpy_Copy%" (
 	rmdir /s/q %WordControlpy_Copy%
 )
 
+IF EXIST "%Tool_Copy%" (
+	rmdir /s/q %Tool_Copy%
+)
 
 
 mkdir %WordControlpy_Copy%
-mkdir %WordControlpy_Copy%\python_dist
+mkdir %Tool_Copy%
 
 
 
 
-IF NOT EXIST "%Tool_Copy%" (
-	mkdir %Tool_Copy%
+IF NOT EXIST "%GLOBAL_Tool_Copy%" (
+	mkdir %GLOBAL_Tool_Copy%
 )
 
 
 
 
-xcopy /y/q %WordControlpy%\dist\WordControlpy.exe %WordControlpy_Copy%\python_dist\
-xcopy /y/q %WordControlpy%\dist\WordControlpy.lib %WordControlpy_Copy%\python_dist\
+xcopy /y/q %WordControlpy%\WordControlpy.bat %WordControlpy_Copy%\
+xcopy /y/q %WordControlpy%\rtc.conf %WordControlpy_Copy%\
+xcopy /y/q %WordControlpy%\WordControlpy.conf %WordControlpy_Copy%\
+
+xcopy /y/q %WordControlpy%\dist\WordControlpy.exe %Tool_Copy%\
+xcopy /y/q %WordControlpy%\dist\WordControlpy.lib %Tool_Copy%\
 
 
-xcopy /y/q %WordControlpy%\dist\*.pyd %Tool_Copy%\
-xcopy /y/q %WordControlpy%\dist\*.dll %Tool_Copy%\
+xcopy /y/q %WordControlpy%\dist\*.pyd %GLOBAL_Tool_Copy%\
+xcopy /y/q %WordControlpy%\dist\*.dll %GLOBAL_Tool_Copy%\

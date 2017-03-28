@@ -6,7 +6,7 @@ set TARGET_NAME=python_dist
 set ARCH=x86
 set PYTHON_DIR=C:\Python27
 
-set TARGET_DIR=python_dist
+set TARGET_DIR=utils
 
 
 call getGuid.bat %TARGET_NAME%_%PKG_NAME%_%ARCH%_Msm python_dist_guids.txt

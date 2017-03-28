@@ -2,9 +2,10 @@ cd /d %~dp0
 set WorkDir=%~dp0
 
 set RTCDT=RTCDT
-set RTCDT_Copy=RTCDT_Copy
-set Tool_Copy=python_dist
-set Tool_Dir_Name=python_dist
+set RTCDT_Copy=utils\RTCDT
+set Tool_Copy=utils\python_dist
+set GLOBAL_Tool_Copy=..\python_dist\utils\python_dist
+
 
 cd %RTCDT%
 
@@ -21,20 +22,25 @@ IF EXIST "%RTCDT_Copy%" (
 	rmdir /s/q %RTCDT_Copy%
 )
 
-
-
-mkdir %RTCDT_Copy%
-mkdir %RTCDT_Copy%\python_dist
-
-IF NOT EXIST "%Tool_Copy%" (
-	mkdir %Tool_Copy%
+IF EXIST "%Tool_Copy%" (
+	rmdir /s/q %Tool_Copy%
 )
 
 
-xcopy /y/q %RTCDT%\dist\RTCDT.exe %RTCDT_Copy%\python_dist\
-xcopy /y/q %RTCDT%\dist\RTCDT.lib %RTCDT_Copy%\python_dist\
+
+mkdir %RTCDT_Copy%
+mkdir %Tool_Copy%
+
+IF NOT EXIST "%GLOBAL_Tool_Copy%" (
+	mkdir %GLOBAL_Tool_Copy%
+)
+
+xcopy /y/q %RTCDT%\RTCDT.bat %RTCDT_Copy%\
+
+xcopy /y/q %RTCDT%\dist\RTCDT.exe %Tool_Copy%\
+xcopy /y/q %RTCDT%\dist\RTCDT.lib %Tool_Copy%\
 
 
-xcopy /y/q %RTCDT%\dist\*.pyd %Tool_Copy%\
-xcopy /y/q %RTCDT%\dist\*.dll %Tool_Copy%\
+xcopy /y/q %RTCDT%\dist\*.pyd %GLOBAL_Tool_Copy%\
+xcopy /y/q %RTCDT%\dist\*.dll %GLOBAL_Tool_Copy%\
 

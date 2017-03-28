@@ -15,7 +15,7 @@ URL = ''
 
 import os
 #os.environ["SettingRTSystemPath"] = "."
-sys.path.append(".\\RTCD_IDL"))
+sys.path.append(".\\RTCD_IDL")
 
 
 

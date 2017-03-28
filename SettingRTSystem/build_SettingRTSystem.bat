@@ -2,9 +2,9 @@ cd /d %~dp0
 set WorkDir=%~dp0
 
 set SettingRTSystem=SettingRTSystem
-set SettingRTSystem_Copy=SettingRTSystem_Copy
-set Tool_Copy=python_dist
-set Tool_Dir_Name=python_dist
+set SettingRTSystem_Copy=utils\SettingRTSystem
+set Tool_Copy=utils\python_dist
+set GLOBAL_Tool_Copy=..\python_dist\utils\python_dist
 
 cd %SettingRTSystem%
 
@@ -35,11 +35,16 @@ IF EXIST "%SettingRTSystem_Copy%" (
  	rmdir /s/q %SettingRTSystem_Copy%
 )
 
-mkdir %SettingRTSystem_Copy%
-mkdir %SettingRTSystem_Copy%\python_dist
+IF EXIST "%Tool_Copy%" (
+	rmdir /s/q %Tool_Copy%
+)
 
-IF NOT EXIST "%Tool_Copy%" (
-	mkdir %Tool_Copy%
+
+mkdir %SettingRTSystem_Copy%
+mkdir %Tool_Copy%
+
+IF NOT EXIST "%GLOBAL_Tool_Copy%" (
+	mkdir %GLOBAL_Tool_Copy%
 )
 
 
@@ -65,18 +70,18 @@ xcopy /y/q %SettingRTSystem%\Manager\Cpp\rtcd_p\Release\rtcd_p.exe %SettingRTSys
 xcopy /y/q %SettingRTSystem%\Manager\Python\* %SettingRTSystem_Copy%\Manager\Python\
 
 
-xcopy /y/q %SettingRTSystem%\dist\SettingRTSystem.exe %SettingRTSystem_Copy%\python_dist\
-xcopy /y/q %SettingRTSystem%\dist\SettingRTSystem.lib %SettingRTSystem_Copy%\python_dist\
+xcopy /y/q %SettingRTSystem%\dist\SettingRTSystem.exe %Tool_Copy%\
+xcopy /y/q %SettingRTSystem%\dist\SettingRTSystem.lib %Tool_Copy%\
 
-xcopy /y/q %SettingRTSystem%\dist\*.pyd %Tool_Copy%\
-xcopy /y/q %SettingRTSystem%\dist\*.dll %Tool_Copy%\
+xcopy /y/q %SettingRTSystem%\dist\*.pyd %GLOBAL_Tool_Copy%\
+xcopy /y/q %SettingRTSystem%\dist\*.dll %GLOBAL_Tool_Copy%\
 
 
-xcopy /y/q %SettingRTSystem%\rtcConfSet\dist\rtcConfSet.exe %SettingRTSystem_Copy%\python_dist\
-xcopy /y/q %SettingRTSystem%\rtcConfSet\dist\rtcConfSet.lib %SettingRTSystem_Copy%\python_dist\
+xcopy /y/q %SettingRTSystem%\rtcConfSet\dist\rtcConfSet.exe %Tool_Copy%\
+xcopy /y/q %SettingRTSystem%\rtcConfSet\dist\rtcConfSet.lib %Tool_Copy%\
 
-xcopy /y/q %SettingRTSystem%\rtcConfSet\dist\*.pyd %Tool_Copy%\
-xcopy /y/q %SettingRTSystem%\rtcConfSet\dist\*.dll %Tool_Copy%\
+xcopy /y/q %SettingRTSystem%\rtcConfSet\dist\*.pyd %GLOBAL_Tool_Copy%\
+xcopy /y/q %SettingRTSystem%\rtcConfSet\dist\*.dll %GLOBAL_Tool_Copy%\
 
 
 xcopy /y/q %SettingRTSystem%\rtcdControl\src\Release\rtcdControlComp.exe %SettingRTSystem_Copy%\rtcdControl\src\Release\

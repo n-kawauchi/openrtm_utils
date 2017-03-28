@@ -43,7 +43,7 @@ IF NOT EXIST "%GLOBAL_Tool_Copy%" (
 
 xcopy /y/q %ExcelControlpy%\ExcelControlpy.bat %ExcelControlpy_Copy%\
 xcopy /y/q %ExcelControlpy%\rtc.conf %ExcelControlpy_Copy%\
-xcopy /y/q %ExcelControlpy%\ExcelControlpy0.conf %ExcelControlpy_Copy%\
+xcopy /y/q %ExcelControlpy%\ExcelControlpy.conf %ExcelControlpy_Copy%\
 
 
 xcopy /y/q %ExcelControlpy%\dist\ExcelControlpy.exe %Tool_Copy%\
