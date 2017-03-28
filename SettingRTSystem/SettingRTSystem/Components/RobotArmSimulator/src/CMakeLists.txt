@@ -21,7 +21,7 @@ set(EigenDir ${EIGEN_DIRECTORIY})
 
 #set(ODEDir C:/ode-0.13)
 #set(EigenDir C:/eigen-eigen-bdd17ee3b1b3)
-set(comp_srcs RobotArmSimulator.cpp ManipulatorCommonInterface_CommonSVC_impl.cpp ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp ${arm_file_path}/RobotArm.cpp DrawThread.cpp SimulatorObj.cpp ${ODEDir}/drawstuff/src/resources.rc )
+set(comp_srcs RobotArmSimulator.cpp ManipulatorCommonInterface_CommonSVC_impl.cpp ManipulatorCommonInterface_MiddleLevelSVC_impl.cpp ${arm_file_path}/RobotArm.cpp DrawThread.cpp SimulatorObj.cpp ${ODEDir}/drawstuff/src/resources.rc searchFile.cpp )
 set(standalone_srcs RobotArmSimulatorComp.cpp)
 
 
@@ -78,11 +78,11 @@ if(NOT TARGET ALL_IDL_TGT)
   add_custom_target(ALL_IDL_TGT)
 endif(NOT TARGET ALL_IDL_TGT)
 add_dependencies(${PROJECT_NAME} ALL_IDL_TGT)
-target_link_libraries(${PROJECT_NAME} ${OPENRTM_LIBRARIES} ${ODELIB})
+target_link_libraries(${PROJECT_NAME} ${OPENRTM_LIBRARIES} ${ODELIB} shlwapi.lib)
 
 add_executable(${PROJECT_NAME}Comp ${standalone_srcs}
   ${comp_srcs} ${comp_headers} ${ALL_IDL_SRCS})
-target_link_libraries(${PROJECT_NAME}Comp ${OPENRTM_LIBRARIES} ${ODELIB})
+target_link_libraries(${PROJECT_NAME}Comp ${OPENRTM_LIBRARIES} ${ODELIB} shlwapi.lib)
 
 install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}Comp
     EXPORT ${PROJECT_NAME}

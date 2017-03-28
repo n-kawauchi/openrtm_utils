@@ -1,5 +1,7 @@
 #include <fstream>
 #include "DrawThread_Four_legged_Robot.h"
+#include "searchFile.h"
+#include <coil/stringutil.h>
 
 //std::ofstream ofs( "test.txt" );
 
@@ -94,7 +96,20 @@ void DrawThread_Four_legged_Robot::setDrawStuff()
   fn.start   = &start;
   fn.step    = &simLoop;
   fn.command = NULL;
-  fn.path_to_textures = "drawstuff/textures";
+  static std::string drawstuff = search_file("drawstuff/textures", "PATH", ";");
+
+  coil::replaceString(drawstuff, "\\", "/");
+
+
+  if (drawstuff == "")
+  {
+	  fn.path_to_textures = "drawstuff/textures";
+  }
+  else
+  {
+	  fn.path_to_textures = drawstuff.c_str();
+
+  }
 }
 
 /**

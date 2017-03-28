@@ -18,11 +18,13 @@ endif()
 set(ODEDir ${ODE_DIRECTORIY})
 set(EigenDir ${EIGEN_DIRECTORIY})
 
-set(comp_srcs Four_legged_Robot_Simulator.cpp SimulatorObj_Four_legged_Robot.cpp DrawThread_Four_legged_Robot.cpp ${FourLeggedRobotDir}/Four_legged_Robot.cpp ${FourLeggedRobotDir}/CrawlGait.cpp ${FourLeggedRobotDir}/Direction_Object.cpp ${FourLeggedRobotDir}/IntermittentCrawlGait.cpp ${FourLeggedRobotDir}/Leg_Object.cpp ${FourLeggedRobotDir}/Stability_Margin.cpp ${FourLeggedRobotDir}/GaitBase.cpp ${FourLeggedRobotDir}/Four_legged_Robot.h ${FourLeggedRobotDir}/CrawlGait.h ${FourLeggedRobotDir}/Direction_Object.h ${FourLeggedRobotDir}/IntermittentCrawlGait.h ${FourLeggedRobotDir}/Leg_Object.h ${FourLeggedRobotDir}/Stability_Margin.h ${FourLeggedRobotDir}/GaitBase.h ${FourLeggedRobotDir}/Body_Object.cpp ${FourLeggedRobotDir}/Body_Object.h ${FourLeggedRobotDir}/TrotGait.cpp ${FourLeggedRobotDir}/TrotGait.h ${ODEDir}/drawstuff/src/resources.rc )
+set(comp_srcs Four_legged_Robot_Simulator.cpp SimulatorObj_Four_legged_Robot.cpp DrawThread_Four_legged_Robot.cpp ${FourLeggedRobotDir}/Four_legged_Robot.cpp ${FourLeggedRobotDir}/CrawlGait.cpp ${FourLeggedRobotDir}/Direction_Object.cpp ${FourLeggedRobotDir}/IntermittentCrawlGait.cpp ${FourLeggedRobotDir}/Leg_Object.cpp ${FourLeggedRobotDir}/Stability_Margin.cpp ${FourLeggedRobotDir}/GaitBase.cpp ${FourLeggedRobotDir}/Four_legged_Robot.h ${FourLeggedRobotDir}/CrawlGait.h ${FourLeggedRobotDir}/Direction_Object.h ${FourLeggedRobotDir}/IntermittentCrawlGait.h ${FourLeggedRobotDir}/Leg_Object.h ${FourLeggedRobotDir}/Stability_Margin.h ${FourLeggedRobotDir}/GaitBase.h ${FourLeggedRobotDir}/Body_Object.cpp ${FourLeggedRobotDir}/Body_Object.h ${FourLeggedRobotDir}/TrotGait.cpp ${FourLeggedRobotDir}/TrotGait.h ${ODEDir}/drawstuff/src/resources.rc searchFile.cpp )
 set(standalone_srcs Four_legged_Robot_SimulatorComp.cpp)
 
+set(SHlWAPI shlwapi)
 
 set(ODELIB optimized;ode;debug;oded;optimized;drawstuff;debug;drawstuffd;;user32.lib;winmm;opengl32;glu32)
+
 
 
 if (DEFINED OPENRTM_INCLUDE_DIRS)
@@ -76,11 +78,11 @@ if(NOT TARGET ALL_IDL_TGT)
   add_custom_target(ALL_IDL_TGT)
 endif(NOT TARGET ALL_IDL_TGT)
 add_dependencies(${PROJECT_NAME} ALL_IDL_TGT)
-target_link_libraries(${PROJECT_NAME} ${OPENRTM_LIBRARIES} ${ODELIB})
+target_link_libraries(${PROJECT_NAME} ${OPENRTM_LIBRARIES} ${ODELIB} ${SHlWAPI})
 
 add_executable(${PROJECT_NAME}Comp ${standalone_srcs}
   ${comp_srcs} ${comp_headers} ${ALL_IDL_SRCS})
-target_link_libraries(${PROJECT_NAME}Comp ${OPENRTM_LIBRARIES} ${ODELIB})
+target_link_libraries(${PROJECT_NAME}Comp ${OPENRTM_LIBRARIES} ${ODELIB} ${SHlWAPI} )
 
 install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}Comp
     EXPORT ${PROJECT_NAME}
