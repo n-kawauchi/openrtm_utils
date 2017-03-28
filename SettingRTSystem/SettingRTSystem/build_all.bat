@@ -46,7 +46,7 @@ if not DEFINED LUABIND_PATH set LUABIND_PATH="C:\workspace\luabind-0.9.1"
 if not DEFINED EIGEN_DIRECTORIY set EIGEN_DIRECTORIY="C:\workspace\eigen-eigen-07105f7124f9"
 if not DEFINED ODE_DIRECTORIY set ODE_DIRECTORIY="C:\workspace\ode-0.13"
 if not DEFINED QWT_DIRECTORIY set QWT_DIRECTORIY="C:\workspace\Qwt"
-if not DEFINED BOOST_DIRECTORIY set BOOST_DIRECTORIY="C:\boost_1_49_0"
+if not DEFINED BOOST_DIRECTORIY set BOOST_DIRECTORIY="C:\workspace\boost_1_49_0"
 if not DEFINED PACKAGE_DIRECTORIY set PACKAGE_DIRECTORIY="C:\workspace\site-packages"
 
 cmd /c Components\build_all.bat
