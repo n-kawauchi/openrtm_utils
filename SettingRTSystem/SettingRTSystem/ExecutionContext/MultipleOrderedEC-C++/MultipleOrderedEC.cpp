@@ -11,6 +11,7 @@
 #include <rtm/CorbaConsumer.h>
 #include <rtm/idl/BasicDataTypeSkel.h>
 #include <coil/stringutil.h>
+#include <rtm/RTObjectStateMachine.h>
 
 
 #include "MPTask.h"
@@ -18,7 +19,7 @@
 
 using namespace std;
 
-namespace RTC
+namespace RTC_exp
 {
 	/**
 	*@brief 実行順序の設定ができる実行コンテキストのコンストラクタ
@@ -84,7 +85,7 @@ namespace RTC
   std::string MultipleOrderedEC::getCompName(int num)
   {
 	  mutex_2.lock();
-	  ComponentProfile *mc = m_comps[num]._sm.m_obj->get_component_profile();
+	  RTC::ComponentProfile *mc = m_comps[num]->get_component_profile();
 	  std::string Name = (const char*)mc->instance_name;
 	
 	  delete mc;
@@ -111,15 +112,12 @@ namespace RTC
 				
 		CompItr it;
 		
-		it = std::find_if(m_comps.begin(), m_comps.end(),
-				  find_comp(c->r));
+
 
 		
-
+		RTC_impl::RTObjectStateMachine* rtobj = m_worker.findComponent(c->r);
 		
-		
-		
-		if (it == m_comps.end())
+		if (rtobj == NULL)
 		{
 			
 			bool Flag = false;
@@ -127,7 +125,7 @@ namespace RTC
 			{
 				if(getCompName(i) == c->v)
 				{
-					c->r = m_comps[i]._ref;
+					c->r = m_comps[i];
 					//m_comps[i]._sm.m_obj->get_ports();
 					//m_comps[i]._sm.m_obj._retn()->get_ports()[0][0]->
 				}
@@ -137,8 +135,7 @@ namespace RTC
 		else
 		{
 			
-			Comp& cm(*it);
-			cm._sm.worker();
+			rtobj->workerDo();
 		}
 	  
 	  
@@ -156,13 +153,13 @@ namespace RTC
 		  {
 			  for(int j=0;j <  m_comps.size();j++)
 			  {
-				ComponentProfile *mc = m_comps[j]._sm.m_obj->get_component_profile();
+				RTC::ComponentProfile *mc = m_comps[j]->get_component_profile();
 				std::string Name = (const char*)mc->instance_name;
 				
 				delete mc;
 				if(Name == rs[h].ar[i].name)
 				{
-					rs[h].ar[i].r = m_comps[j]._ref;
+					rs[h].ar[i].r = m_comps[j];
 				}
 			  }
 		  }
@@ -174,14 +171,14 @@ namespace RTC
 				  {
 					for(int l=0;l < m_comps.size();l++)
 					{
-						ComponentProfile *mc = m_comps[l]._sm.m_obj->get_component_profile();
+						RTC::ComponentProfile *mc = m_comps[l]->get_component_profile();
 						std::string Name = (const char*)mc->instance_name;
 						
 						delete mc;
 						
 						if(Name == rs[h].rs[i].SR[j][k].v)
 						{
-							rs[h].rs[i].SR[j][k].r = m_comps[l]._ref;
+							rs[h].rs[i].SR[j][k].r = m_comps[l];
 							
 						}
 					}
@@ -201,14 +198,14 @@ namespace RTC
   void MultipleOrderedEC::LoadRuleGUI(std::vector<main_Rule> &RS_d)
   {
 
-	  m_worker.mutex_.lock();
+	  work_mutex.lock();
 
 	  rs.clear();
 	  rs = RS_d;
 
 	  //LoadRules();
 
-	  m_worker.mutex_.unlock();
+	  work_mutex.unlock();
   }
 
   /**
@@ -218,7 +215,7 @@ namespace RTC
   {
 
 	  
-	m_worker.mutex_.lock();
+	  work_mutex.lock();
 	
 	
 	
@@ -233,7 +230,7 @@ namespace RTC
 	//LoadRules();
 	
 
-	m_worker.mutex_.unlock();
+	work_mutex.unlock();
 	
 
   }
@@ -252,62 +249,64 @@ namespace RTC
 	  
 	  do{
 		  
-
-		  
-
-		  
-		  m_worker.mutex_.lock();
-		  //LoadRules();
-		  
-			while (!m_worker.running_)
-			{
-				m_worker.cond_.wait();
-			}
+		  ExecutionContextBase::invokeWorkerPreDo();
+		  {
+			  Guard guard(m_workerthread.mutex_);
+			  while (!m_workerthread.running_)
+			  {
+				  m_workerthread.cond_.wait();
+			  }
+		  }
 			
 			coil::TimeValue t0(coil::gettimeofday());
-			if (m_worker.running_)
+			work_mutex.lock();
+			//std::cout << m_comps.size() << std::endl;
+			for(int i=0;i < rs.size();i++)
 			{
-				
-				//std::cout << m_comps.size() << std::endl;
-				for(int i=0;i < rs.size();i++)
+				bool S = true;
+				for(int j=0;j < rs[i].ar.size();j++)
 				{
-					bool S = true;
-					for(int j=0;j < rs[i].ar.size();j++)
+					bool Flag = false;
+					for(int k=0;k < m_comps.size();k++)
 					{
-						bool Flag = false;
-						for(int k=0;k < m_comps.size();k++)
+						if(rs[i].ar[j].r == m_comps[k])
 						{
-							if(rs[i].ar[j].r == m_comps[k]._ref)
+							Flag = true;
+							if(rs[i].ar[j].state == -1)
 							{
-								Flag = true;
-								if(rs[i].ar[j].state == -1)
-								{
 
-								}
-								else
+							}
+							else
+							{
+								RTC_impl::RTObjectStateMachine* rtobj = m_worker.findComponent(m_comps[k]);
+								if (rtobj != NULL)
 								{
-									if(rs[i].ar[j].state != m_comps[k]._sm.get_state())
+									if (rs[i].ar[j].state != rtobj->getState())
 									{
 										S = false;
 									}
 								}
 							}
 						}
-						if(!Flag)
-						{
+					}
+					if(!Flag)
+					{
 							
-							for(int k=0;k < m_comps.size();k++)
+						for(int k=0;k < m_comps.size();k++)
+						{
+							if(getCompName(k) == rs[i].ar[j].name)
 							{
-								if(getCompName(k) == rs[i].ar[j].name)
+								rs[i].ar[j].r = m_comps[k];
+								if(rs[i].ar[j].state == -1)
 								{
-									rs[i].ar[j].r = m_comps[k]._ref;
-									if(rs[i].ar[j].state == -1)
-									{
 
-									}
-									else
+								}
+								else
+								{
+									RTC_impl::RTObjectStateMachine* rtobj = m_worker.findComponent(m_comps[k]);
+									if (rtobj != NULL)
 									{
-										if(rs[i].ar[j].state != m_comps[k]._sm.get_state())
+										if (rs[i].ar[j].state != rtobj->getState())
 										{
 											S = false;
 										}
@@ -315,19 +314,20 @@ namespace RTC
 								}
 							}
 						}
-
 					}
 
-					
-					if(S)
-					{
-						r_num = i;
-						break;
-					}
 				}
 
-				
+					
+				if(S)
 				{
+					r_num = i;
+					break;
+				}
+			}
+
+				
+			{
 				
 				
 				if(r_num < rs.size())
@@ -387,51 +387,86 @@ namespace RTC
 					}
 				}
 
-			  }
-			  
 			}
 			
-			m_worker.mutex_.unlock();
+			work_mutex.unlock();
+			ExecutionContextBase::invokeWorkerPostDo();
+
 			coil::TimeValue t1(coil::gettimeofday());
-			//std::cout << t1 - t0 << std::endl;
+
+			coil::TimeValue period(getPeriod());
 			if (count > 1000)
-			  {
-				RTC_PARANOID(("Period:    %f [s]", (double)m_period));
+			{
+				RTC_PARANOID(("Period:    %f [s]", (double)period));
 				RTC_PARANOID(("Execution: %f [s]", (double)(t1 - t0)));
-				RTC_PARANOID(("Sleep:     %f [s]", (double)(m_period - (t1 - t0))));
-			  }
+				RTC_PARANOID(("Sleep:     %f [s]", (double)(period - (t1 - t0))));
+			}
 			coil::TimeValue t2(coil::gettimeofday());
-			if (!m_nowait && m_period > (t1 - t0))
-			  {
+			if (!m_nowait && period > (t1 - t0))
+			{
 				if (count > 1000) { RTC_PARANOID(("sleeping...")); }
-				coil::sleep((coil::TimeValue)(m_period - (t1 - t0)));
-			  }
+				coil::sleep((coil::TimeValue)(period - (t1 - t0)));
+			}
 			if (count > 1000)
-			  {
+			{
 				coil::TimeValue t3(coil::gettimeofday());
 				RTC_PARANOID(("Slept:     %f [s]", (double)(t3 - t2)));
 				count = 0;
-			  }
+			}
 			++count;
 
 			
 			
-	  }while (m_svc);
+	  }while (threadRunning());
 
     
     return 0;
   }
 
+  // template virtual functions adding/removing component
+  /*!
+  * @brief onAddedComponent() template function
+  */
+  RTC::ReturnCode_t MultipleOrderedEC::
+	  onAddedComponent(RTC::LightweightRTObject_ptr rtobj)
+  {
+	  
+	  PeriodicExecutionContext::onAddedComponent(rtobj);
+	  RTC::RTObject_ptr obj = RTC::RTObject::_narrow(rtobj);
+	  m_comps.push_back(obj);
+	  return RTC::RTC_OK;
+  }
+  /*!
+  * @brief onRemovedComponent() template function
+  */
+  RTC::ReturnCode_t MultipleOrderedEC::
+	  onRemovedComponent(RTC::LightweightRTObject_ptr rtobj)
+  {
+	  PeriodicExecutionContext::onRemovedComponent(rtobj);
+	  for (CompItr itr = m_comps.begin(); itr != m_comps.end(); ++itr) {
+		  if ((*itr)->_is_equivalent(rtobj))
+		  {
+			  m_comps.erase(itr);
+		  }
+	  }
+	  return RTC::RTC_OK;
+  }
+
+
 
 };
+
 
 
 extern "C"
 {
    void MultipleOrderedECInit(RTC::Manager* manager)
   {
-    manager->registerECFactory("MultipleOrderedEC",
-			       RTC::ECCreate<RTC::MultipleOrderedEC>,
-			       RTC::ECDelete<RTC::MultipleOrderedEC>);
+	RTC::ExecutionContextFactory::
+		instance().addFactory("MultipleOrderedEC",
+		::coil::Creator< ::RTC::ExecutionContextBase,
+		::RTC_exp::MultipleOrderedEC>,
+		::coil::Destructor< ::RTC::ExecutionContextBase,
+		::RTC_exp::MultipleOrderedEC>);
   }
 };

@@ -12,7 +12,7 @@ bool GUITask::app_flag = false;
 /**
 *@brief 直列ブロックを実行するスレッドのクラスのコンストラクタ
 */
-MPTask::MPTask(RTC::MultipleOrderedEC *c)
+MPTask::MPTask(RTC_exp::MultipleOrderedEC *c)
 {
 	m_ec = c;
 }
@@ -59,7 +59,7 @@ int MPTask::svc()
 *@brief GUIを実行するスレッドのコンストラクタ
 * @param ec 実行コンテキストオブジェクト
 */
-GUITask::GUITask(RTC::MultipleOrderedEC *ec)
+GUITask::GUITask(RTC_exp::MultipleOrderedEC *ec)
 {
 	
 	this->m_ec = ec;

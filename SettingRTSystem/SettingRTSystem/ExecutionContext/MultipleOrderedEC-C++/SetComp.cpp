@@ -16,7 +16,7 @@ using namespace std;
 * @param ec 実行コンテキストオブジェクト
 * @param parent 親ウィジェット
 */
-SetComp::SetComp(RTC::MultipleOrderedEC *ec, QWidget *parent)
+SetComp::SetComp(RTC_exp::MultipleOrderedEC *ec, QWidget *parent)
     : QTabWidget(parent)
 {
 

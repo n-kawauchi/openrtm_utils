@@ -24,7 +24,7 @@
 class MPTask;
 class GUITask;
 
-namespace RTC
+namespace RTC_exp
 {
   
 	/**
@@ -34,7 +34,7 @@ namespace RTC
   class MultipleOrderedEC
     : public virtual PeriodicExecutionContext
   {
-
+	  typedef coil::Guard<coil::Mutex> Guard;
   public:
 	/**
 	*@brief コンストラクタ
@@ -97,8 +97,10 @@ namespace RTC
 	GUITask *g_task;
 
 	int r_num;
+	std::vector<RTC::RTObject_ptr> m_comps;
 
 	coil::Mutex mutex_2;
+	coil::Mutex work_mutex;
 
 	std::string FileName;
 	std::string SetGui;
@@ -123,9 +125,20 @@ namespace RTC
       }
     }
 
+  protected:
+	  // template virtual functions adding/removing component
+	  /*!
+	  * @brief onAddedComponent() template function
+	  */
+	  virtual RTC::ReturnCode_t
+		  onAddedComponent(RTC::LightweightRTObject_ptr rtobj);
+	  /*!
+	  * @brief onRemovedComponent() template function
+	  */
+	  virtual RTC::ReturnCode_t
+		  onRemovedComponent(RTC::LightweightRTObject_ptr rtobj);
 	
-	
-	
+	  typedef std::vector<RTC::RTObject_ptr>::iterator CompItr;
 
 
 

@@ -47,14 +47,14 @@ public:
 	*@brief コンストラクタ
 	* @param ec 実行コンテキストオブジェクト
 	*/
-	MainWindow(RTC::MultipleOrderedEC *ec);
+	MainWindow(RTC_exp::MultipleOrderedEC *ec);
    
 	/**
 	*@brief 実行順序をGUIに反映させる関数
 	* @param rs 並列ブロックのリスト
 	*/
    void UpdateRTC(std::vector<Rule> &rs);
-   RTC::MultipleOrderedEC *m_ec;
+   RTC_exp::MultipleOrderedEC *m_ec;
 
 private slots:
 	

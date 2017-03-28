@@ -48,7 +48,7 @@ public:
 	* @param ec 実行コンテキストオブジェクト
 	* @param parent 親ウィジェット
 	*/
-    SetComp(RTC::MultipleOrderedEC *ec, QWidget *parent = 0);
+	SetComp(RTC_exp::MultipleOrderedEC *ec, QWidget *parent = 0);
 	/**
 	*@brief 未使用
 	*/
@@ -58,7 +58,7 @@ public:
 	* @param rs 並列ブロックのリスト
 	*/
 	void UpdateRTC(std::vector<Rule> &rs);
-	RTC::MultipleOrderedEC *m_ec;
+	RTC_exp::MultipleOrderedEC *m_ec;
 	
 	/**
 	*@brief 初期化

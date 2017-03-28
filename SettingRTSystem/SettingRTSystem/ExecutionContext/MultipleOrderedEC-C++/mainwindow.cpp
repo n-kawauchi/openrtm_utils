@@ -19,7 +19,7 @@
 *@brief メインウインドウのコンストラクタ
 * @param ec 実行コンテキストオブジェクト
 */
-MainWindow::MainWindow(RTC::MultipleOrderedEC *ec)
+MainWindow::MainWindow(RTC_exp::MultipleOrderedEC *ec)
 {
 	
 	

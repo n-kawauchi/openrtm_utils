@@ -54,7 +54,7 @@ public:
 		*@brief コンストラクタ
 		* @param c 実行コンテキストオブジェクト
 		*/
-		MPTask(RTC::MultipleOrderedEC *c);
+		MPTask(RTC_exp::MultipleOrderedEC *c);
 		
 		/**
 		*@brief スレッド実行関数
@@ -72,7 +72,7 @@ public:
 		void addComp(sub_Rule *c, int I, int J, int K);
 private:
 	std::vector<MPComp> m_comp;
-	RTC::MultipleOrderedEC *m_ec;
+	RTC_exp::MultipleOrderedEC *m_ec;
 
 };
 
@@ -88,7 +88,7 @@ public:
 		*@brief コンストラクタ
 		* @param ec 実行コンテキストオブジェクト
 		*/
-		GUITask(RTC::MultipleOrderedEC *ec);
+		GUITask(RTC_exp::MultipleOrderedEC *ec);
 		/**
 		*@brief スレッド実行関数
 		* @return
@@ -103,7 +103,7 @@ public:
 
 		static bool app_flag;
 private:
-	RTC::MultipleOrderedEC *m_ec;
+	RTC_exp::MultipleOrderedEC *m_ec;
 
 #ifdef QT_GUI_LIB
 	MainWindow *mw;

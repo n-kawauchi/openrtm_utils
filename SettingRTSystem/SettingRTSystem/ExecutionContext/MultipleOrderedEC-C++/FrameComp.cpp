@@ -22,7 +22,7 @@ using namespace std;
 * @param sc 全実行順序のブロック表示ウィジェット
 * @param parent 親ウィジェット
 */
-FrameComp::FrameComp(RTC::MultipleOrderedEC *ec, SetComp *sc, QWidget *parent)
+FrameComp::FrameComp(RTC_exp::MultipleOrderedEC *ec, SetComp *sc, QWidget *parent)
     : QWidget(parent)
 {
 	tc = QTextCodec::codecForLocale();

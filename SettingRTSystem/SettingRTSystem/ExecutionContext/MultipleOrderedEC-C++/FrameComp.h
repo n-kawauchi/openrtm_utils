@@ -69,7 +69,7 @@ public:
 	* @param sc 全実行順序のブロック表示ウィジェット
 	* @param parent 親ウィジェット
 	*/
-    	FrameComp(RTC::MultipleOrderedEC *ec, SetComp *sc, QWidget *parent = 0);
+	FrameComp(RTC_exp::MultipleOrderedEC *ec, SetComp *sc, QWidget *parent = 0);
 	
 	/**
 	*@brief 直列ブロック初期化
@@ -130,7 +130,7 @@ public:
 	* @param mR 実行順序
 	*/
 	void SetFrame(main_Rule &mR);
-	RTC::MultipleOrderedEC *m_ec;
+	RTC_exp::MultipleOrderedEC *m_ec;
 	Configs *cf;
 	int X;
 	int Y;
