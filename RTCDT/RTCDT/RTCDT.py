@@ -32,6 +32,7 @@ import threading
 import importlib
 import traceback
 import shutil
+import tempfile
 
 from PyQt4 import QtGui,QtWebKit,QtCore
 import RTCDTWidget.MainWindow
@@ -106,9 +107,9 @@ class RTCDT(OpenRTM_aist.DataFlowComponentBase):
 		self.exec_mutex = threading.RLock()
 		self.log_list = []
 		self.log_mutex = threading.RLock()
-		self.workdir = "workspace"
-		if not os.path.exists(self.workdir):
-			os.mkdir(self.workdir)
+		self.workdir = tempfile.mkdtemp()
+		#if not os.path.exists(self.workdir):
+		#	os.mkdir(self.workdir)
 		sys.path.append(os.path.abspath(self.workdir))
 		self.activities = {ActivityCode.onInitialize: Code("",self),
 							ActivityCode.onFinalize: Code("",self),

@@ -9,6 +9,15 @@ if not DEFINED PYTHON_DIR set PYTHON_DIR=C:\Python27
 set TARGET_DIR=utils
 
 
+copy ..\getGuid.bat getGuid.bat
+copy ..\wxsmaker.py wxsmaker.py
+copy ..\build_wix_module.bat build_wix_module.bat
+copy ..\getGuid.bat getGuid.bat
+copy ..\empty_prg_menu.wxs empty_prg_menu.wxs
+copy ..\uuid_gen.py uuid_gen.py
+copy ..\msm_template.wxs msm_template.wxs
+
+
 call getGuid.bat %TARGET_NAME%_%PKG_NAME%_%ARCH%_Msm python_dist_guids.txt
 
 
