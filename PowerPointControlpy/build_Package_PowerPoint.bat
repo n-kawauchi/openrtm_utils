@@ -3,8 +3,8 @@ cd /d %~dp0
 
 set PKG_NAME=100
 set TARGET_NAME=PowerPointControlpy
-set ARCH=x86
-set PYTHON_DIR=C:\Python27
+if not DEFINED ARCH set ARCH=x86
+if not DEFINED PYTHON_DIR set PYTHON_DIR=C:\Python27
 
 set TARGET_DIR=utils
 

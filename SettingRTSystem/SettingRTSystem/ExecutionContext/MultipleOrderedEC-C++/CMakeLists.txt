@@ -3,7 +3,13 @@ cmake_minimum_required (VERSION 2.6)
 
 
 if(WIN32)
-	set(BOOST_PATH "C:/boost_1_49_0")
+	set(BOOST_DIRECTORIY ${BOOST_DIRECTORIY} CACHE PATH "set BOOST_DIRECTORIY ")
+
+	if(NOT BOOST_DIRECTORIY)
+		message(FATAL_ERROR "Please set BOOST_DIRECTORIY.")
+	endif()
+	set(BOOST_PATH ${BOOST_DIRECTORIY})
+#	set(BOOST_PATH "C:/boost_1_49_0")
 #	set(LUA_PATH "C:/Program Files (x86)/Lua/5.1")
 else(WIN32)
 	
@@ -52,13 +58,13 @@ if (DEFINED OPENRTM_LIBRARIES)
 endif (DEFINED OPENRTM_LIBRARIES)
 
 
-if(WIN32)
+#if(WIN32)
 
-  set(BOOST_ROOT $ENV{BOOST_ROOT})
+#  set(BOOST_ROOT $ENV{BOOST_ROOT})
 
-endif()
+#endif()
 
-find_package(Boost REQUIRED)
+#find_package(Boost REQUIRED)
 
 find_package(Lua51 REQUIRED)
 
@@ -71,7 +77,7 @@ if(WIN32)
 endif(WIN32)
 
 
-include_directories(${Boost_INCLUDE_DIRS})
+#include_directories(${Boost_INCLUDE_DIRS})
 include_directories(${LUA_INCLUDE_DIR})
 
 include_directories(${LUABIND_PATH})

@@ -5,8 +5,15 @@ set(standalone_srcs ScopeComp.cpp)
 
 
 set(CMAKE_AUTOMOC ON)
-set(QWTDir C:/qwt-6.1.2)
+#set(QWTDir C:/qwt-6.1.2)
 
+set(QWT_DIRECTORIY ${QWT_DIRECTORIY} CACHE PATH "set QWT_DIRECTORIY ")
+
+if(NOT QWT_DIRECTORIY)
+	message(FATAL_ERROR "Please set QWT_DIRECTORIY.")
+endif()
+
+set(QWTDir ${QWT_DIRECTORIY})
 
 find_package(Qt5Widgets REQUIRED)
 
