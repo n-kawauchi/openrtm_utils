@@ -56,7 +56,7 @@ set PACKAGE_DIRECTORIY=C:\workspace\site-packages
 IF EXIST "%MERGE_MODULES_DIR%" (
 	rmdir /s/q %MERGE_MODULES_DIR%
 )
-mkdir MERGE_MODULES_DIR
+mkdir %MERGE_MODULES_DIR%
 
 cmd /c ExcelControlpy\build_Excel.bat
 cmd /c ExcelControlpy\build_Package_Excel.bat
