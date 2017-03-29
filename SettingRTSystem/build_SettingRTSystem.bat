@@ -107,18 +107,23 @@ python CopyComponent.py
 
 
 
-xcopy /y/q %QTPATH%\bin\Qt5Widgets.dll %SettingRTSystem_Copy%\DLL\
-xcopy /y/q %QTPATH%\bin\Qt5Gui.dll %SettingRTSystem_Copy%\DLL\
-xcopy /y/q %QTPATH%\bin\Qt5Core.dll %SettingRTSystem_Copy%\DLL\
-xcopy /y/q %QTPATH%\bin\Qt5OpenGL.dll %SettingRTSystem_Copy%\DLL\
-xcopy /y/q %QTPATH%\bin\Qt5PrintSupport.dll %SettingRTSystem_Copy%\DLL\
-xcopy /y/q %QTPATH%\bin\Qt5Svg.dll %SettingRTSystem_Copy%\DLL\
-xcopy /y/q %QTPATH%\plugins\platforms %SettingRTSystem_Copy%\DLL\
 
-xcopy /y/q %LUA_DEV%\lua5.1.dll %SettingRTSystem_Copy%\DLL\
-xcopy /y/q %LUA_DEV%\lua51.dll %SettingRTSystem_Copy%\DLL\
+xcopy /y/q "%QTPATH%\bin\Qt5Widgets.dll" "%SettingRTSystem_Copy%\DLL\" 
+xcopy /y/q "%QTPATH%\bin\Qt5Gui.dll" "%SettingRTSystem_Copy%\DLL\" 
+xcopy /y/q "%QTPATH%\bin\Qt5Core.dll" "%SettingRTSystem_Copy%\DLL\" 
+xcopy /y/q "%QTPATH%\bin\Qt5OpenGL.dll" "%SettingRTSystem_Copy%\DLL\" 
+xcopy /y/q "%QTPATH%\bin\Qt5PrintSupport.dll" "%SettingRTSystem_Copy%\DLL\" 
+xcopy /y/q "%QTPATH%\bin\Qt5Svg.dll" "%SettingRTSystem_Copy%\DLL\" 
+xcopy /y/q "%QTPATH%\plugins\platforms\qdirect2d.dll" "%SettingRTSystem_Copy%\DLL\platforms\" 
+xcopy /y/q "%QTPATH%\plugins\platforms\qminimal.dll" "%SettingRTSystem_Copy%\DLL\platforms\" 
+xcopy /y/q "%QTPATH%\plugins\platforms\qoffscreen.dll" "%SettingRTSystem_Copy%\DLL\platforms\" 
+xcopy /y/q "%QTPATH%\plugins\platforms\qwindows.dll" "%SettingRTSystem_Copy%\DLL\platforms\" 
+xcopy /y/q "%QTPATH%\plugins\printsupport\windowsprintersupport.dll" "%SettingRTSystem_Copy%\DLL\printsupport\" 
 
-xcopy /y/q %QWT_DIRECTORIY%\lib\qwt.dll %SettingRTSystem_Copy%\DLL\
+xcopy /y/q "%LUA_DEV%\lua5.1.dll" "%SettingRTSystem_Copy%\DLL\" 
+xcopy /y/q "%LUA_DEV%\lua51.dll" "%SettingRTSystem_Copy%\DLL\" 
+
+xcopy /y/q "%QWT_DIRECTORIY%\lib\qwt.dll" "%SettingRTSystem_Copy%\DLL\"
 
 
 
