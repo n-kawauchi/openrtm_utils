@@ -407,10 +407,7 @@ class Intermittent_Crawl_Gait_Controller
 
   // CORBA Port declaration
   // <rtc-template block="corbaport_declare">
-  /*!
-  * サーボ操作コマンド
-  */
-  RTC::CorbaPort m_LeggedRobotCommonInterface_ServoPort;
+
   /*!
   * ロボット操作コマンド
   */
@@ -425,10 +422,7 @@ class Intermittent_Crawl_Gait_Controller
 
   // Consumer declaration
   // <rtc-template block="consumer_declare">
-  /*!
-  * サーボ操作コマンド
-  */
-  RTC::CorbaConsumer<WalkingRobot::LeggedRobotCommonInterface_Servo> m_LeggedRobotCommonInterface_Servo;
+
   /*!
   * ロボット操作コマンド
   */

@@ -88,7 +88,6 @@ Crawl_Gait_Controller::Crawl_Gait_Controller(RTC::Manager* manager)
   m_current_poseOut("current_pose", m_current_pose),
   m_stability_marginOut("stability_margin", m_stability_margin),
   m_NE_stability_marginOut("NE_stability_margin", m_NE_stability_margin),
-  m_LeggedRobotCommonInterface_ServoPort("LeggedRobotCommonInterface_Servo"),
   m_LeggedRobotCommonInterface_RobotPort("LeggedRobotCommonInterface_Robot")
     // </rtc-template>
 {
@@ -120,11 +119,10 @@ RTC::ReturnCode_t Crawl_Gait_Controller::onInitialize()
 	// Set service provider to Ports
 
 	// Set service consumers to Ports
-	m_LeggedRobotCommonInterface_ServoPort.registerConsumer("LeggedRobotCommonInterface_Servo", "RTC::LeggedRobotCommonInterface_Servo", m_LeggedRobotCommonInterface_Servo);
 	m_LeggedRobotCommonInterface_RobotPort.registerConsumer("LeggedRobotCommonInterface_Robot", "RTC::LeggedRobotCommonInterface_Robot", m_LeggedRobotCommonInterface_Robot);
 
 	// Set CORBA Service Ports
-	addPort(m_LeggedRobotCommonInterface_ServoPort);
+
 	addPort(m_LeggedRobotCommonInterface_RobotPort);
 
 	// Set CORBA Service Ports

@@ -28,6 +28,7 @@
 
 // Service Consumer stub headers
 // <rtc-template block="consumer_stub_h">
+#include "ServoControllerServiceStub.h"
 #include "LeggedRobotStub.h"
 
 // </rtc-template>
@@ -626,27 +627,21 @@ class Foot_Position_Controller
 
   // Service declaration
   // <rtc-template block="service_declare">
-  /*!
-  * サーボ操作コマンド
-  */
-  RTC::CorbaPort m_LeggedRobotCommonInterface_Servo_1Port;
+
   /*!
   * ロボット操作コマンド
   */
   RTC::CorbaPort m_LeggedRobotCommonInterface_RobotPort;
   /*!
-  * サーボ操作コマンド
-  */
-  RTC::CorbaPort m_LeggedRobotCommonInterface_Servo_2Port;
+   * サーボ操作コマンド
+   */
+  RTC::CorbaPort m_ServoControllerServicePort;
 
   // </rtc-template>
 
   // Service declaration
   // <rtc-template block="service_declare">
-  /*!
-  * サーボ操作コマンド
-  */
-  WalkingRobot_LeggedRobotCommonInterface_ServoSVC_impl m_LeggedRobotCommonInterface_Servo_1;
+
   /*!
   * ロボット操作コマンド
   */
@@ -657,9 +652,9 @@ class Foot_Position_Controller
   // Consumer declaration
   // <rtc-template block="consumer_declare">
   /*!
-  * サーボ操作コマンド
-  */
-  RTC::CorbaConsumer<WalkingRobot::LeggedRobotCommonInterface_Servo> m_LeggedRobotCommonInterface_Servo_2;
+   * サーボ操作コマンド
+   */
+  RTC::CorbaConsumer<OpenHRP::ServoControllerService> m_ServoControllerService;
   
   // </rtc-template>
 

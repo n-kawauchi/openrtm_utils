@@ -1,4 +1,4 @@
-set(idls ${CMAKE_CURRENT_SOURCE_DIR}/LeggedRobot.idl ${CMAKE_CURRENT_SOURCE_DIR}/ServoControllerService.idl ${CMAKE_CURRENT_SOURCE_DIR}/BasicDataType.idl ${CMAKE_CURRENT_SOURCE_DIR}/ExtendedDataTypes.idl ${CMAKE_CURRENT_SOURCE_DIR}/ModelLoader.idl ${CMAKE_CURRENT_SOURCE_DIR}/OpenHRPCommon.idl )
+set(idls )
 
 install(FILES ${idls} DESTINATION ${INC_INSTALL_DIR}/idl
     COMPONENT idl)

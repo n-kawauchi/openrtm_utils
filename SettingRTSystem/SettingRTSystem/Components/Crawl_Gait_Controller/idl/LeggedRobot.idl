@@ -8,6 +8,7 @@
 #include "ModelLoader.idl"
 
 
+
 module WalkingRobot {
 	struct Leg
 	{
@@ -28,25 +29,27 @@ module WalkingRobot {
 
 
 	
-
-	
-
-	typedef sequence<double> JointPos;
-
-	interface LeggedRobotCommonInterface_Servo
-	{
-		boolean setSoftLimitJoint(in JointPos pos);
-		JointPos getSoftLimitjoint();
-		boolean servoOFF();
-		boolean servoON();
+	enum SoftLimitType {
+		Cube,
+		Octahedron
 	};
+
+	struct LegInfo
+	{
+		short tipJoint;
+		short baseJoint;
+		sequence<RTC::Point3D> softLimitPos;
+		SoftLimitType limitType;
+	};
+	
+	typedef sequence<LegInfo> LegInfoList;
 
 	struct RobotInfo
 	{
 		string manufacturer;
 		string type;
-		OpenHRP::LinkInfoSequence legData;
-		sequence<short> firstJointList;
+		OpenHRP::LinkInfoSequence linkData;
+		LegInfoList legData;
 	};
 
 	interface LeggedRobotCommonInterface_Robot
@@ -54,6 +57,7 @@ module WalkingRobot {
 		RobotInfo getRobotInfo();
 		LegList getFeedbackPos();
 	};
+
 
 
 

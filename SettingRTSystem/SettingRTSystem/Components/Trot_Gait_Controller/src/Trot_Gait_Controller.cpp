@@ -89,7 +89,6 @@ Trot_Gait_Controller::Trot_Gait_Controller(RTC::Manager* manager)
     m_update_poseIn("update_pose", m_update_pose),
     m_TrajectoryOut("Trajectory", m_Trajectory),
     m_current_poseOut("current_pose", m_current_pose),
-	m_LeggedRobotCommonInterface_ServoPort("LeggedRobotCommonInterface_Servo"),
 	m_LeggedRobotCommonInterface_RobotPort("LeggedRobotCommonInterface_Robot")
 
     // </rtc-template>
@@ -120,11 +119,11 @@ RTC::ReturnCode_t Trot_Gait_Controller::onInitialize()
   // Set service provider to Ports
   
   // Set service consumers to Ports
-  m_LeggedRobotCommonInterface_ServoPort.registerConsumer("LeggedRobotCommonInterface_Servo", "RTC::LeggedRobotCommonInterface_Servo", m_LeggedRobotCommonInterface_Servo);
+
   m_LeggedRobotCommonInterface_RobotPort.registerConsumer("LeggedRobotCommonInterface_Robot", "RTC::LeggedRobotCommonInterface_Robot", m_LeggedRobotCommonInterface_Robot);
 
   // Set CORBA Service Ports
-  addPort(m_LeggedRobotCommonInterface_ServoPort);
+
   addPort(m_LeggedRobotCommonInterface_RobotPort);
   
   // </rtc-template>

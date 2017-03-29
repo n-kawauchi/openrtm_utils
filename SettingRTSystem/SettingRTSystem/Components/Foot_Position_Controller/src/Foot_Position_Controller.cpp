@@ -204,9 +204,8 @@ Foot_Position_Controller::Foot_Position_Controller(RTC::Manager* manager)
 	m_motor_pos_1Out("motor_pos_1", m_motor_pos_1),
 	m_motor_pos_2Out("motor_pos_2", m_motor_pos_2),
 	m_motor_pos_3Out("motor_pos_3", m_motor_pos_3),
-	m_LeggedRobotCommonInterface_Servo_1Port("LeggedRobotCommonInterface_Servo_1"),
-	m_LeggedRobotCommonInterface_RobotPort("LeggedRobotCommonInterface_Robot"),
-	m_LeggedRobotCommonInterface_Servo_2Port("LeggedRobotCommonInterface_Servo_2")
+    m_LeggedRobotCommonInterface_RobotPort("LeggedRobotCommonInterface_Robot"),
+    m_ServoControllerServicePort("ServoControllerService")
 
     // </rtc-template>
 {
@@ -240,16 +239,14 @@ RTC::ReturnCode_t Foot_Position_Controller::onInitialize()
 
   
   // Set service provider to Ports
-  m_LeggedRobotCommonInterface_Servo_1Port.registerProvider("LeggedRobotCommonInterface_Servo", "RTC::LeggedRobotCommonInterface_Servo", m_LeggedRobotCommonInterface_Servo_1);
-  m_LeggedRobotCommonInterface_RobotPort.registerProvider("LeggedRobotCommonInterface_Robot", "RTC::LeggedRobotCommonInterface_Robot", m_LeggedRobotCommonInterface_Robot);
-
+  m_LeggedRobotCommonInterface_RobotPort.registerProvider("LeggedRobotCommonInterface_Robot", "WalkingRobot::LeggedRobotCommonInterface_Robot", m_LeggedRobotCommonInterface_Robot);
+  
   // Set service consumers to Ports
-  m_LeggedRobotCommonInterface_Servo_2Port.registerConsumer("LeggedRobotCommonInterface_Servo", "RTC::LeggedRobotCommonInterface_Servo", m_LeggedRobotCommonInterface_Servo_2);
-
+  m_ServoControllerServicePort.registerConsumer("ServoControllerService", "OpenHRP::ServoControllerService", m_ServoControllerService);
+  
   // Set CORBA Service Ports
-  addPort(m_LeggedRobotCommonInterface_Servo_1Port);
   addPort(m_LeggedRobotCommonInterface_RobotPort);
-  addPort(m_LeggedRobotCommonInterface_Servo_2Port);
+  addPort(m_ServoControllerServicePort);
   
   // </rtc-template>
 

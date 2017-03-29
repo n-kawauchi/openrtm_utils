@@ -162,42 +162,11 @@ class OpenHRP_ModelLoaderSVC_impl
 };
 
 /*!
- * @class LeggedRobotCommonInterface_ServoSVC_impl
- * Example class implementing IDL interface RTC::LeggedRobotCommonInterface_Servo
- */
-class WalkingRobot_LeggedRobotCommonInterface_ServoSVC_impl
-	: public virtual POA_WalkingRobot::LeggedRobotCommonInterface_Servo,
-   public virtual PortableServer::RefCountServantBase
-{
- private:
-   // Make sure all instances are built on the heap by making the
-   // destructor non-public
-   //virtual ~LeggedRobotCommonInterface_ServoSVC_impl();
-
- public:
-  /*!
-   * @brief standard constructor
-   */
-	 WalkingRobot_LeggedRobotCommonInterface_ServoSVC_impl();
-  /*!
-   * @brief destructor
-   */
-	 virtual ~WalkingRobot_LeggedRobotCommonInterface_ServoSVC_impl();
-
-   // attributes and operations
-	 ::CORBA::Boolean setSoftLimitJoint(const WalkingRobot::JointPos& pos);
-	 WalkingRobot::JointPos* getSoftLimitjoint();
-   ::CORBA::Boolean servoOFF();
-   ::CORBA::Boolean servoON();
-
-};
-
-/*!
  * @class LeggedRobotCommonInterface_RobotSVC_impl
- * Example class implementing IDL interface RTC::LeggedRobotCommonInterface_Robot
+ * Example class implementing IDL interface WalkingRobot::LeggedRobotCommonInterface_Robot
  */
 class WalkingRobot_LeggedRobotCommonInterface_RobotSVC_impl
-	: public virtual POA_WalkingRobot::LeggedRobotCommonInterface_Robot,
+ : public virtual POA_WalkingRobot::LeggedRobotCommonInterface_Robot,
    public virtual PortableServer::RefCountServantBase
 {
  private:
@@ -213,7 +182,7 @@ class WalkingRobot_LeggedRobotCommonInterface_RobotSVC_impl
   /*!
    * @brief destructor
    */
-	 virtual ~WalkingRobot_LeggedRobotCommonInterface_RobotSVC_impl();
+   virtual ~WalkingRobot_LeggedRobotCommonInterface_RobotSVC_impl();
 
    // attributes and operations
    WalkingRobot::RobotInfo* getRobotInfo();

@@ -138,7 +138,7 @@ OpenHRP::BodyInfo_ptr OpenHRP_ModelLoaderSVC_impl::getBodyInfoEx(const char* url
 {
   // Please insert your code here and remove the following warning pragma
 #ifndef WIN32
-  #warning "Code missing in function <OpenHRP::BodyInfo_ptr OpenHRP_ModelLoaderSVC_impl::getBodyInfoEx(const char* url, OpenHRP::ModelLoadOption option)>"
+  #warning "Code missing in function <OpenHRP::BodyInfo_ptr OpenHRP_ModelLoaderSVC_impl::getBodyInfoEx(const char* url, OpenHRP::ModelLoader::ModelLoadOption option)>"
 #endif
   return 0;
 }
@@ -156,7 +156,7 @@ OpenHRP::BodyInfo_ptr OpenHRP_ModelLoaderSVC_impl::loadBodyInfoEx(const char* ur
 {
   // Please insert your code here and remove the following warning pragma
 #ifndef WIN32
-  #warning "Code missing in function <OpenHRP::BodyInfo_ptr OpenHRP_ModelLoaderSVC_impl::loadBodyInfoEx(const char* url, OpenHRP::ModelLoadOption option)>"
+  #warning "Code missing in function <OpenHRP::BodyInfo_ptr OpenHRP_ModelLoaderSVC_impl::loadBodyInfoEx(const char* url, OpenHRP::ModelLoader::ModelLoadOption option)>"
 #endif
   return 0;
 }
@@ -183,65 +183,7 @@ void OpenHRP_ModelLoaderSVC_impl::clearData()
 // End of example implementational code
 
 /*
- * Example implementational code for IDL interface RTC::LeggedRobotCommonInterface_Servo
- */
-WalkingRobot_LeggedRobotCommonInterface_ServoSVC_impl::WalkingRobot_LeggedRobotCommonInterface_ServoSVC_impl()
-{
-  // Please add extra constructor code here.
-}
-
-
-WalkingRobot_LeggedRobotCommonInterface_ServoSVC_impl::~WalkingRobot_LeggedRobotCommonInterface_ServoSVC_impl()
-{
-  // Please add extra destructor code here.
-}
-
-
-/*
- * Methods corresponding to IDL attributes and operations
- */
-::CORBA::Boolean WalkingRobot_LeggedRobotCommonInterface_ServoSVC_impl::setSoftLimitJoint(const WalkingRobot::JointPos& pos)
-{
-  // Please insert your code here and remove the following warning pragma
-#ifndef WIN32
-  #warning "Code missing in function <::CORBA::Boolean RTC_LeggedRobotCommonInterface_ServoSVC_impl::setSoftLimitJoint(const RTC::JointPos& pos)>"
-#endif
-  return 0;
-}
-
-WalkingRobot::JointPos* WalkingRobot_LeggedRobotCommonInterface_ServoSVC_impl::getSoftLimitjoint()
-{
-  // Please insert your code here and remove the following warning pragma
-#ifndef WIN32
-  #warning "Code missing in function <RTC::JointPos* RTC_LeggedRobotCommonInterface_ServoSVC_impl::getSoftLimitjoint()>"
-#endif
-  return 0;
-}
-
-::CORBA::Boolean WalkingRobot_LeggedRobotCommonInterface_ServoSVC_impl::servoOFF()
-{
-  // Please insert your code here and remove the following warning pragma
-#ifndef WIN32
-  #warning "Code missing in function <::CORBA::Boolean RTC_LeggedRobotCommonInterface_ServoSVC_impl::servoOFF()>"
-#endif
-  return 0;
-}
-
-::CORBA::Boolean WalkingRobot_LeggedRobotCommonInterface_ServoSVC_impl::servoON()
-{
-  // Please insert your code here and remove the following warning pragma
-#ifndef WIN32
-  #warning "Code missing in function <::CORBA::Boolean RTC_LeggedRobotCommonInterface_ServoSVC_impl::servoON()>"
-#endif
-  return 0;
-}
-
-
-
-// End of example implementational code
-
-/*
- * Example implementational code for IDL interface RTC::LeggedRobotCommonInterface_Robot
+ * Example implementational code for IDL interface WalkingRobot::LeggedRobotCommonInterface_Robot
  */
 WalkingRobot_LeggedRobotCommonInterface_RobotSVC_impl::WalkingRobot_LeggedRobotCommonInterface_RobotSVC_impl()
 {
@@ -260,19 +202,18 @@ WalkingRobot_LeggedRobotCommonInterface_RobotSVC_impl::~WalkingRobot_LeggedRobot
  */
 WalkingRobot::RobotInfo* WalkingRobot_LeggedRobotCommonInterface_RobotSVC_impl::getRobotInfo()
 {
-	WalkingRobot::RobotInfo* result;
   // Please insert your code here and remove the following warning pragma
 #ifndef WIN32
-  #warning "Code missing in function <RTC::RobotInfo* RTC_LeggedRobotCommonInterface_RobotSVC_impl::getRobotInfo()>"
+  #warning "Code missing in function <WalkingRobot::RobotInfo* WalkingRobot_LeggedRobotCommonInterface_RobotSVC_impl::getRobotInfo()>"
 #endif
-  return result;
+  return 0;
 }
 
 WalkingRobot::LegList* WalkingRobot_LeggedRobotCommonInterface_RobotSVC_impl::getFeedbackPos()
 {
   // Please insert your code here and remove the following warning pragma
 #ifndef WIN32
-  #warning "Code missing in function <RTC::LegList* RTC_LeggedRobotCommonInterface_RobotSVC_impl::getFeedbackPos()>"
+  #warning "Code missing in function <WalkingRobot::LegList* WalkingRobot_LeggedRobotCommonInterface_RobotSVC_impl::getFeedbackPos()>"
 #endif
   return 0;
 }
