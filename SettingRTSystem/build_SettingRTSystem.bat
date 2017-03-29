@@ -28,7 +28,7 @@ IF EXIST "dist" (
  	rmdir /s/q dist
 )
 
- python setup.py py2exe
+python setup.py py2exe
 
 cd ..
 
