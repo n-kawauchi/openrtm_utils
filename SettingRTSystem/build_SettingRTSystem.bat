@@ -10,6 +10,8 @@ if not DEFINED QTPATH set QTPATH=C:\Qt\5.8\msvc2015
 if not DEFINED LUA_DEV set LUA_DEV=C:\Program Files (x86)\Lua\5.1
 if not DEFINED QWT_DIRECTORIY set QWT_DIRECTORIY=C:\workspace\Qwt
 
+if not DEFINED PACKAGE_DIRECTORIY set PACKAGE_DIRECTORIY="C:\workspace\site-packages"
+
 cd %SettingRTSystem%
 
 cmd /c build_all.bat
@@ -17,6 +19,9 @@ cmd /c build_all.bat
 IF EXIST "dist" (
 	rmdir /s/q dist
 )
+
+xcopy /y/q %PACKAGE_DIRECTORIY%\wasanbon\core\plugins\admin\rtcprofile_plugin .\rtcprofile_plugin\
+
 
 python setup.py py2exe
 
@@ -27,6 +32,8 @@ cd rtcConfSet
 IF EXIST "dist" (
  	rmdir /s/q dist
 )
+
+xcopy /y/q %PACKAGE_DIRECTORIY%\wasanbon\core\plugins\admin\rtcprofile_plugin .\rtcprofile_plugin\
 
 python setup.py py2exe
 

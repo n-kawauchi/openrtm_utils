@@ -16,6 +16,8 @@ IF EXIST "dist" (
 )
 
 xcopy /y/q C:\Python27\Lib\site-packages\numpy\core\numpy-atlas.dll .
+xcopy /y/q %PACKAGE_DIRECTORIY%\wasanbon\core\plugins\admin\rtcprofile_plugin .\rtcprofile_plugin\
+
 
 python setup.py py2exe
 

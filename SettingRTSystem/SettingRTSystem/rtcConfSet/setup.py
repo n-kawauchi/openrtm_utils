@@ -6,6 +6,11 @@ import sys
 from setuptools import setup
 \
 
+import os
+if "PACKAGE_DIRECTORIY" in os.environ:
+	package_dir = os.environ["PACKAGE_DIRECTORIY"].replace("\"","")
+	sys.path.append(package_dir)
+
 NAME = 'rtcConfSet'
 LICENSE = 'GPL'
 AUTHOR = ''
@@ -20,7 +25,7 @@ if sys.platform == 'win32':
     PY2EXE_OPTIONS = {'compressed': 1,
                       'optimize': 2,
                       'bundle_files': 3,
-                      'includes': ["lxml._elementpath","commands","ActArray_idl","AIO_idl","Bumper_idl","Camera_idl","DIO_idl","Fiducial_idl","GPS_idl","Gripper_idl","IMU_idl","INS_idl","Limb_idl","Map_idl","Multicamera_idl","PanTilt_idl","Paths_idl","PointCloud_idl","Position_idl","Ranger_idl","RFID_idl"],}
+                      'includes': ["rtcprofile_plugin","lxml._elementpath","commands","ActArray_idl","AIO_idl","Bumper_idl","Camera_idl","DIO_idl","Fiducial_idl","GPS_idl","Gripper_idl","IMU_idl","INS_idl","Limb_idl","Map_idl","Multicamera_idl","PanTilt_idl","Paths_idl","PointCloud_idl","Position_idl","Ranger_idl","RFID_idl"],}
     
     INNOSETUP_OPTIONS = {'inno_script': innosetup.DEFAULT_ISS,
                          'bundle_vcr': True,
