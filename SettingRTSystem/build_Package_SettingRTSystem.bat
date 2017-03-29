@@ -6,7 +6,7 @@ set TARGET_NAME=SettingRTSystem
 if not DEFINED ARCH set ARCH=x86
 if not DEFINED PYTHON_DIR set PYTHON_DIR=C:\Python27
 
-set TARGET_DIR=SettingRTSystem_Copy
+set TARGET_DIR=utils
 
 copy ..\getGuid.bat getGuid.bat
 copy ..\wxsmaker.py wxsmaker.py
