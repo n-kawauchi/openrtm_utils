@@ -11,7 +11,7 @@ cd %PowerPointControlpy%
 IF EXIST "dist" (
 	rmdir /s/q dist
 )
-cmd /c idlcompile.bat
+
 python setup.py py2exe
 
 
