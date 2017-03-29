@@ -9,6 +9,7 @@ rem set PYTHONPATH=%PYTHON_DIR%\Lib;%PYTHON_DIR%\Lib\site-packages\rtctree\rtmid
 set RTM_VERSION=1.2.0
 set DOMAIN=staging.openrtm.org
 set CYGWINPATH=C:\cygwin64\bin
+set QTPATH=C:\Qt\5.8\msvc2015
 
 
 
@@ -28,6 +29,7 @@ rmdir /S /Q OpenCV%OPENCV_VERSION%
 set OpenCV_DIR=%CD%\OpenCV%OPENCV_VERSION%\
 
 set WORKSPACE=C:\Jenkins\workspace\
+set NODE_NAME=windows8-vc2015
 set RTM_ROOT=%WORKSPACE%10_openrtm-cxx-build-win32\label\%NODE_NAME%\OpenRTM-aist\
 
 set COIL_ROOT=%RTM_ROOT%\coil
@@ -38,7 +40,7 @@ set OpenRTM_DIR=%RTM_ROOT%\cmake
 set OMNI_ROOT=%RTM_ROOT%\omniORB
 
 
-set PATH=%RTM_ROOT%\bin;%OMNI_ROOT%\bin\x86_win32;%PATH%;%PYTHON_DIR%;
+set PATH=%RTM_ROOT%\bin;%OMNI_ROOT%\bin\x86_win32;%PATH%;%PYTHON_DIR%;%QTPATH%\bin;
 
 
 

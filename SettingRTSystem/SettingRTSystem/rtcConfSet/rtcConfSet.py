@@ -32,6 +32,7 @@ sys.path.append(os.path.join(os.environ["SettingRTSystemPath"],"RTCD_IDL"))
 sys.path.append(os.path.join(os.environ["SettingRTSystemPath"],"rtcConfSet"))
 
 
+
 import datetime
 import shutil
 
@@ -81,7 +82,9 @@ defaultCompositePath = os.path.join(defaultPath,"Composite")
 defaultRtcdControlPath = os.path.join(defaultPath,"rtcdControl")
 defaultRtcdPyControlPath = os.path.join(defaultPath,"rtcdControlPy")
 defaultDllPath = os.path.join(defaultPath,"Dll")
-
+openrtmDllPath = "%RTM_ROOT%bin\\vc14"
+omniORBDllPath = "%RTM_ROOT%omniORB\\4.2.1_vc14\\bin\\x86_win32"
+openCVDllPath = "%OpenCV_DIR%\\x86\\v14\\bin"
 
 
 ##
@@ -1185,6 +1188,9 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
     #          
     def saveBatFile(self, home_dirname, cpp_dirname, py_dirname, sysfileName, compositeList):
         global defaultPath
+        global openrtmDllPath
+        global omniORBDllPath
+        global openCVDllPath
         
         if os.name == 'posix':
             fname = home_dirname+"/start.sh"
@@ -1203,7 +1209,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
                 cmd = "cdir=${PWD}" + "\n"
                 f.write(cmd)
             elif os.name == 'nt':
-                cmd = "set PATH=%PATH%;" + defaultDllPath.replace("/","\\")+ ";\n"
+                cmd = "set PATH=%PATH%;" + defaultDllPath.replace("/","\\")+";"+openrtmDllPath+";"+omniORBDllPath+";"+openCVDllPath + ";\n"
                 f.write(cmd)
             try:
                 shutil.copy2(os.path.join(defaultPath, "startNamingService.py"), os.path.join(home_dirname,"startNamingService.py"))

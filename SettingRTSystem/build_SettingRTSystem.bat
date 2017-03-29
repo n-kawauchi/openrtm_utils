@@ -6,6 +6,10 @@ set SettingRTSystem_Copy=utils\SettingRTSystem
 set Tool_Copy=utils\python_dist
 set GLOBAL_Tool_Copy=..\python_dist\utils\python_dist
 
+if not DEFINED QTPATH set QTPATH=C:\Qt\5.8\msvc2015
+if not DEFINED LUA_DEV set LUA_DEV=C:\Program Files (x86)\Lua\5.1
+if not DEFINED QWT_DIRECTORIY set QWT_DIRECTORIY=C:\workspace\Qwt
+
 cd %SettingRTSystem%
 
 cmd /c build_all.bat
@@ -99,6 +103,23 @@ xcopy /y/q %SettingRTSystem%\rtcdControlPy\rtcControl__POA\* %SettingRTSystem_Co
 xcopy /y/q %SettingRTSystem%\workspace\rtc.conf %SettingRTSystem_Copy%\workspace\
 
 
-
 python CopyComponent.py
+
+
+
+xcopy /y/q %QTPATH%\bin\Qt5Widgets.dll %SettingRTSystem_Copy%\DLL\
+xcopy /y/q %QTPATH%\bin\Qt5Gui.dll %SettingRTSystem_Copy%\DLL\
+xcopy /y/q %QTPATH%\bin\Qt5Core.dll %SettingRTSystem_Copy%\DLL\
+xcopy /y/q %QTPATH%\bin\Qt5OpenGL.dll %SettingRTSystem_Copy%\DLL\
+xcopy /y/q %QTPATH%\bin\Qt5PrintSupport.dll %SettingRTSystem_Copy%\DLL\
+xcopy /y/q %QTPATH%\bin\Qt5Svg.dll %SettingRTSystem_Copy%\DLL\
+xcopy /y/q %QTPATH%\plugins\platforms %SettingRTSystem_Copy%\DLL\
+
+xcopy /y/q %LUA_DEV%\lua5.1.dll %SettingRTSystem_Copy%\DLL\
+xcopy /y/q %LUA_DEV%\lua51.dll %SettingRTSystem_Copy%\DLL\
+
+xcopy /y/q %QWT_DIRECTORIY%\lib\qwt.dll %SettingRTSystem_Copy%\DLL\
+
+
+
 
