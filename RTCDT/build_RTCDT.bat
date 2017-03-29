@@ -15,9 +15,11 @@ IF EXIST "dist" (
 	rmdir /s/q dist
 )
 
+xcopy /y/q C:\Python27\Lib\site-packages\numpy\core\numpy-atlas.dll .
+
 python setup.py py2exe
 
-xcopy /y/q C:\Python27\Lib\site-packages\numpy\core\numpy-atlas.dll .
+
 
 cd %WorkDir%
 
