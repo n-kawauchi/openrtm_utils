@@ -10,6 +10,7 @@ set RTM_VERSION=1.2.0
 set DOMAIN=staging.openrtm.org
 set CYGWINPATH=C:\cygwin64\bin
 set QTPATH=C:\Qt\5.8\msvc2015
+set MERGE_MODULES_DIR=MergeModules
 
 
 
@@ -52,21 +53,31 @@ set QWT_DIRECTORIY=C:\workspace\Qwt
 set BOOST_DIRECTORIY=C:\workspace\boost_1_49_0
 set PACKAGE_DIRECTORIY=C:\workspace\site-packages
 
+IF EXIST "%MERGE_MODULES_DIR%" (
+	rmdir /s/q %MERGE_MODULES_DIR%
+)
+mkdir MERGE_MODULES_DIR
 
 cmd /c ExcelControlpy\build_Excel.bat
 cmd /c ExcelControlpy\build_Package_Excel.bat
+xcopy /y/q ExcelControlpy\*.msm %MERGE_MODULES_DIR%\
 
 cmd /c PowerPointControlpy\build_PowerPoint.bat
 cmd /c PowerPointControlpy\build_Package_PowerPoint.bat
+xcopy /y/q PowerPointControlpy\*.msm %MERGE_MODULES_DIR%\
 
 cmd /c WordControlpy\build_Word.bat
 cmd /c WordControlpy\build_Package_Word.bat
+xcopy /y/q WordControlpy\*.msm %MERGE_MODULES_DIR%\
 
 cmd /c RTCDT\build_RTCDT.bat
 cmd /c RTCDT\build_Package_RTCDT.bat
+xcopy /y/q RTCDT\*.msm %MERGE_MODULES_DIR%\
 
 cmd /c SettingRTSystem\build_SettingRTSystem.bat
 cmd /c SettingRTSystem\build_Package_SettingRTSystem.bat
+xcopy /y/q SettingRTSystem\*.msm %MERGE_MODULES_DIR%\
 
 cmd /c python_dist\build_python_dist.bat
 cmd /c python_dist\build_Package_python_dist.bat
+xcopy /y/q python_dist\*.msm %MERGE_MODULES_DIR%\
