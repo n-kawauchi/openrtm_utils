@@ -43,12 +43,12 @@ set PATH=%RTM_ROOT%\bin;%OMNI_ROOT%\bin\x86_win32;%PATH%;%PYTHON_DIR%;
 
 
 set BuildType=Release
-set LUABIND_PATH="C:\workspace\luabind-0.9.1"
-set EIGEN_DIRECTORIY="C:\workspace\eigen-eigen-67e894c6cd8f"
-set ODE_DIRECTORIY="C:\workspace\ode-0.13"
-set QWT_DIRECTORIY="C:\workspace\Qwt"
-set BOOST_DIRECTORIY="C:\workspace\boost_1_49_0"
-set PACKAGE_DIRECTORIY="C:\workspace\site-packages"
+set LUABIND_PATH=C:\workspace\luabind-0.9.1
+set EIGEN_DIRECTORIY=C:\workspace\eigen-eigen-67e894c6cd8f
+set ODE_DIRECTORIY=C:\workspace\ode-0.13
+set QWT_DIRECTORIY=C:\workspace\Qwt
+set BOOST_DIRECTORIY=C:\workspace\boost_1_49_0
+set PACKAGE_DIRECTORIY=C:\workspace\site-packages
 
 
 cmd /c ExcelControlpy\build_Excel.bat

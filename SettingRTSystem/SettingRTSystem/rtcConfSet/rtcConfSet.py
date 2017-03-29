@@ -1677,6 +1677,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
             tbinfo = traceback.format_tb( info[2] )
             for tbi in tbinfo:
                 print tbi
+            raise CORBA.NO_IMPLEMENT(0, CORBA.COMPLETED_NO)
         #os.system(com)
         
         flag = True
@@ -1744,6 +1745,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
             tbinfo = traceback.format_tb( info[2] )
             for tbi in tbinfo:
                 print tbi
+            raise CORBA.NO_IMPLEMENT(0, CORBA.COMPLETED_NO)
         #os.system(com)
         
         flag = True

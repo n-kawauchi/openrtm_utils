@@ -1,3 +1,3 @@
 set SettingRTSystemPath=%~dp0
-"%SettingRTSystemPath%python_dist\rtcConfSet\rtcConfSet.py" -f rtc.conf
+"%RTM_BASE%1.2\utils\python_dist\rtcConfSet\rtcConfSet.py" -f rtc.conf
 exit

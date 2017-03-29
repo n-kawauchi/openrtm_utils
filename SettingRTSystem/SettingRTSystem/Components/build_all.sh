@@ -16,7 +16,6 @@ sh DataBaseOutPut/build_all.sh
 sh DeadZone/build_all.sh
 sh DemuxFunction/build_all.sh
 sh Derivative/build_all.sh
-sh Dilationerosion/build_all.sh
 sh EncodeData/build_all.sh
 sh EncodeSeqData/build_all.sh
 sh EV3SampleCPP/build_all.sh
@@ -43,7 +42,7 @@ sh ProductFunction/build_all.sh
 sh PulseGenerator/build_all.sh
 sh RampFunction/build_all.sh
 sh RandomNumber/build_all.sh
-sh RaspberryPiMouseController_DistanceSensor/build_all.sh
+sh RasPiMouseController_DistanceSensor/build_all.sh
 sh RaspberryPiMouseController_Joystick/build_all.sh
 sh RaspberryPiMouseGUI/build_all.sh
 sh RasPiMouseSampleCPP/build_all.sh

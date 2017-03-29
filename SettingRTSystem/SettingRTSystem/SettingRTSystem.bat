@@ -1,5 +1,6 @@
 set SettingRTSystemPath=%~dp0
-set TOOLEXE=TRUE
+PATH=%PATH%;%RTM_ROOT%bin\vc14;%RTM_ROOT%omniORB\4.2.1_vc14\bin\x86_win32
+set TOOLEXE=FALSE
 python "%SettingRTSystemPath%\startNamingService.py"
 set SettingRTSystemWorkspace=%TMP%\SettingRTSystemWorkspace\
 IF NOT EXIST "%SettingRTSystemWorkspace%" (
