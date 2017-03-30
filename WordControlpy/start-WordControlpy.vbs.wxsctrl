@@ -1,0 +1,6 @@
+<Shortcut Id="WordControlpy_exe" Directory="AppMenuFolder"
+      Name="WordControlpy" Show="normal"
+      WorkingDirectory="%Directory.Id%"
+      Icon="openrtm_utils_0.ico" IconIndex="0" > 
+  <Icon Id="openrtm_utils_0.ico" SourceFile="openrtm_utils_0.ico"/>
+</Shortcut>

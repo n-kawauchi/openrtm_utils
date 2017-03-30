@@ -1,10 +1,19 @@
 cd /d %~dp0
 
 
-set PKG_NAME=120
-set TARGET_NAME=python_dist
-if not DEFINED ARCH set ARCH=x86
-if not DEFINED PYTHON_DIR set PYTHON_DIR=C:\Python27
+if not defined INSTALL_VERSION set INSTALL_VERSION=1.2.0
+if not defined TOOL_VERSION set TOOL_VERSION=120
+if not defined TARGET_VERSION set TARGET_VERSION=1.2.0.0
+
+if not defined ARCH set ARCH=x86
+if not defined PYTHON_DIR set PYTHON_DIR=C:\Python27
+
+set PKG_NAME=python_dist
+set TARGET_NAME=%PKG_NAME%_%TOOL_VERSION%
+
+
+
+
 
 set TARGET_DIR=utils
 
@@ -13,20 +22,20 @@ copy ..\getGuid.bat getGuid.bat
 copy ..\wxsmaker.py wxsmaker.py
 copy ..\build_wix_module.bat build_wix_module.bat
 copy ..\getGuid.bat getGuid.bat
-copy ..\empty_prg_menu.wxs empty_prg_menu.wxs
+rem copy ..\empty_prg_menu.wxs empty_prg_menu.wxs
 copy ..\uuid_gen.py uuid_gen.py
 copy ..\msm_template.wxs msm_template.wxs
 
 
-call getGuid.bat %TARGET_NAME%_%PKG_NAME%_%ARCH%_Msm python_dist_guids.txt
+call getGuid.bat %PKG_NAME%_%TOOL_VERSION%_%ARCH%_Msm %PKG_NAME%_guids.txt
 
 
 
-wxsmaker.py -i -t %TARGET_DIR% -o %TARGET_NAME%_%PKG_NAME%_files.wxs
+wxsmaker.py -i -t %TARGET_DIR% -p %PKG_NAME% -o %TARGET_NAME%_%PKG_NAME%_files.wxs
 
 
-set MSM_VER=%TARGET_NAME%_%PKG_NAME%_%ARCH%
-set TARGET_VERSION=1.2.0.0
+set MSM_VER=%PKG_NAME%_%TOOL_VERSION%_%ARCH%
+
 set MSM_GUID=%GUID%
 
 set MSM_FILE_NAME=%MSM_VER%.msm
