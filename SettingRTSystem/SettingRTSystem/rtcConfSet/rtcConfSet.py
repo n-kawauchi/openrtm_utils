@@ -27,9 +27,12 @@ if "PACKAGE_DIRECTORIY" in os.environ:
 
 
 if "SettingRTSystemPath" in os.environ:
-	sys.path.append(os.environ["SettingRTSystemPath"])
-	sys.path.append(os.path.join(os.environ["SettingRTSystemPath"],"RTCD_IDL"))
-	sys.path.append(os.path.join(os.environ["SettingRTSystemPath"],"rtcConfSet"))
+	defaultPath = os.environ["SettingRTSystemPath"]
+else:
+	defaultPath = ".\\"
+sys.path.append(defaultPath)
+sys.path.append(os.path.join(defaultPath,"RTCD_IDL"))
+sys.path.append(os.path.join(defaultPath,"rtcConfSet"))
 
 
 import datetime
@@ -75,7 +78,7 @@ import rtcControl, rtcControl__POA
 #from wasanbon.core.rtc.rtcprofile import RTCProfile
 from rtcprofile_plugin import rtcprofile
 
-defaultPath = os.environ["SettingRTSystemPath"]
+#defaultPath = os.environ["SettingRTSystemPath"]
 defaultCompPath = os.path.join(defaultPath,"Components")
 defaultCompositePath = os.path.join(defaultPath,"Composite")
 defaultRtcdControlPath = os.path.join(defaultPath,"rtcdControl")
