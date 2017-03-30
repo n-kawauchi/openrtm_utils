@@ -10,5 +10,5 @@ IF NOT EXIST "%UTIL_DIR%" (
 
 xcopy /D/S/R/Y/I/K %Licenses_DIR% %UTIL_DIR%\%Licenses_DIR%
 
-pause
+
 
