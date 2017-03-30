@@ -26,10 +26,10 @@ if "PACKAGE_DIRECTORIY" in os.environ:
 
 
 
-sys.path.append(os.environ["SettingRTSystemPath"])
-sys.path.append(os.path.join(os.environ["SettingRTSystemPath"],"RTCD_IDL"))
-sys.path.append(os.path.join(os.environ["SettingRTSystemPath"],"rtcConfSet"))
-
+if "SettingRTSystemPath" in os.environ:
+	sys.path.append(os.environ["SettingRTSystemPath"])
+	sys.path.append(os.path.join(os.environ["SettingRTSystemPath"],"RTCD_IDL"))
+	sys.path.append(os.path.join(os.environ["SettingRTSystemPath"],"rtcConfSet"))
 
 
 import datetime

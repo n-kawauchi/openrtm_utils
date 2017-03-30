@@ -1,5 +1,8 @@
 cd /d %~dp0
 
+if not DEFINED SettingRTSystemPath set SettingRTSystemPath=%~dp0
+
+
 if not DEFINED VC_VERSION set VC_VERSION=12
 if not DEFINED ARCH set ARCH=x86
 
@@ -48,6 +51,8 @@ if not DEFINED ODE_DIRECTORIY set ODE_DIRECTORIY=C:\workspace\ode-0.13
 if not DEFINED QWT_DIRECTORIY set QWT_DIRECTORIY=C:\workspace\Qwt
 if not DEFINED BOOST_DIRECTORIY set BOOST_DIRECTORIY=C:\workspace\boost_1_49_0
 if not DEFINED PACKAGE_DIRECTORIY set PACKAGE_DIRECTORIY=C:\workspace\site-packages
+
+
 
 cmd /c Components\build_all.bat
 cmd /c ExecutionContext\build_all.bat
