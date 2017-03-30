@@ -20,8 +20,8 @@ IF EXIST "dist" (
 	rmdir /s/q dist
 )
 
-xcopy /y/q %PACKAGE_DIRECTORIY%\wasanbon\core\plugins\admin\rtcprofile_plugin .\rtcprofile_plugin\
-xcopy /y/q %PACKAGE_DIRECTORIY%\wasanbon .\wasanbon\
+xcopy /y/q/e %PACKAGE_DIRECTORIY%\wasanbon\core\plugins\admin\rtcprofile_plugin .\rtcprofile_plugin\
+xcopy /y/q/e %PACKAGE_DIRECTORIY%\wasanbon .\wasanbon\
 
 python setup.py py2exe
 
@@ -33,8 +33,8 @@ IF EXIST "dist" (
  	rmdir /s/q dist
 )
 
-xcopy /y/q %PACKAGE_DIRECTORIY%\wasanbon\core\plugins\admin\rtcprofile_plugin .\rtcprofile_plugin\
-xcopy /y/q %PACKAGE_DIRECTORIY%\wasanbon .\wasanbon\
+xcopy /y/q/e %PACKAGE_DIRECTORIY%\wasanbon\core\plugins\admin\rtcprofile_plugin .\rtcprofile_plugin\
+xcopy /y/q/e %PACKAGE_DIRECTORIY%\wasanbon .\wasanbon\
 
 python setup.py py2exe
 
