@@ -1,6 +1,6 @@
 cd /d %~dp0
 
-if not DEFINED SettingRTSystemPath set SettingRTSystemPath=%~dp0
+set SettingRTSystemPath=%~dp0
 
 
 if not DEFINED VC_VERSION set VC_VERSION=12
