@@ -1,7 +1,7 @@
 cd /d %~dp0
 set WorkDir=%~dp0
 
-set SettingRTSystemPath=%~dp0
+set SettingRTSystemPath=%WorkDir%SettingRTSystem
 
 set SettingRTSystem=SettingRTSystem
 set SettingRTSystem_Copy=utils\SettingRTSystem
