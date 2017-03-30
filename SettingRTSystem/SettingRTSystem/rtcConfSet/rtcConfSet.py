@@ -109,6 +109,9 @@ omniORBDllPath = "%RTM_ROOT%omniORB\\"+omni_version+"_"+vc_version+"\\bin\\x86_w
 openCVDllPath = "%OpenCV_DIR%\\"+arch+"\\"+vc_version+"\\bin"
 globalDllPath = "%RTM_ROOT%utils\\SettingRTSystem\\DLL"
 
+#print openrtmDllPath
+#print omniORBDllPath
+#print openCVDllPath
 
 ##
 # @brief サービスポート接続
