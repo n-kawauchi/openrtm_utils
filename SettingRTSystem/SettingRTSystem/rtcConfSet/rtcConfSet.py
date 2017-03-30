@@ -1700,7 +1700,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
             com = str(os.path.join(defaultRtcdControlPath, "src/rtcdControlComp")) + " -f " + self.cppDirName.replace("\\","/") + "/rtc.conf"
             com = com.split(" ")
         elif os.name == 'nt':
-            com = str(os.path.join(defaultRtcdControlPath, "src/Release/rtcdControlComp.exe")) + " -f " + self.cppDirName.replace("\\","/") + "/rtc.conf"
+            com = "\""+str(os.path.join(defaultRtcdControlPath, "src/Release/rtcdControlComp.exe"))+"\"" + " -f " + self.cppDirName.replace("\\","/") + "/rtc.conf"
         
         try:
             #os.system(com)
@@ -1767,7 +1767,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
             com = "python " + str(os.path.join(defaultRtcdPyControlPath, "rtcdControlPy.py")) + " -f " + self.pyDirName.replace("\\","/") + "/rtc.conf"
             com = com.split(" ")
         elif os.name == 'nt':
-            com = "python " + str(os.path.join(defaultRtcdPyControlPath, "rtcdControlPy.py")) + " -f " + self.pyDirName.replace("\\","/") + "/rtc.conf"
+            com = "python " + "\""+str(os.path.join(defaultRtcdPyControlPath, "rtcdControlPy.py"))+"\"" + " -f " + self.pyDirName.replace("\\","/") + "/rtc.conf"
         
         #print com
         
@@ -1963,6 +1963,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
         elif os.name == 'nt':
             name = self.home_dirname+"/composite.bat"
             com = os.path.relpath(name).replace("/","\\")
+            com = "\""+com+"\""
             
         if os.path.exists(name):
             
@@ -1987,7 +1988,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
                 com = "rtresurrect " + os.path.relpath(name).replace("\\","/")
                 com = com.split(" ")
             elif os.name == 'nt':
-                com = "cmd /c rtresurrect " + os.path.relpath(name).replace("\\","/")
+                com = "cmd /c rtresurrect " + "\""+os.path.relpath(name).replace("\\","/")+"\""
             
             try:
                 process = subprocess.Popen(com)
@@ -2450,7 +2451,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
                         if os.name == 'posix':
                             com = com.split(" ")
                         elif os.name == 'nt':
-                            com = "cmd /c " + com
+                            com = "cmd /c " + "\""+com+"\""
                         
                         cwd = os.getcwd()
                         os.chdir(dname)
@@ -2475,7 +2476,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
                     path,dname,bname = self.getFilePath_py(name, rtc_name)
 
                     if path != "":
-                        com = "python " + bname
+                        com = "python " + "\""+bname+"\""
                         if os.name == 'posix':
                             com = com.split(" ")
                         
