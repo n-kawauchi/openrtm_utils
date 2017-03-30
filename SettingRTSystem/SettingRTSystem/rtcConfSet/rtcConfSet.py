@@ -84,10 +84,11 @@ defaultCompositePath = os.path.join(defaultPath,"Composite")
 defaultRtcdControlPath = os.path.join(defaultPath,"rtcdControl")
 defaultRtcdPyControlPath = os.path.join(defaultPath,"rtcdControlPy")
 defaultDllPath = os.path.join(defaultPath,"Dll")
+
 openrtmDllPath = "%RTM_ROOT%bin\\vc14"
 omniORBDllPath = "%RTM_ROOT%omniORB\\4.2.1_vc14\\bin\\x86_win32"
 openCVDllPath = "%OpenCV_DIR%\\x86\\v14\\bin"
-
+globalDllPath = "%RTM_ROOT%utils\\SettingRTSystem\\DLL"
 
 ##
 # @brief サービスポート接続
@@ -1193,6 +1194,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
         global openrtmDllPath
         global omniORBDllPath
         global openCVDllPath
+        global globalDllPath
         
         if os.name == 'posix':
             fname = home_dirname+"/start.sh"
@@ -1211,7 +1213,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
                 cmd = "cdir=${PWD}" + "\n"
                 f.write(cmd)
             elif os.name == 'nt':
-                cmd = "set PATH=%PATH%;" + defaultDllPath.replace("/","\\")+";"+openrtmDllPath+";"+omniORBDllPath+";"+openCVDllPath + ";\n"
+                cmd = "set PATH=%PATH%;" + globalDllPath.replace("/","\\")+";"+openrtmDllPath+";"+omniORBDllPath+";"+openCVDllPath+";C:\\Python27;C:\\Python27\\Scripts"+ ";\n"
                 f.write(cmd)
             try:
                 shutil.copy2(os.path.join(defaultPath, "startNamingService.py"), os.path.join(home_dirname,"startNamingService.py"))
