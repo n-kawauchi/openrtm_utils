@@ -85,10 +85,30 @@ defaultRtcdControlPath = os.path.join(defaultPath,"rtcdControl")
 defaultRtcdPyControlPath = os.path.join(defaultPath,"rtcdControlPy")
 defaultDllPath = os.path.join(defaultPath,"Dll")
 
-openrtmDllPath = "%RTM_ROOT%bin\\vc14"
-omniORBDllPath = "%RTM_ROOT%omniORB\\4.2.1_vc14\\bin\\x86_win32"
-openCVDllPath = "%OpenCV_DIR%\\x86\\v14\\bin"
+
+
+if "ARCH" in os.environ:
+	arch = os.environ["ARCH"]
+else:
+	arch = "x86"
+
+
+if "VC_VERSION" in os.environ:
+	vc_version = os.environ["VC_VERSION"]
+else:
+	vc_version = "vc14"
+
+
+if "OMNI_VERSION" in os.environ:
+	omni_version = os.environ["OMNI_VERSION"]
+else:
+	omni_version = "4.2.1"
+
+openrtmDllPath = "%RTM_ROOT%bin\\"+vc_version
+omniORBDllPath = "%RTM_ROOT%omniORB\\"+omni_version+"_"+vc_version+"\\bin\\x86_win32"
+openCVDllPath = "%OpenCV_DIR%\\"+arch+"\\"+vc_version+"\\bin"
 globalDllPath = "%RTM_ROOT%utils\\SettingRTSystem\\DLL"
+
 
 ##
 # @brief サービスポート接続

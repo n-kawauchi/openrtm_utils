@@ -8,6 +8,9 @@ set SettingRTSystem_Copy=utils\SettingRTSystem
 set Tool_Copy=utils\python_dist
 set GLOBAL_Tool_Copy=..\python_dist\utils\python_dist
 
+
+
+if not DEFINED ARCH set ARCH=x86
 if not DEFINED QTPATH set QTPATH=C:\Qt\5.8\msvc2015
 if not DEFINED LUA_DEV set LUA_DEV=C:\Program Files (x86)\Lua\5.1
 if not DEFINED QWT_DIRECTORIY set QWT_DIRECTORIY=C:\workspace\Qwt
@@ -62,7 +65,14 @@ IF NOT EXIST "%GLOBAL_Tool_Copy%" (
 )
 
 
-xcopy /y/q %SettingRTSystem%\SettingRTSystem_exe.bat %SettingRTSystem_Copy%
+if %ARCH% == x86  (
+  echo F | xcopy /y/q %SettingRTSystem%\SettingRTSystem_exe.bat %SettingRTSystem_Copy%\SettingRTSystem_exe.bat
+) else (
+  echo F | xcopy /y/q %SettingRTSystem%\SettingRTSystem_exe_x64.bat %SettingRTSystem_Copy%\SettingRTSystem_exe.bat
+)
+
+
+
 xcopy /y/q %SettingRTSystem%\runManager.bat %SettingRTSystem_Copy%
 xcopy /y/q %SettingRTSystem%\rtcConfSet_exe.bat %SettingRTSystem_Copy%
 xcopy /y/q %SettingRTSystem%\startNamingService.py %SettingRTSystem_Copy%
