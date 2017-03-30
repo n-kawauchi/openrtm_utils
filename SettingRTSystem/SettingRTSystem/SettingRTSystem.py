@@ -39,6 +39,11 @@ import SettingRTCWindow.MainWindow
 
 import SettingRTSystem_rc
 
+if "RTM_ROOT" in os.environ:
+	rtm_root = os.environ["RTM_ROOT"]
+else:
+	rtm_root = ".\\"
+
         
 ##
 # @brief メイン関数
@@ -64,9 +69,10 @@ def main():
         #process_rtcd = subprocess.Popen("python Manager/Python/rtcd.py -f Manager/Python/rtc.conf")
         #process_rtcd = os.system("start python Manager/Python/rtcd.py -f Manager/Python/rtc.conf")
         if "TOOLEXE" in os.environ and os.environ["TOOLEXE"]=="TRUE":
-            cmd = str(os.path.join(tool_path,"rtcConfSet_exe.bat"))
+            cmd = "\""+str(os.path.join(rtm_root,"utils\\python_dist","rtcConfSet.exe"))+"\" -f rtc.conf"
         else:
-            cmd = str(os.path.join(tool_path,"rtcConfSet.bat"))
+            cmd = "python " + "\""+str(os.path.join(tool_path,"rtcConfSet\\rtcConfSet.py"))+"\" -f rtc.conf"
+        cmd = cmd.replace("/","\\")
         process_confset = subprocess.Popen(cmd)
         #process_confset = os.system("start rtcConfSet.bat")
     
@@ -84,7 +90,7 @@ def main():
         cmd = "python " + str(os.path.join(tool_path,"exitRTCs.py"))
         subprocess.Popen(cmd.split(" "))
     elif os.name == 'nt':
-        cmd = "python " + str(os.path.join(tool_path,"exitRTCs.py"))
+        cmd = "python " + "\""+str(os.path.join(tool_path,"exitRTCs.py"))+"\""
         subprocess.Popen(cmd)
         
     
