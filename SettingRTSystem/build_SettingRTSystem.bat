@@ -148,9 +148,6 @@ rem xcopy /y/q "%LUA_DEV%\lua51.dll" "%SettingRTSystem_Copy%\DLL\"
 
 xcopy /y/q "%QWT_DIRECTORIY%\lib\qwt.dll" "%SettingRTSystem_Copy%\DLL\"
 
-xcopy /y/q "%ODE_DIRECTORIY%\drawstuff\textures\checkered.ppm" "%SettingRTSystem_Copy%\DLL\drawstuff\textures\"
-xcopy /y/q "%ODE_DIRECTORIY%\drawstuff\textures\ground.ppm" "%SettingRTSystem_Copy%\DLL\drawstuff\textures\"
-xcopy /y/q "%ODE_DIRECTORIY%\drawstuff\textures\sky.ppm" "%SettingRTSystem_Copy%\DLL\drawstuff\textures\"
-xcopy /y/q "%ODE_DIRECTORIY%\drawstuff\textures\wood.ppm" "%SettingRTSystem_Copy%\DLL\drawstuff\textures\"
+xcopy /y/q "%ODE_DIRECTORIY%\drawstuff\textures\*.ppm" "%SettingRTSystem_Copy%\DLL\drawstuff\textures\"
 
 
