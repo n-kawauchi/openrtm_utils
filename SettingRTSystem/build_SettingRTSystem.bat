@@ -14,6 +14,7 @@ if not DEFINED ARCH set ARCH=x86
 if not DEFINED QTPATH set QTPATH=C:\Qt\5.8\msvc2015
 if not DEFINED LUA_DEV set LUA_DEV=C:\Program Files (x86)\Lua\5.1
 if not DEFINED QWT_DIRECTORIY set QWT_DIRECTORIY=C:\workspace\Qwt
+if not DEFINED ODE_DIRECTORIY set ODE_DIRECTORIY=C:\workspace\ode-0.13
 
 if not DEFINED PACKAGE_DIRECTORIY set PACKAGE_DIRECTORIY="C:\workspace\site-packages"
 
@@ -147,6 +148,9 @@ rem xcopy /y/q "%LUA_DEV%\lua51.dll" "%SettingRTSystem_Copy%\DLL\"
 
 xcopy /y/q "%QWT_DIRECTORIY%\lib\qwt.dll" "%SettingRTSystem_Copy%\DLL\"
 
-
+xcopy /y/q "%ODE_DIRECTORIY%\drawstuff\textures\checkered.ppm" "%SettingRTSystem_Copy%\DLL\drawstuff\textures\"
+xcopy /y/q "%ODE_DIRECTORIY%\drawstuff\textures\ground.ppm" "%SettingRTSystem_Copy%\DLL\drawstuff\textures\"
+xcopy /y/q "%ODE_DIRECTORIY%\drawstuff\textures\sky.ppm" "%SettingRTSystem_Copy%\DLL\drawstuff\textures\"
+xcopy /y/q "%ODE_DIRECTORIY%\drawstuff\textures\wood.ppm" "%SettingRTSystem_Copy%\DLL\drawstuff\textures\"
 
 
