@@ -41,7 +41,7 @@ set OpenRTM_DIR=%RTM_ROOT%\cmake
 set OMNI_ROOT=%RTM_ROOT%\omniORB
 
 
-set PATH=%RTM_ROOT%\bin;%OMNI_ROOT%\bin\x86_win32;%PATH%;%PYTHON_DIR%;%QTPATH%\bin;
+
 
 
 
@@ -52,6 +52,15 @@ set ODE_DIRECTORIY=C:\workspace\ode-0.13
 set QWT_DIRECTORIY=C:\workspace\Qwt
 set BOOST_DIRECTORIY=C:\workspace\boost_1_49_0
 set PACKAGE_DIRECTORIY=C:\workspace\site-packages
+set LUA_DEV=C:\workspace\lua-5.1.5_Win32_dll14_lib
+
+set PATH=%PATH:C:\Program Files (x86)\Lua\5.1\clibs=%
+set PATH=%PATH:C:\Program Files (x86)\Lua\5.1=%
+
+
+
+set PATH=%LUA_DEV%;%QTPATH%\bin;%RTM_ROOT%\bin;%OMNI_ROOT%\bin\x86_win32;%PATH%;%PYTHON_DIR%;
+
 
 IF EXIST "%MERGE_MODULES_DIR%" (
 	rmdir /s/q %MERGE_MODULES_DIR%

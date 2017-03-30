@@ -128,8 +128,9 @@ xcopy /y/q "%QTPATH%\plugins\platforms\qoffscreen.dll" "%SettingRTSystem_Copy%\D
 xcopy /y/q "%QTPATH%\plugins\platforms\qwindows.dll" "%SettingRTSystem_Copy%\DLL\platforms\" 
 xcopy /y/q "%QTPATH%\plugins\printsupport\windowsprintersupport.dll" "%SettingRTSystem_Copy%\DLL\printsupport\" 
 
-xcopy /y/q "%LUA_DEV%\lua5.1.dll" "%SettingRTSystem_Copy%\DLL\" 
-xcopy /y/q "%LUA_DEV%\lua51.dll" "%SettingRTSystem_Copy%\DLL\" 
+xcopy /y/q "%LUA_DEV%\*.dll" "%SettingRTSystem_Copy%\DLL\" 
+rem xcopy /y/q "%LUA_DEV%\lua5.1.dll" "%SettingRTSystem_Copy%\DLL\" 
+rem xcopy /y/q "%LUA_DEV%\lua51.dll" "%SettingRTSystem_Copy%\DLL\" 
 
 xcopy /y/q "%QWT_DIRECTORIY%\lib\qwt.dll" "%SettingRTSystem_Copy%\DLL\"
 
