@@ -72,9 +72,9 @@ xcopy /y/q %SettingRTSystem%\Composite\ECandStateSharedComposite\src\Release\ECa
 xcopy /y/q %SettingRTSystem%\Composite\ECandStateSharedCompositePy\ECandStateSharedComposite.py %SettingRTSystem_Copy%\Composite\ECandStateSharedCompositePy\
 
 xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-C++\release\MultipleOrderedEC.dll %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-C++\release\
-xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-C++\release\loadLua.lua %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-C++\release\
-xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-C++\release\CompList.lua %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-C++\release\
-xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-C++\release\rtc.conf %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-C++\release\
+xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-C++\loadLua.lua %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-C++\release\
+xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-C++\CompList.lua %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-C++\release\
+xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-C++\rtc.conf %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-C++\release\
 xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-Python\*.py %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-Python\
 xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-Python\MultipleOrderedEC.qrc %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-Python\
 xcopy /y/q %SettingRTSystem%\ExecutionContext\MultipleOrderedEC-Python\rtc.conf %SettingRTSystem_Copy%\ExecutionContext\MultipleOrderedEC-Python\
