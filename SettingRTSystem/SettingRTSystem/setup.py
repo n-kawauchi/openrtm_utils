@@ -14,9 +14,9 @@ if "SettingRTSystemPath" in os.environ:
 	sys.path.append(os.environ["SettingRTSystemPath"])
 	sys.path.append(os.path.join(os.environ["SettingRTSystemPath"],"RTCD_IDL"))
 	sys.path.append(os.path.join(os.environ["SettingRTSystemPath"],"rtcConfSet"))
-	print sys.path.append(os.environ["SettingRTSystemPath"])
-	print sys.path.append(os.path.join(os.environ["SettingRTSystemPath"],"RTCD_IDL"))
-	print sys.path
+#	print sys.path.append(os.environ["SettingRTSystemPath"])
+#	print sys.path.append(os.path.join(os.environ["SettingRTSystemPath"],"RTCD_IDL"))
+#	print sys.path
 
 NAME = 'SettingRTSystem'
 LICENSE = 'GPL'
