@@ -66,6 +66,7 @@ xcopy /y/q %SettingRTSystem%\SettingRTSystem_exe.bat %SettingRTSystem_Copy%
 xcopy /y/q %SettingRTSystem%\runManager.bat %SettingRTSystem_Copy%
 xcopy /y/q %SettingRTSystem%\rtcConfSet_exe.bat %SettingRTSystem_Copy%
 xcopy /y/q %SettingRTSystem%\startNamingService.py %SettingRTSystem_Copy%
+xcopy /y/q %SettingRTSystem%\exitRTCs.py %SettingRTSystem_Copy%
 
 
 xcopy /y/q %SettingRTSystem%\Composite\ECandStateSharedComposite\src\Release\ECandStateSharedCompositeComp.exe %SettingRTSystem_Copy%\Composite\ECandStateSharedComposite\Release\
