@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rtc:RtcProfile rtc:version="0.2" rtc:id="RTC:Miyamoto Nobuhiko:Manipulator:test_ArmController:1.0.0" xmlns:rtc="http://www.openrtp.org/namespaces/rtc" xmlns:rtcExt="http://www.openrtp.org/namespaces/rtc_ext" xmlns:rtcDoc="http://www.openrtp.org/namespaces/rtc_doc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <rtc:BasicInfo xsi:type="rtcExt:basic_info_ext" rtcExt:saveProject="test_ArmController" rtc:updateDate="2017-04-01T03:29:31.700+09:00" rtc:creationDate="2017-04-01T02:40:40+09:00" rtc:abstract="ロボットアームテスト用RTC" rtc:version="1.0.0" rtc:vendor="Miyamoto Nobuhiko" rtc:maxInstances="1" rtc:executionType="PeriodicExecutionContext" rtc:executionRate="1000.0" rtc:description="test ArmController" rtc:category="Manipulator" rtc:componentKind="DataFlowComponent" rtc:activityType="PERIODIC" rtc:componentType="STATIC" rtc:name="test_ArmController">
+        <rtcDoc:Doc rtcDoc:reference="" rtcDoc:license="LGPL" rtcDoc:creator="Nobuhiko Miyamoto &lt;n-miyamoto@aist.go.jp&gt;" rtcDoc:algorithm="" rtcDoc:inout="" rtcDoc:description=""/>
+    </rtc:BasicInfo>
+    <rtc:Actions>
+        <rtc:OnInitialize xsi:type="rtcDoc:action_status_doc" rtc:implemented="true"/>
+        <rtc:OnFinalize xsi:type="rtcDoc:action_status_doc" rtc:implemented="false"/>
+        <rtc:OnStartup xsi:type="rtcDoc:action_status_doc" rtc:implemented="false"/>
+        <rtc:OnShutdown xsi:type="rtcDoc:action_status_doc" rtc:implemented="false"/>
+        <rtc:OnActivated xsi:type="rtcDoc:action_status_doc" rtc:implemented="true"/>
+        <rtc:OnDeactivated xsi:type="rtcDoc:action_status_doc" rtc:implemented="true"/>
+        <rtc:OnAborting xsi:type="rtcDoc:action_status_doc" rtc:implemented="false"/>
+        <rtc:OnError xsi:type="rtcDoc:action_status_doc" rtc:implemented="false"/>
+        <rtc:OnReset xsi:type="rtcDoc:action_status_doc" rtc:implemented="false"/>
+        <rtc:OnExecute xsi:type="rtcDoc:action_status_doc" rtc:implemented="true"/>
+        <rtc:OnStateUpdate xsi:type="rtcDoc:action_status_doc" rtc:implemented="false"/>
+        <rtc:OnRateChanged xsi:type="rtcDoc:action_status_doc" rtc:implemented="false"/>
+        <rtc:OnAction xsi:type="rtcDoc:action_status_doc" rtc:implemented="false"/>
+        <rtc:OnModeChanged xsi:type="rtcDoc:action_status_doc" rtc:implemented="false"/>
+    </rtc:Actions>
+    <rtc:ConfigurationSet>
+        <rtc:Configuration xsi:type="rtcExt:configuration_ext" rtcExt:variableName="" rtc:unit="cm" rtc:defaultValue="0" rtc:type="double" rtc:name="pos_x">
+            <rtc:Constraint>
+                <rtc:ConstraintUnitType>
+                    <rtc:propertyIsBetween>
+                        <rtc:LowerBoundary>-20</rtc:LowerBoundary>
+                        <rtc:UpperBoundary>20</rtc:UpperBoundary>
+                    </rtc:propertyIsBetween>
+                </rtc:ConstraintUnitType>
+            </rtc:Constraint>
+            <rtcDoc:Doc rtcDoc:constraint="-20 &lt;= x &lt;= 20" rtcDoc:range="" rtcDoc:unit="cm" rtcDoc:description="手先の原点位置からの移動距離(X)" rtcDoc:defaultValue="0" rtcDoc:dataname="pos_x"/>
+            <rtcExt:Properties rtcExt:value="slider.0.2" rtcExt:name="__widget__"/>
+        </rtc:Configuration>
+        <rtc:Configuration xsi:type="rtcExt:configuration_ext" rtcExt:variableName="" rtc:unit="cm" rtc:defaultValue="0" rtc:type="double" rtc:name="pos_y">
+            <rtc:Constraint>
+                <rtc:ConstraintUnitType>
+                    <rtc:propertyIsBetween>
+                        <rtc:LowerBoundary>-20</rtc:LowerBoundary>
+                        <rtc:UpperBoundary>20</rtc:UpperBoundary>
+                    </rtc:propertyIsBetween>
+                </rtc:ConstraintUnitType>
+            </rtc:Constraint>
+            <rtcDoc:Doc rtcDoc:constraint="-20 &lt;= x &lt;= 20" rtcDoc:range="" rtcDoc:unit="cm" rtcDoc:description="手先の原点位置からの移動距離(Y)" rtcDoc:defaultValue="0" rtcDoc:dataname="pos_y"/>
+            <rtcExt:Properties rtcExt:value="slider.0.2" rtcExt:name="__widget__"/>
+        </rtc:Configuration>
+        <rtc:Configuration xsi:type="rtcExt:configuration_ext" rtcExt:variableName="" rtc:unit="cm" rtc:defaultValue="0" rtc:type="double" rtc:name="pos_z">
+            <rtc:Constraint>
+                <rtc:ConstraintUnitType>
+                    <rtc:propertyIsBetween>
+                        <rtc:LowerBoundary>0</rtc:LowerBoundary>
+                        <rtc:UpperBoundary>20</rtc:UpperBoundary>
+                    </rtc:propertyIsBetween>
+                </rtc:ConstraintUnitType>
+            </rtc:Constraint>
+            <rtcDoc:Doc rtcDoc:constraint="-20 &lt;= x &lt;= 20" rtcDoc:range="" rtcDoc:unit="cm" rtcDoc:description="手先の原点位置からの移動距離(Z)" rtcDoc:defaultValue="0" rtcDoc:dataname="pos_z"/>
+            <rtcExt:Properties rtcExt:value="slider.0.2" rtcExt:name="__widget__"/>
+        </rtc:Configuration>
+        <rtc:Configuration xsi:type="rtcExt:configuration_ext" rtcExt:variableName="" rtc:unit="cm" rtc:defaultValue="0" rtc:type="double" rtc:name="home_x">
+            <rtcDoc:Doc rtcDoc:constraint="" rtcDoc:range="" rtcDoc:unit="cm" rtcDoc:description="原点位置(X)" rtcDoc:defaultValue="0" rtcDoc:dataname="home_x"/>
+            <rtcExt:Properties rtcExt:value="text" rtcExt:name="__widget__"/>
+        </rtc:Configuration>
+        <rtc:Configuration xsi:type="rtcExt:configuration_ext" rtcExt:variableName="" rtc:unit="cm" rtc:defaultValue="15" rtc:type="double" rtc:name="home_y">
+            <rtcDoc:Doc rtcDoc:constraint="" rtcDoc:range="" rtcDoc:unit="cm" rtcDoc:description="原点位置(Y)" rtcDoc:defaultValue="15" rtcDoc:dataname="home_y"/>
+            <rtcExt:Properties rtcExt:value="text" rtcExt:name="__widget__"/>
+        </rtc:Configuration>
+        <rtc:Configuration xsi:type="rtcExt:configuration_ext" rtcExt:variableName="" rtc:unit="cm" rtc:defaultValue="2" rtc:type="double" rtc:name="home_z">
+            <rtcDoc:Doc rtcDoc:constraint="" rtcDoc:range="" rtcDoc:unit="cm" rtcDoc:description="原点位置(Z)" rtcDoc:defaultValue="2" rtcDoc:dataname="home_z"/>
+            <rtcExt:Properties rtcExt:value="text" rtcExt:name="__widget__"/>
+        </rtc:Configuration>
+    </rtc:ConfigurationSet>
+    <rtc:ServicePorts xsi:type="rtcExt:serviceport_ext" rtcExt:position="LEFT" rtc:name="ManipulatorCommonInterface_Common">
+        <rtc:ServiceInterface xsi:type="rtcExt:serviceinterface_ext" rtcExt:variableName="" rtc:path="C:\IDL" rtc:type="JARA_ARM::ManipulatorCommonInterface_Common" rtc:idlFile="C:\IDL\ManipulatorCommonInterface_Common.idl" rtc:instanceName="" rtc:direction="Required" rtc:name="ManipulatorCommonInterface_Common">
+            <rtcDoc:Doc rtcDoc:docPostCondition="" rtcDoc:docPreCondition="" rtcDoc:docException="" rtcDoc:docReturn="" rtcDoc:docArgument="" rtcDoc:description="アーム共通インターフェース"/>
+        </rtc:ServiceInterface>
+        <rtcDoc:Doc rtcDoc:ifdescription="" rtcDoc:description="アーム共通インターフェース"/>
+    </rtc:ServicePorts>
+    <rtc:ServicePorts xsi:type="rtcExt:serviceport_ext" rtcExt:position="LEFT" rtc:name="ManipulatorCommonInterface_Middle">
+        <rtc:ServiceInterface xsi:type="rtcExt:serviceinterface_ext" rtcExt:variableName="" rtc:path="C:\IDL" rtc:type="JARA_ARM::ManipulatorCommonInterface_Middle" rtc:idlFile="C:\IDL\ManipulatorCommonInterface_MiddleLevel.idl" rtc:instanceName="" rtc:direction="Required" rtc:name="ManipulatorCommonInterface_Middle">
+            <rtcDoc:Doc rtcDoc:docPostCondition="" rtcDoc:docPreCondition="" rtcDoc:docException="" rtcDoc:docReturn="" rtcDoc:docArgument="" rtcDoc:description="中レベルインターフェース"/>
+        </rtc:ServiceInterface>
+        <rtcDoc:Doc rtcDoc:ifdescription="" rtcDoc:description="中レベルインターフェース"/>
+    </rtc:ServicePorts>
+    <rtc:Language xsi:type="rtcExt:language_ext" rtc:kind="Python"/>
+</rtc:RtcProfile>

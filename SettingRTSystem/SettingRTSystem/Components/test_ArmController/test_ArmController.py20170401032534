@@ -1,0 +1,386 @@
+﻿#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# -*- Python -*-
+
+"""
+ @file test_ArmController.py
+ @brief test ArmController
+ @date $Date$
+
+ @author Nobuhiko Miyamoto <n-miyamoto@aist.go.jp>
+
+ LGPL
+
+"""
+import sys
+import time
+sys.path.append(".")
+
+# Import RTM module
+import RTC
+import OpenRTM_aist
+
+import ManipulatorCommonInterface_Common_idl
+import ManipulatorCommonInterface_MiddleLevel_idl
+
+# Import Service implementation class
+# <rtc-template block="service_impl">
+
+# </rtc-template>
+
+# Import Service stub modules
+# <rtc-template block="consumer_import">
+import JARA_ARM, JARA_ARM__POA
+
+
+# </rtc-template>
+
+
+# This module's spesification
+# <rtc-template block="module_spec">
+test_armcontroller_spec = ["implementation_id", "test_ArmController", 
+		 "type_name",         "test_ArmController", 
+		 "description",       "test ArmController", 
+		 "version",           "1.0.0", 
+		 "vendor",            "Miyamoto Nobuhiko", 
+		 "category",          "Manipulator", 
+		 "activity_type",     "STATIC", 
+		 "max_instance",      "1", 
+		 "language",          "Python", 
+		 "lang_type",         "SCRIPT",
+		 "conf.default.pos_x", "0",
+		 "conf.default.pos_y", "0",
+		 "conf.default.pos_z", "0",
+		 "conf.default.home_x", "0",
+		 "conf.default.home_y", "0",
+		 "conf.default.home_z", "0",
+
+		 "conf.__widget__.pos_x", "slider.0.5",
+		 "conf.__widget__.pos_y", "slider.0.5",
+		 "conf.__widget__.pos_z", "slider.0.5",
+		 "conf.__widget__.home_x", "text",
+		 "conf.__widget__.home_y", "text",
+		 "conf.__widget__.home_z", "text",
+		 "conf.__constraints__.pos_x", "-20<=x<=20",
+		 "conf.__constraints__.pos_y", "-20<=x<=20",
+		 "conf.__constraints__.pos_z", "-20<=x<=20",
+
+         "conf.__type__.pos_x", "double",
+         "conf.__type__.pos_y", "double",
+         "conf.__type__.pos_z", "double",
+         "conf.__type__.home_x", "double",
+         "conf.__type__.home_y", "double",
+         "conf.__type__.home_z", "double",
+
+		 ""]
+# </rtc-template>
+
+##
+# @class test_ArmController
+# @brief test ArmController
+# 
+# 
+class test_ArmController(OpenRTM_aist.DataFlowComponentBase):
+	
+	##
+	# @brief constructor
+	# @param manager Maneger Object
+	# 
+	def __init__(self, manager):
+		OpenRTM_aist.DataFlowComponentBase.__init__(self, manager)
+
+
+		"""
+		アーム共通インターフェース
+		"""
+		self._ManipulatorCommonInterface_CommonPort = OpenRTM_aist.CorbaPort("ManipulatorCommonInterface_Common")
+		"""
+		中レベルインターフェース
+		"""
+		self._ManipulatorCommonInterface_MiddlePort = OpenRTM_aist.CorbaPort("ManipulatorCommonInterface_Middle")
+
+		
+
+		"""
+		アーム共通インターフェース
+		"""
+		self._ManipulatorCommonInterface_Common = OpenRTM_aist.CorbaConsumer(interfaceType=JARA_ARM.ManipulatorCommonInterface_Common)
+		"""
+		中レベルインターフェース
+		"""
+		self._ManipulatorCommonInterface_Middle = OpenRTM_aist.CorbaConsumer(interfaceType=JARA_ARM.ManipulatorCommonInterface_Middle)
+
+		# initialize of configuration-data.
+		# <rtc-template block="init_conf_param">
+		"""
+		手先の原点位置からの移動距離(X)
+		 - Name: pos_x pos_x
+		 - DefaultValue: 0
+		 - Unit: cm
+		 - Constraint: -20 <= x <= 20
+		"""
+		self._pos_x = [0]
+		"""
+		手先の原点位置からの移動距離(Y)
+		 - Name: pos_y pos_y
+		 - DefaultValue: 0
+		 - Unit: cm
+		 - Constraint: -20 <= x <= 20
+		"""
+		self._pos_y = [0]
+		"""
+		手先の原点位置からの移動距離(Z)
+		 - Name: pos_z pos_z
+		 - DefaultValue: 0
+		 - Unit: cm
+		 - Constraint: -20 <= x <= 20
+		"""
+		self._pos_z = [0]
+		"""
+		原点位置(X)
+		 - Name: home_x home_x
+		 - DefaultValue: 0
+		 - Unit: cm
+		"""
+		self._home_x = [0]
+		"""
+		原点位置(Y)
+		 - Name: home_y home_y
+		 - DefaultValue: 0
+		 - Unit: cm
+		"""
+		self._home_y = [0]
+		"""
+		原点位置(Z)
+		 - Name: home_z home_z
+		 - DefaultValue: 0
+		 - Unit: cm
+		"""
+		self._home_z = [0]
+		
+		# </rtc-template>
+
+
+		 
+	##
+	#
+	# The initialize action (on CREATED->ALIVE transition)
+	# formaer rtc_init_entry() 
+	# 
+	# @return RTC::ReturnCode_t
+	# 
+	#
+	def onInitialize(self):
+		# Bind variables and configuration variable
+		self.bindParameter("pos_x", self._pos_x, "0")
+		self.bindParameter("pos_y", self._pos_y, "0")
+		self.bindParameter("pos_z", self._pos_z, "0")
+		self.bindParameter("home_x", self._home_x, "0")
+		self.bindParameter("home_y", self._home_y, "0")
+		self.bindParameter("home_z", self._home_z, "0")
+		
+		# Set InPort buffers
+		
+		# Set OutPort buffers
+		
+		# Set service provider to Ports
+		
+		# Set service consumers to Ports
+		self._ManipulatorCommonInterface_CommonPort.registerConsumer("ManipulatorCommonInterface_Common", "JARA_ARM::ManipulatorCommonInterface_Common", self._ManipulatorCommonInterface_Common)
+		self._ManipulatorCommonInterface_MiddlePort.registerConsumer("ManipulatorCommonInterface_Middle", "JARA_ARM::ManipulatorCommonInterface_Middle", self._ManipulatorCommonInterface_Middle)
+		
+		# Set CORBA Service Ports
+		self.addPort(self._ManipulatorCommonInterface_CommonPort)
+		self.addPort(self._ManipulatorCommonInterface_MiddlePort)
+		
+		return RTC.RTC_OK
+	
+	#	##
+	#	# 
+	#	# The finalize action (on ALIVE->END transition)
+	#	# formaer rtc_exiting_entry()
+	#	# 
+	#	# @return RTC::ReturnCode_t
+	#
+	#	# 
+	#def onFinalize(self):
+	#
+	#	return RTC.RTC_OK
+	
+	#	##
+	#	#
+	#	# The startup action when ExecutionContext startup
+	#	# former rtc_starting_entry()
+	#	# 
+	#	# @param ec_id target ExecutionContext Id
+	#	#
+	#	# @return RTC::ReturnCode_t
+	#	#
+	#	#
+	#def onStartup(self, ec_id):
+	#
+	#	return RTC.RTC_OK
+	
+	#	##
+	#	#
+	#	# The shutdown action when ExecutionContext stop
+	#	# former rtc_stopping_entry()
+	#	#
+	#	# @param ec_id target ExecutionContext Id
+	#	#
+	#	# @return RTC::ReturnCode_t
+	#	#
+	#	#
+	#def onShutdown(self, ec_id):
+	#
+	#	return RTC.RTC_OK
+	
+		##
+		#
+		# The activated action (Active state entry action)
+		# former rtc_active_entry()
+		#
+		# @param ec_id target ExecutionContext Id
+		# 
+		# @return RTC::ReturnCode_t
+		#
+		#
+	def onActivated(self, ec_id):
+	
+		return RTC.RTC_OK
+	
+		##
+		#
+		# The deactivated action (Active state exit action)
+		# former rtc_active_exit()
+		#
+		# @param ec_id target ExecutionContext Id
+		#
+		# @return RTC::ReturnCode_t
+		#
+		#
+	def onDeactivated(self, ec_id):
+	
+		return RTC.RTC_OK
+	
+		##
+		#
+		# The execution action that is invoked periodically
+		# former rtc_active_do()
+		#
+		# @param ec_id target ExecutionContext Id
+		#
+		# @return RTC::ReturnCode_t
+		#
+		#
+	def onExecute(self, ec_id):
+		try:
+			px = self._pos_x[0] + self._home_x[0]
+			py = self._pos_y[0] + self._home_y[0]
+			pz = self._pos_z[0] + self._home_z[0]
+			cp = JARA_ARM.CarPosWithElbow([[1,0,0,px],[0,1,0,py],[0,0,1,pz]], 0, 0)
+			self._ManipulatorCommonInterface_Middle._ptr().moveLinearCartesianAbs(cp)
+			
+			state = 0x00
+			result,state = self._ManipulatorCommonInterface_Common._ptr().getState()
+			if (state & JARA_ARM.CONST_BINARY_00000010) == 0x00:
+				self._ManipulatorCommonInterface_Middle._ptr().goHome()
+		except:
+			pass
+		return RTC.RTC_OK
+	
+	#	##
+	#	#
+	#	# The aborting action when main logic error occurred.
+	#	# former rtc_aborting_entry()
+	#	#
+	#	# @param ec_id target ExecutionContext Id
+	#	#
+	#	# @return RTC::ReturnCode_t
+	#	#
+	#	#
+	#def onAborting(self, ec_id):
+	#
+	#	return RTC.RTC_OK
+	
+	#	##
+	#	#
+	#	# The error action in ERROR state
+	#	# former rtc_error_do()
+	#	#
+	#	# @param ec_id target ExecutionContext Id
+	#	#
+	#	# @return RTC::ReturnCode_t
+	#	#
+	#	#
+	#def onError(self, ec_id):
+	#
+	#	return RTC.RTC_OK
+	
+	#	##
+	#	#
+	#	# The reset action that is invoked resetting
+	#	# This is same but different the former rtc_init_entry()
+	#	#
+	#	# @param ec_id target ExecutionContext Id
+	#	#
+	#	# @return RTC::ReturnCode_t
+	#	#
+	#	#
+	#def onReset(self, ec_id):
+	#
+	#	return RTC.RTC_OK
+	
+	#	##
+	#	#
+	#	# The state update action that is invoked after onExecute() action
+	#	# no corresponding operation exists in OpenRTm-aist-0.2.0
+	#	#
+	#	# @param ec_id target ExecutionContext Id
+	#	#
+	#	# @return RTC::ReturnCode_t
+	#	#
+
+	#	#
+	#def onStateUpdate(self, ec_id):
+	#
+	#	return RTC.RTC_OK
+	
+	#	##
+	#	#
+	#	# The action that is invoked when execution context's rate is changed
+	#	# no corresponding operation exists in OpenRTm-aist-0.2.0
+	#	#
+	#	# @param ec_id target ExecutionContext Id
+	#	#
+	#	# @return RTC::ReturnCode_t
+	#	#
+	#	#
+	#def onRateChanged(self, ec_id):
+	#
+	#	return RTC.RTC_OK
+	
+
+
+
+def test_ArmControllerInit(manager):
+    profile = OpenRTM_aist.Properties(defaults_str=test_armcontroller_spec)
+    manager.registerFactory(profile,
+                            test_ArmController,
+                            OpenRTM_aist.Delete)
+
+def MyModuleInit(manager):
+    test_ArmControllerInit(manager)
+
+    # Create a component
+    comp = manager.createComponent("test_ArmController")
+
+def main():
+	mgr = OpenRTM_aist.Manager.init(sys.argv)
+	mgr.setModuleInitProc(MyModuleInit)
+	mgr.activateManager()
+	mgr.runManager()
+
+if __name__ == "__main__":
+	main()
+
