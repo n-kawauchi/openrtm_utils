@@ -83,8 +83,8 @@ defaultCompPath = os.path.join(defaultPath,"Components")
 defaultCompositePath = os.path.join(defaultPath,"Composite")
 defaultRtcdControlPath = os.path.join(defaultPath,"rtcdControl")
 defaultRtcdPyControlPath = os.path.join(defaultPath,"rtcdControlPy")
-defaultDllPath = os.path.join(defaultPath,"Dll")
-defaultQtPluginPath = os.path.join(defaultPath,"Dll")
+defaultDllPath = os.path.join(defaultPath,"DLL")
+defaultQtPluginPath = os.path.join(defaultPath,"DLL")
 
 
 
@@ -1237,7 +1237,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
                 cmd = "cdir=${PWD}" + "\n"
                 f.write(cmd)
             elif os.name == 'nt':
-                cmd = "set PATH=%PATH%;" + globalDllPath.replace("/","\\")+";"+openrtmDllPath+";"+omniORBDllPath+";"+openCVDllPath+";C:\\Python27;C:\\Python27\\Scripts"+ ";\n"
+                cmd = "set PATH=" + globalDllPath.replace("/","\\")+";"+"%PATH%;"+openrtmDllPath+";"+omniORBDllPath+";"+openCVDllPath+";"+";C:\\Python27;C:\\Python27\\Scripts"+ ";\n"
                 f.write(cmd)
                 cmd = "if not DEFINED QT_PLUGIN_PATH set QT_PLUGIN_PATH=" + defaultQtPluginPath.replace("/","\\") + "\n"
                 f.write(cmd)
@@ -3065,12 +3065,13 @@ def MyModuleInit(manager):
 def main():
 	
 	if os.name == 'nt':
-		os.environ['PATH'] += ";"+defaultDllPath.replace("/","\\")+";"
-		if "QT_PLUGIN_PATH" in os.environ:
-			pass
-			#os.environ['QT_PLUGIN_PATH'] += ";"+defaultQtPluginPath.replace("/","\\")
-		else:
-			os.environ['QT_PLUGIN_PATH'] = defaultQtPluginPath.replace("/","\\")
+		pass
+		#os.environ['PATH'] = defaultDllPath.replace("/","\\")+";"+os.environ['PATH']
+		#if "QT_PLUGIN_PATH" in os.environ:
+		#	pass
+		#	#os.environ['QT_PLUGIN_PATH'] += ";"+defaultQtPluginPath.replace("/","\\")
+		#else:
+		#	os.environ['QT_PLUGIN_PATH'] = defaultQtPluginPath.replace("/","\\")
 	
 	mgr = OpenRTM_aist.Manager.init(sys.argv)
 	mgr.setModuleInitProc(MyModuleInit)
