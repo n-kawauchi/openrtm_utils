@@ -1,7 +1,7 @@
 cd /d %~dp0
 set WorkDir=%~dp0
 
-set UTIL_DIR=utils
+set UTIL_DIR=utils\python_dist
 set Licenses_DIR=Licenses
 
 IF NOT EXIST "%UTIL_DIR%" (
