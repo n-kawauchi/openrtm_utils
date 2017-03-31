@@ -14,3 +14,4 @@ cd "%SettingRTSystemWorkspace%"
 copy "%SettingRTSystemPath%\workspace\rtc.conf" rtc.conf
 start "" "%SettingRTSystemPath%runManager.bat"
 "%RTM_ROOT%utils\python_dist\SettingRTSystem.exe" -f rtc.conf
+exit
