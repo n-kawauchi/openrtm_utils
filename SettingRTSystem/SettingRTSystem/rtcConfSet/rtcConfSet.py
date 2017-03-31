@@ -1876,6 +1876,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
                             s += ","
                 else:
                     s += dname
+                s = s.replace("\\","/")
                     
                      
             elif d.id == "manager.modules.preload":
