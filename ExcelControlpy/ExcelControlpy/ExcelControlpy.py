@@ -913,6 +913,7 @@ def main():
     #mainWin = MainWindow(None, None)
     mainWin.show()
     app.exec_()
+    mgr.shutdown()
     
     
 if __name__ == "__main__":
