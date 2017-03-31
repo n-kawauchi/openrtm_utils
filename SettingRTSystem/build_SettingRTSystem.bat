@@ -80,6 +80,7 @@ xcopy /y/q %SettingRTSystem%\startNamingService.py %SettingRTSystem_Copy%
 xcopy /y/q %SettingRTSystem%\exitRTCs.py %SettingRTSystem_Copy%
 
 
+xcopy /y/q %SettingRTSystem%\Composite\ECandStateSharedComposite\src\Release\ECandStateSharedComposite.dll %SettingRTSystem_Copy%\Composite\ECandStateSharedComposite\Release\
 xcopy /y/q %SettingRTSystem%\Composite\ECandStateSharedComposite\src\Release\ECandStateSharedCompositeComp.exe %SettingRTSystem_Copy%\Composite\ECandStateSharedComposite\Release\
 xcopy /y/q %SettingRTSystem%\Composite\ECandStateSharedCompositePy\ECandStateSharedComposite.py %SettingRTSystem_Copy%\Composite\ECandStateSharedCompositePy\
 

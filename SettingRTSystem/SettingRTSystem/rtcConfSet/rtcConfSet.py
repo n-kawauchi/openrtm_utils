@@ -1304,7 +1304,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
                 path = os.path.join(defaultPath, "Manager/Cpp/rtcd_p/Release/rtcd_p.exe")
                 
                 
-                cmd = "start " + path + " -f " + os.path.relpath(cpp_dirname,work_path).replace("\\","/") + "/rtc.conf" + "\n"
+                cmd = "start \"\" " +"\""+ path +"\"" + " -f " + os.path.relpath(cpp_dirname,work_path).replace("\\","/") + "/rtc.conf" + "\n"
             f.write(cmd)
 
             path = os.path.join(defaultPath, "Manager/Python/rtcd_p.py")
@@ -1313,7 +1313,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
                 cmd = "python " + path + " -f " + os.path.relpath(py_dirname,work_path).replace("\\","/") + "/rtc.conf" + "&\n"
             elif os.name == 'nt':
                 
-                cmd = "start python " + path + " -f " + os.path.relpath(py_dirname,work_path).replace("\\","/") + "/rtc.conf" + "\n"
+                cmd = "start \"\" python " +"\""+ path +"\""+ " -f " + os.path.relpath(py_dirname,work_path).replace("\\","/") + "/rtc.conf" + "\n"
             
             f.write(cmd)
 
