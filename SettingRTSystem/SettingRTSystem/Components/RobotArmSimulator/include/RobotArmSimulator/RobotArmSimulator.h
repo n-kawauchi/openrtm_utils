@@ -273,7 +273,22 @@ class RobotArmSimulator
   
   // </rtc-template>
 
-  int drawWindow;
+  // Configuration variable declaration
+  // <rtc-template block="config_declare">
+  /*!
+  * 1の場合は描画ウインドウを表示する
+  * - Name: drawWindow drawWindow
+  * - DefaultValue: 1
+  * - Constraint: (0,1)
+  */
+  int m_drawWindow;
+  /*!
+  * 描画の周期
+  * - Name: draw_time draw_time
+  * - DefaultValue: 0.01
+  * - Unit: s
+  */
+  double m_draw_time;
 
  private:
   

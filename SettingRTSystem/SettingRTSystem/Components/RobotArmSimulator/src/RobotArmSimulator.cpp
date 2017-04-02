@@ -24,9 +24,18 @@ static const char* robotarmsimulator_spec[] =
     "max_instance",      "1",
     "language",          "C++",
     "lang_type",         "compile",
-    "conf.default.drawWindow", "1",
-    "conf.__widget__.drawWindow", "radio",
-    "conf.__constraints__.drawWindow", "(0,1)",
+	// Configuration variables
+	"conf.default.drawWindow", "1",
+	"conf.default.draw_time", "0.01",
+
+	// Widget
+	"conf.__widget__.drawWindow", "radio",
+	"conf.__widget__.draw_time", "text",
+	// Constraints
+	"conf.__constraints__.drawWindow", "(0,1)",
+
+	"conf.__type__.drawWindow", "int",
+	"conf.__type__.draw_time", "double",
     ""
   };
 // </rtc-template>
@@ -80,9 +89,10 @@ RTC::ReturnCode_t RobotArmSimulator::onInitialize()
   addPort(m_ManipulatorCommonInterface_CommonPort);
   addPort(m_ManipulatorCommonInterface_MiddlePort);
   
-  // </rtc-template>
-
-  bindParameter("drawWindow", drawWindow, "1");
+  // <rtc-template block="bind_config">
+  // Bind variables and configuration variable
+  bindParameter("drawWindow", m_drawWindow, "1");
+  bindParameter("draw_time", m_draw_time, "0.01");
 
 
   return RTC::RTC_OK;
@@ -114,9 +124,9 @@ RTC::ReturnCode_t RobotArmSimulator::onActivated(RTC::UniqueId ec_id)
 	m_so->destroyRobot();
 	m_so->makeRobot();
 
-	if(drawWindow == 1 && m_dt == NULL)
+	if (m_drawWindow == 1 && m_dt == NULL)
 	{
-		m_dt = new DrawThread(m_so);
+		m_dt = new DrawThread(m_so, m_draw_time);
 
   		m_dt->activate();
 	}

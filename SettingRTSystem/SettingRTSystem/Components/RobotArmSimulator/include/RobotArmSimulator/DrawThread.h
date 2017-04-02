@@ -27,7 +27,7 @@ public:
 		/**
 		*@brief コンストラクタ
 		*/
-		DrawThread(SimulatorObj *so);
+		DrawThread(SimulatorObj *so, double dt);
 		
 		/**
 		*@brief スレッド実行関数
@@ -54,12 +54,13 @@ public:
 		void drawRobot();
 		
 
-		
+		double fps;
 
 
 private:
 	SimulatorObj *m_so;
 	dsFunctions   fn;
+	
 
 };
 

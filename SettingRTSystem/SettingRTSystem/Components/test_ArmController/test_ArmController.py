@@ -54,6 +54,7 @@ test_armcontroller_spec = ["implementation_id", "test_ArmController",
 		 "conf.default.home_x", "0",
 		 "conf.default.home_y", "15",
 		 "conf.default.home_z", "2",
+		 "conf.default.move", "0",
 
 		 "conf.__widget__.pos_x", "slider.0.2",
 		 "conf.__widget__.pos_y", "slider.0.2",
@@ -61,9 +62,11 @@ test_armcontroller_spec = ["implementation_id", "test_ArmController",
 		 "conf.__widget__.home_x", "text",
 		 "conf.__widget__.home_y", "text",
 		 "conf.__widget__.home_z", "text",
+		 "conf.__widget__.move", "radio",
 		 "conf.__constraints__.pos_x", "-20<=x<=20",
 		 "conf.__constraints__.pos_y", "-20<=x<=20",
 		 "conf.__constraints__.pos_z", "0<=x<=20",
+		 "conf.__constraints__.move", "(0,1)",
 
          "conf.__type__.pos_x", "double",
          "conf.__type__.pos_y", "double",
@@ -71,6 +74,7 @@ test_armcontroller_spec = ["implementation_id", "test_ArmController",
          "conf.__type__.home_x", "double",
          "conf.__type__.home_y", "double",
          "conf.__type__.home_z", "double",
+         "conf.__type__.move", "int",
 
 		 ""]
 # </rtc-template>
@@ -157,6 +161,13 @@ class test_ArmController(OpenRTM_aist.DataFlowComponentBase):
 		 - Unit: cm
 		"""
 		self._home_z = [2]
+		"""
+		切り替え時にアームの手先位置移動を開始する
+		 - Name: move move
+		 - DefaultValue: 0
+		 - Constraint: (0,1)
+		"""
+		self._move = [0]
 		
 		# </rtc-template>
 
@@ -178,6 +189,7 @@ class test_ArmController(OpenRTM_aist.DataFlowComponentBase):
 		self.bindParameter("home_x", self._home_x, "0")
 		self.bindParameter("home_y", self._home_y, "15")
 		self.bindParameter("home_z", self._home_z, "2")
+		self.bindParameter("move", self._move, "0")
 		
 		# Set InPort buffers
 		
@@ -246,7 +258,7 @@ class test_ArmController(OpenRTM_aist.DataFlowComponentBase):
 		#
 		#
 	def onActivated(self, ec_id):
-	
+		self._move_old = self._move[0]
 		return RTC.RTC_OK
 	
 		##
@@ -274,22 +286,25 @@ class test_ArmController(OpenRTM_aist.DataFlowComponentBase):
 		#
 		#
 	def onExecute(self, ec_id):
-		try:
-			px = self._pos_x[0] + self._home_x[0]
-			py = self._pos_y[0] + self._home_y[0]
-			pz = self._pos_z[0] + self._home_z[0]
-			px = px/100.0
-			py = py/100.0
-			pz = pz/100.0
-			cp = JARA_ARM.CarPosWithElbow([[1,0,0,px],[0,1,0,py],[0,0,1,pz]], 0, 0)
-			self._ManipulatorCommonInterface_Middle._ptr().moveLinearCartesianAbs(cp)
-			
-			state = 0x00
-			result,state = self._ManipulatorCommonInterface_Common._ptr().getState()
-			if (state & JARA_ARM.CONST_BINARY_00000010) == 0x00:
-				self._ManipulatorCommonInterface_Middle._ptr().goHome()
-		except:
-			pass
+		
+		if self._move_old != self._move[0]:
+			try:
+				px = self._pos_x[0] + self._home_x[0]
+				py = self._pos_y[0] + self._home_y[0]
+				pz = self._pos_z[0] + self._home_z[0]
+				px = px/100.0
+				py = py/100.0
+				pz = pz/100.0
+				cp = JARA_ARM.CarPosWithElbow([[1,0,0,px],[0,1,0,py],[0,0,1,pz]], 0, 0)
+				self._ManipulatorCommonInterface_Middle._ptr().moveLinearCartesianAbs(cp)
+				
+				state = 0x00
+				result,state = self._ManipulatorCommonInterface_Common._ptr().getState()
+				if (state & JARA_ARM.CONST_BINARY_00000010) == 0x00:
+					self._ManipulatorCommonInterface_Middle._ptr().goHome()
+			except:
+				pass
+		self._move_old = self._move[0]
 		return RTC.RTC_OK
 	
 	#	##

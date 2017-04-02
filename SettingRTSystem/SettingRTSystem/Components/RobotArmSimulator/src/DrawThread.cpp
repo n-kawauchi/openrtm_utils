@@ -18,12 +18,14 @@ DrawThread *obj = NULL;
 /**
 *@brief シミュレーションの描画をするスレッドのコンストラクタ
 */
-DrawThread::DrawThread(SimulatorObj *so)
+DrawThread::DrawThread(SimulatorObj *so, double dt)
 {
 	m_so = so;
 	
 
 	setDrawStuff();
+
+	fps = 1.0 / dt;
 
 	obj = this;
 }
@@ -34,6 +36,14 @@ DrawThread::DrawThread(SimulatorObj *so)
 */
 void simLoop(int pause)
 {
+#ifdef WIN32
+	Sleep(1000.0 / obj->fps);
+#else
+	struct timespec ts;
+	ts.tv_sec = 1;
+	ts.tv_nsec = 0;
+	nanosleep(&ts, NULL);
+#endif
 	if(obj)
 	{
 		obj->drawRobot();
