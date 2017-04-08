@@ -131,6 +131,12 @@ RTC::ReturnCode_t RobotArmSimulator::onActivated(RTC::UniqueId ec_id)
   		m_dt->activate();
 	}
 
+	if (m_dt)
+	{
+		m_dt->fps = 1.0 / m_draw_time;
+		m_dt->setRCPFlag();
+	}
+
   return RTC::RTC_OK;
 }
 

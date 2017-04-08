@@ -28,6 +28,7 @@ DrawThread::DrawThread(SimulatorObj *so, double dt)
 	fps = 1.0 / dt;
 
 	obj = this;
+	RCP_flag = false;
 }
 
 /**
@@ -47,6 +48,7 @@ void simLoop(int pause)
 	if(obj)
 	{
 		obj->drawRobot();
+		obj->resetCameraPosition();
 	}
 }
 
@@ -159,4 +161,36 @@ void DrawThread::drawRobot()
 
 		m_so->mu.unlock();
 	}
+}
+
+/**
+*@brief カメラ位置再設定
+*/
+void DrawThread::resetCameraPosition()
+{
+	m_so->mu.lock();
+	if (RCP_flag)
+	{
+		float xyz[3] = { 0.5f, -0.0f, 0.25f };
+		float hpr[3] = { 180.0f, -10.0f, 0.0f };
+		dsSetViewpoint(xyz, hpr);
+		dsSetSphereQuality(3);
+		dsSetCapsuleQuality(6);
+
+
+		RCP_flag = false;
+
+	}
+	m_so->mu.unlock();
+}
+
+
+/**
+*@brief カメラ位置再設定フラグを立てる
+*/
+void DrawThread::setRCPFlag()
+{
+	m_so->mu.lock();
+	RCP_flag = true;
+	m_so->mu.unlock();
 }

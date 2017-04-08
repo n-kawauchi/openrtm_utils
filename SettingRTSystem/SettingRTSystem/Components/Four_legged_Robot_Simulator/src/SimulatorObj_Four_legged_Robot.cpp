@@ -487,9 +487,11 @@ void SimulatorObj_Four_legged_Robot::destroyRobot()
 		for (int j = 0; j < 3; j++)
 		{
 			dBodyDestroy(legs[i][j].body);
+			dGeomDestroy(legs[i][j].geom);
 		}
 	}
 	dBodyDestroy(body.body);
+	dGeomDestroy(body.geom);
 	mu.unlock();
 }
 

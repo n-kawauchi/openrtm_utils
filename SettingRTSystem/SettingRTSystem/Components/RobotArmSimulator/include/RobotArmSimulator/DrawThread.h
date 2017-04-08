@@ -52,9 +52,18 @@ public:
 		*@brief 全ボディ描画
 		*/
 		void drawRobot();
+		/**
+		*@brief カメラ位置再設定
+		*/
+		void resetCameraPosition();
+		/**
+		*@brief カメラ位置再設定フラグを立てる
+		*/
+		void setRCPFlag();
 		
 
 		double fps;
+		bool RCP_flag;
 
 
 private:

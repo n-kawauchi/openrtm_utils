@@ -293,6 +293,7 @@ RTC::ReturnCode_t Four_legged_Robot_Simulator::onActivated(RTC::UniqueId ec_id)
 	if (m_dt)
 	{
 		m_dt->fps = 1.0/m_draw_time;
+		m_dt->setRCPFlag();
 	}
   return RTC::RTC_OK;
 }

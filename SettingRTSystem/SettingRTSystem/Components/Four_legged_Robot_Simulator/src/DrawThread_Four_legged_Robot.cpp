@@ -27,6 +27,7 @@ DrawThread_Four_legged_Robot::DrawThread_Four_legged_Robot(SimulatorObj_Four_leg
 
 	obj = this;
 	m_pause = 0;
+	RCP_flag = false;
 }
 
 /**
@@ -47,7 +48,9 @@ void simLoop(int pause)
 	{
 		obj->m_pause = pause;
 		obj->drawRobot();
+		obj->resetCameraPosition();
 	}
+	
 }
 
 
@@ -157,4 +160,36 @@ void DrawThread_Four_legged_Robot::drawRobot()
 
 		m_so->mu.unlock();
 	}
+}
+
+/**
+*@brief カメラ位置再設定
+*/
+void DrawThread_Four_legged_Robot::resetCameraPosition()
+{ 
+	m_so->mu.lock();
+	if (RCP_flag)
+	{
+		float xyz[3] = { 0.5f, -0.0f, 0.25f };
+		float hpr[3] = { 180.0f, -10.0f, 0.0f };
+		dsSetViewpoint(xyz, hpr);
+		dsSetSphereQuality(3);
+		dsSetCapsuleQuality(6);
+
+
+		RCP_flag = false;
+		
+	}
+	m_so->mu.unlock();
+}
+
+
+/**
+*@brief カメラ位置再設定フラグを立てる
+*/
+void DrawThread_Four_legged_Robot::setRCPFlag()
+{
+	m_so->mu.lock();
+	RCP_flag = true;
+	m_so->mu.unlock();
 }

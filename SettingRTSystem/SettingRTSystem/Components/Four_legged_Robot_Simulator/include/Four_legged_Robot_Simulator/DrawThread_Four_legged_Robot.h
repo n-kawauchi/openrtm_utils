@@ -27,7 +27,7 @@ public:
 		/**
 		*@brief コンストラクタ
 		*/
-	DrawThread_Four_legged_Robot(SimulatorObj_Four_legged_Robot *so);
+		DrawThread_Four_legged_Robot(SimulatorObj_Four_legged_Robot *so);
 		
 		/**
 		*@brief スレッド実行関数
@@ -53,7 +53,17 @@ public:
 		*/
 		void drawRobot();
 
+		/**
+		*@brief カメラ位置再設定
+		*/
+		void resetCameraPosition();
+		/**
+		*@brief カメラ位置再設定フラグを立てる
+		*/
+		void setRCPFlag();
+
 		double fps;
+		bool RCP_flag;
 		
 
 		int m_pause;

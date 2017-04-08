@@ -431,5 +431,13 @@ void SimulatorObj::destroyRobot()
 	dBodyDestroy(linkf[0].body);
 	dBodyDestroy(linkf[1].body);
 
+	dGeomDestroy(link0.geom);
+	dGeomDestroy(link1.geom);
+	dGeomDestroy(link2.geom);
+	dGeomDestroy(link3.geom);
+	dGeomDestroy(linkh.geom);
+	dGeomDestroy(linkf[0].geom);
+	dGeomDestroy(linkf[1].geom);
+
 	mu.unlock();
 }
