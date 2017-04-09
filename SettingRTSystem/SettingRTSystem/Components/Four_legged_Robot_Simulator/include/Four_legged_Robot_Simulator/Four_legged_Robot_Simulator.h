@@ -238,7 +238,7 @@ class Four_legged_Robot_Simulator
    * 描画の速さ
    * - Name: fps draw_time
    * - DefaultValue: 0.01
-   * - Unit: Hz
+   * - Unit: s
    */
   double m_draw_time;
   /*!
