@@ -66,3 +66,5 @@ sh UnaryMinus/build_all.sh
 sh UniformRandomNumber/build_all.sh
 sh WordControlpy/build_all.sh
 sh WrapToZero/build_all.sh
+sh test_ArmController/build_all.sh
+sh EV3Simulator/build_all.sh
