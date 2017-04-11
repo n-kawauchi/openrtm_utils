@@ -105,7 +105,7 @@ xcopy /y/q %SettingRTSystem%\dist\SettingRTSystem.lib %Tool_Copy%\
 
 xcopy /y/q %SettingRTSystem%\dist\*.pyd %GLOBAL_Tool_Copy%\
 xcopy /y/q %SettingRTSystem%\dist\*.dll %GLOBAL_Tool_Copy%\
-xcopy /y/q/e %SettingRTSystem%\dist\tcl %GLOBAL_Tool_Copy%\
+
 
 
 xcopy /y/q %SettingRTSystem%\rtcConfSet\dist\rtcConfSet.exe %Tool_Copy%\
