@@ -102,8 +102,10 @@ xcopy /y/q %SettingRTSystem%\Manager\Python\* %SettingRTSystem_Copy%\Manager\Pyt
 xcopy /y/q %SettingRTSystem%\dist\SettingRTSystem.exe %Tool_Copy%\
 xcopy /y/q %SettingRTSystem%\dist\SettingRTSystem.lib %Tool_Copy%\
 
+
 xcopy /y/q %SettingRTSystem%\dist\*.pyd %GLOBAL_Tool_Copy%\
 xcopy /y/q %SettingRTSystem%\dist\*.dll %GLOBAL_Tool_Copy%\
+xcopy /y/q/e %SettingRTSystem%\dist\tcl %GLOBAL_Tool_Copy%\
 
 
 xcopy /y/q %SettingRTSystem%\rtcConfSet\dist\rtcConfSet.exe %Tool_Copy%\
@@ -111,6 +113,8 @@ xcopy /y/q %SettingRTSystem%\rtcConfSet\dist\rtcConfSet.lib %Tool_Copy%\
 
 xcopy /y/q %SettingRTSystem%\rtcConfSet\dist\*.pyd %GLOBAL_Tool_Copy%\
 xcopy /y/q %SettingRTSystem%\rtcConfSet\dist\*.dll %GLOBAL_Tool_Copy%\
+
+
 
 
 xcopy /y/q %SettingRTSystem%\rtcdControl\src\Release\rtcdControlComp.exe %SettingRTSystem_Copy%\rtcdControl\src\Release\

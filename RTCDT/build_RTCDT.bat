@@ -51,4 +51,4 @@ xcopy /y/q %RTCDT%\dist\RTCDT.lib %Tool_Copy%\
 
 xcopy /y/q %RTCDT%\dist\*.pyd %GLOBAL_Tool_Copy%\
 xcopy /y/q %RTCDT%\dist\*.dll %GLOBAL_Tool_Copy%\
-
+xcopy /y/q/e %RTCDT%\dist\tcl %GLOBAL_Tool_Copy%\
