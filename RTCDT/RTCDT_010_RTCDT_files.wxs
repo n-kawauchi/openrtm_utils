@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Directory Id="RTCDTUtilsDir" Name="utils">
+        <Directory Id="RTCDTUtilsRtcdtDir" Name="RTCDT">
+            <Component Guid="BA057CE1-1EC2-11E7-B81C-FC6198404142" Id="RTCDT_0001_Comp">
+                <File DiskId="1" Id="RTCDT_0002_File" Name="start-RTCDT.vbs" Source="utils\RTCDT\start-RTCDT.vbs">
+                    <Shortcut Directory="AppMenuFolder" Icon="openrtm_utils_0.ico" IconIndex="0" Id="RTCDT_exe" Name="RTCDT" Show="normal" WorkingDirectory="RTCDTUtilsRtcdtDir">
+                         
+  
+                        <Icon Id="openrtm_utils_0.ico" SourceFile="openrtm_utils_0.ico"/>
+                        
+
+                    </Shortcut>
+                </File>
+            </Component>
+        </Directory>
+    </Directory>
+</Include>

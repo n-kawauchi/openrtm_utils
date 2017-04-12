@@ -68,3 +68,4 @@ sh WordControlpy/build_all.sh
 sh WrapToZero/build_all.sh
 sh test_ArmController/build_all.sh
 sh EV3Simulator/build_all.sh
+sh RaspberryPiMouseSimulator/build_all.sh

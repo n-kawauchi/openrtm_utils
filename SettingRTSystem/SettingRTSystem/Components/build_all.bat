@@ -68,3 +68,4 @@ cmd /c WordControlpy\build_all.bat
 cmd /c WrapToZero\build_all.bat
 cmd /c test_ArmController\build_all.bat
 cmd /c EV3Simulator\build_all.bat
+cmd /c RaspberryPiMouseSimulator\build_all.bat
