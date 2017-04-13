@@ -1,3 +1,3 @@
-<Shortcut Id="SampleComponents" Directory="AppMenuFolder"
-      Name="Python_Examples" Show="normal"
+<Shortcut Id="SampleComponents-utils" Directory="AppMenuFolder"
+      Name="SampleComponents-utils" Show="normal"
       WorkingDirectory="%Directory.Id%" /> 
