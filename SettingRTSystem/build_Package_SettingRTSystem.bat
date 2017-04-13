@@ -26,6 +26,7 @@ copy ..\msm_template.wxs msm_template.wxs
 
 xcopy /y/q start-SettingRTSystem.vbs utils\SettingRTSystem\
 xcopy /y/q start-SettingRTSystem.vbs.wxsctrl utils\SettingRTSystem\
+xcopy /y/q SampleComponents-utils_dir.wxsctrl utils\SettingRTSystem\ComponentsStart
 
 
 call getGuid.bat %PKG_NAME%_%TOOL_VERSION%_%ARCH%_Msm %PKG_NAME%_guids.txt

@@ -1,0 +1,3 @@
+<Shortcut Id="SampleComponents" Directory="AppMenuFolder"
+      Name="Python_Examples" Show="normal"
+      WorkingDirectory="%Directory.Id%" /> 
