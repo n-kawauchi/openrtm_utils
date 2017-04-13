@@ -24,7 +24,9 @@ if "VC_VERSION" in os.environ:
 	vc_version = os.environ["VC_VERSION"]
 else:
 	vc_version = "vc14"
-
+if vc_version.find("vc") < 0:
+	vc_version = "vc"+vc_version
+	
 
 if "OMNI_VERSION" in os.environ:
 	omni_version = os.environ["OMNI_VERSION"]
