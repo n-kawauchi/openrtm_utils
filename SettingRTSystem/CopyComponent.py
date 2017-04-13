@@ -109,12 +109,12 @@ def main():
                         if not os.path.exists(mod_install_dir):
                             os.makedirs(mod_install_dir)
                         shutil.copyfile(comp_file_path, os.path.join(mod_install_dir, comp_file))
-                        
-                        if getModuleType(comp_name, comp_root):
-                            with open(script_name, "w") as f:
-                                f.write("cd /d "+ globalpath + "\n")
-                                f.write(pathsetcmd)
-                                f.write("python " + globalpath + "\\" + comp_file + " -f rtc.conf")
+                        if comp_name != "__init__":
+                            if getModuleType(comp_name, comp_root):
+                                with open(script_name, "w") as f:
+                                    f.write("cd /d "+ globalpath + "\n")
+                                    f.write(pathsetcmd)
+                                    f.write("python " + globalpath + "\\" + comp_file + " -f rtc.conf")
                             
                         #else:
                         #    if getModuleType(comp_name, comp_file_path):
