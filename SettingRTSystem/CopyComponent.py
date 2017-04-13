@@ -38,6 +38,7 @@ openrtmDllPath = "%RTM_ROOT%bin\\"+vc_version
 omniORBDllPath = "%RTM_ROOT%omniORB\\"+omni_version+"_"+vc_version+"\\bin\\x86_win32"
 openCVDllPath = "%OpenCV_DIR%\\"+arch+"\\"+vc_version+"\\bin"
 globalDllPath = "%RTM_ROOT%utils\\SettingRTSystem\\DLL"
+globalQtPluginPath = "%RTM_ROOT%utils\\SettingRTSystem\\DLL"
 
 
 
@@ -101,6 +102,7 @@ def main():
                             with open(script_name, "w") as f:
                                 f.write("cd /d "+ globalpath + "\n")
                                 f.write(pathsetcmd)
+                                f.write("set QT_PLUGIN_PATH="+globalQtPluginPath+"\n")
                                 f.write("\""+globalpath + "\\" + comp_file + "\"" + " -f rtc.conf")
                                 
                     elif ext in ext_list:

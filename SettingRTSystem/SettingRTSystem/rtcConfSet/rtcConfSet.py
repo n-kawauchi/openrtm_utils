@@ -109,6 +109,7 @@ openrtmDllPath = "%RTM_ROOT%bin\\"+vc_version
 omniORBDllPath = "%RTM_ROOT%omniORB\\"+omni_version+"_"+vc_version+"\\bin\\x86_win32"
 openCVDllPath = "%OpenCV_DIR%\\"+arch+"\\"+vc_version+"\\bin"
 globalDllPath = "%RTM_ROOT%utils\\SettingRTSystem\\DLL"
+globalQtPluginPath = "%RTM_ROOT%utils\\SettingRTSystem\\DLL"
 
 #print openrtmDllPath
 #print omniORBDllPath
@@ -1219,6 +1220,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
         global omniORBDllPath
         global openCVDllPath
         global globalDllPath
+        global globalQtPluginPath
         
         if os.name == 'posix':
             fname = home_dirname+"/start.sh"
@@ -1239,7 +1241,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
             elif os.name == 'nt':
                 cmd = "set PATH=" + globalDllPath.replace("/","\\")+";"+"%PATH%;"+openrtmDllPath+";"+omniORBDllPath+";"+openCVDllPath+";"+";C:\\Python27;C:\\Python27\\Scripts"+ ";\n"
                 f.write(cmd)
-                cmd = "if not DEFINED QT_PLUGIN_PATH set QT_PLUGIN_PATH=" + defaultQtPluginPath.replace("/","\\") + "\n"
+                cmd = "if not DEFINED QT_PLUGIN_PATH set QT_PLUGIN_PATH=" + globalQtPluginPath.replace("/","\\") + "\n"
                 f.write(cmd)
             try:
                 shutil.copy2(os.path.join(defaultPath, "startNamingService.py"), os.path.join(home_dirname,"startNamingService.py"))
