@@ -99,7 +99,7 @@ def main():
                             with open(script_name, "w") as f:
                                 f.write("cd /d "+ globalpath + "\n")
                                 f.write(pathsetcmd)
-                                f.write(globalpath + "\\" + comp_file + " -f rtc.conf")
+                                f.write("\""+globalpath + "\\" + comp_file + "\"" + " -f rtc.conf")
                                 
                     elif ext in ext_list:
                         shutil.copyfile(comp_file_path, os.path.join(rtc_dir, comp_file))
@@ -114,7 +114,7 @@ def main():
                                 with open(script_name, "w") as f:
                                     f.write("cd /d "+ globalpath + "\n")
                                     f.write(pathsetcmd)
-                                    f.write("python " + globalpath + "\\" + comp_file + " -f rtc.conf")
+                                    f.write("python " + "\"" + globalpath + "\\" + comp_file + "\"" + " -f rtc.conf")
                             
                         #else:
                         #    if getModuleType(comp_name, comp_file_path):
