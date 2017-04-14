@@ -2,5 +2,5 @@
       Name="SettingRTSystem" Show="normal"
       WorkingDirectory="%Directory.Id%"
       Icon="openrtm_utils_0.ico" IconIndex="0" > 
-  <Icon Id="openrtm_utils_0.ico" SourceFile="settingrtsystem.ico"/>
+  <Icon Id="openrtm_utils_0.ico" SourceFile="settingrtsystem2.ico"/>
 </Shortcut>

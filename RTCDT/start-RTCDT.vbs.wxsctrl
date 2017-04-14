@@ -2,5 +2,5 @@
       Name="RTCDT" Show="normal"
       WorkingDirectory="%Directory.Id%"
       Icon="openrtm_utils_0.ico" IconIndex="0" > 
-  <Icon Id="openrtm_utils_0.ico" SourceFile="RTCDT.ico"/>
+  <Icon Id="openrtm_utils_0.ico" SourceFile="RTCDT2.ico"/>
 </Shortcut>
