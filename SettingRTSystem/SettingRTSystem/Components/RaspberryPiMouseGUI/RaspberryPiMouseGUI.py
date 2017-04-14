@@ -469,7 +469,8 @@ def main():
 	app = QtGui.QApplication(sys.argv)
 	window = RaspberryPiMouseGUIUtil.Window(comp)
 	window.show()
-	sys.exit(app.exec_())
+	app.exec_()
+	mgr.shutdown()
 
 if __name__ == "__main__":
 	main()

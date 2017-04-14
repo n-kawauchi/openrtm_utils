@@ -117,7 +117,8 @@ int main (int argc, char** argv)
 
 
 
-  return app.exec();
+  app.exec();
+  manager->shutdown();
 
   return 0;
 }

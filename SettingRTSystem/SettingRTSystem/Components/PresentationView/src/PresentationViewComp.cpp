@@ -103,10 +103,11 @@ int main (int argc, char** argv)
   MainWindow *mainWin = new MainWindow();
   mainWin->resize(800, 600);
   mainWin->show();
-  return app.exec();
+  app.exec();
+  manager->shutdown();
 
   // If you want to run the manager in non-blocking mode, do like this
   // manager->runManager(true);
 
-  //return 0;
+  return 0;
 }
