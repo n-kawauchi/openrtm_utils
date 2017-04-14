@@ -177,6 +177,7 @@ RTC::ReturnCode_t RaspberryPiMouseSimulator::onActivated(RTC::UniqueId ec_id)
 		m_so->RasPiMouse.ir_sensor[i].setSensorParam(m_sensor_param);
 	}
 
+
   return RTC::RTC_OK;
 }
 
@@ -201,6 +202,8 @@ RTC::ReturnCode_t RaspberryPiMouseSimulator::onExecute(RTC::UniqueId ec_id)
 		m_so->RasPiMouse.setCurrentPosition(m_pose_update.data.position.x, m_pose_update.data.position.y, m_pose_update.data.heading);
 	}
 
+	//m_so->RasPiMouse.setTargetVelocity(0.0, 3.14);
+	//std::cout << m_target_velocity_in.data.va << std::endl;
 	m_so->update();
 
 	setTimestamp(m_current_pose_out);

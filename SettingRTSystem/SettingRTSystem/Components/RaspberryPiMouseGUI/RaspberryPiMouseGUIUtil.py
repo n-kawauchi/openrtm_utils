@@ -402,7 +402,7 @@ class Window(QtGui.QWidget):
 	# @param self
 	def update_component(self):
 		x,y,r = self.comp.getCurrentPosition()
-		
+		#print x,y,r
 		self.RenderArea.robot.setPosition(x,y,r)
 		#self.RenderArea.robot.setPosition(0.1,0,0)
 		

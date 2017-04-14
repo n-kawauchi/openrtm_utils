@@ -108,7 +108,7 @@ double EV3Obj::calcColourSensorDistance(double x, double y, double z)
 	{
 		current_colourSensorData = tmp;
 	}
-	std::cout << current_colourSensorData << std::endl;
+	//std::cout << current_colourSensorData << std::endl;
 	return current_colourSensorData;
 }
 
@@ -644,42 +644,46 @@ void EV3SimulatorObj::m_nearCallback(dGeomID o1, dGeomID o2)
 	int n = dCollide(o1,o2,N,&contact[0].geom,sizeof(dContact));
 
 	
-	if ((o1 == ultrasonicSensor_ray && o2 == ground) || (o2 == ultrasonicSensor_ray && o1 == ground)){
-
-		ev3.calcUltrasonicSensorDistance(contact[0].geom.pos[0], contact[0].geom.pos[1], contact[0].geom.pos[2]);
-		return;
-	}
-	else if (plane_exist && ((o1 == ultrasonicSensor_ray && o2 == plane.geom) || (o2 == ultrasonicSensor_ray && o1 == plane.geom)))
-	{
-		ev3.calcUltrasonicSensorDistance(contact[0].geom.pos[0], contact[0].geom.pos[1], contact[0].geom.pos[2]);
-		return;
-	}
-	else if (o1 == ultrasonicSensor_ray || o2 == ultrasonicSensor_ray){
-		return;
-	}
-
-
-	if ((o1 == colourSensor_ray && o2 == ground) || (o2 == colourSensor_ray && o1 == ground)){
-
-		ev3.calcColourSensorDistance(contact[0].geom.pos[0], contact[0].geom.pos[1], contact[0].geom.pos[2]);
-		return;
-	}
-	else if (plane_exist && ((o1 == colourSensor_ray && o2 == plane.geom) || (o2 == colourSensor_ray && o1 == plane.geom)))
-	{
-		ev3.calcColourSensorDistance(contact[0].geom.pos[0], contact[0].geom.pos[1], contact[0].geom.pos[2]);
-		return;
-	}
-	else if (o1 == colourSensor_ray || o2 == colourSensor_ray){
-		return;
-	}
+	
 
 	if (n > 0) {
+
+		if ((o1 == ultrasonicSensor_ray && o2 == ground) || (o2 == ultrasonicSensor_ray && o1 == ground)){
+
+			ev3.calcUltrasonicSensorDistance(contact[0].geom.pos[0], contact[0].geom.pos[1], contact[0].geom.pos[2]);
+			return;
+		}
+		else if (plane_exist && ((o1 == ultrasonicSensor_ray && o2 == plane.geom) || (o2 == ultrasonicSensor_ray && o1 == plane.geom)))
+		{
+			ev3.calcUltrasonicSensorDistance(contact[0].geom.pos[0], contact[0].geom.pos[1], contact[0].geom.pos[2]);
+			return;
+		}
+		else if (o1 == ultrasonicSensor_ray || o2 == ultrasonicSensor_ray){
+			return;
+		}
+
+
+		if ((o1 == colourSensor_ray && o2 == ground) || (o2 == colourSensor_ray && o1 == ground)){
+
+			ev3.calcColourSensorDistance(contact[0].geom.pos[0], contact[0].geom.pos[1], contact[0].geom.pos[2]);
+			return;
+		}
+		else if (plane_exist && ((o1 == colourSensor_ray && o2 == plane.geom) || (o2 == colourSensor_ray && o1 == plane.geom)))
+		{
+			ev3.calcColourSensorDistance(contact[0].geom.pos[0], contact[0].geom.pos[1], contact[0].geom.pos[2]);
+			return;
+		}
+		else if (o1 == colourSensor_ray || o2 == colourSensor_ray){
+			return;
+		}
+
+
 		for (int i=0; i<n; i++) {
 			contact[i].surface.mode = dContactApprox1|dContactSoftERP|dContactSoftCFM|dContactSlip1|dContactSlip2;
 
 
 
-			contact[i].surface.mu   = 0.5;
+			contact[i].surface.mu   = 200;
 			contact[i].surface.slip1 = 0.001;
 			contact[i].surface.slip2 = 0.001;
 			contact[i].surface.soft_erp = 0.3;
@@ -766,7 +770,7 @@ void EV3SimulatorObj::control()
 {
 	double vx = ev3.target_vx;
 	double va = ev3.target_va;
-	double wheel_distance = (wheelLeft.y - wheelRight.y)/2.0;
+	double wheel_distance = ((wheelLeft.y - wheelLeft.lz / 2.0) - (wheelRight.y - wheelRight.lz / 2.0)) / 2.0;
 	double wheel_radius = wheelLeft.lx;
 
 	double right_motor_speed = (vx + va*wheel_distance) / wheel_radius;

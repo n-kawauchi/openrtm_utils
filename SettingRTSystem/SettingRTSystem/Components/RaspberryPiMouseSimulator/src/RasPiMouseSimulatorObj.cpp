@@ -25,6 +25,9 @@ void IRSensorData::setPos(double x, double y, double z)
 	current_x = x;
 	current_y = y;
 	current_z = z;
+
+	//std::cout << current_x << "\t" << current_y << "\t" << current_z << std::endl;
+
 }
 
 
@@ -510,7 +513,7 @@ void RasPiMouseSimulatorObj::makeRobot()
 
 	for(int i=0;i < 4;i++)
 	{
-		IRSensor_ray[i] = dCreateRay(space, 2);
+		IRSensor_ray[i] = dCreateRay(space, 200);
 	}
 
 
@@ -543,28 +546,31 @@ void RasPiMouseSimulatorObj::m_nearCallback(dGeomID o1, dGeomID o2)
 	dContact contact[N];
 	int n = dCollide(o1,o2,N,&contact[0].geom,sizeof(dContact));
 
-	for(int i=0;i < 4;i++)
-	{
-		if(o1 == IRSensor_ray[i] || o2 == IRSensor_ray[i])
-		{
-			int j = 0;
-			for (std::vector<MyLink>::iterator itr = blocks.begin(); itr != blocks.end(); ++itr) {
-				if (o1 == itr->geom || o2 == itr->geom)
-				{
-					//std::cout << i << "\t" << j << std::endl;
-					RasPiMouse.ir_sensor[i].calcDistance(contact[0].geom.pos[0], contact[0].geom.pos[1], contact[0].geom.pos[2]);
-					return;
-				}
-				j++;
-			}
-			
-			return;
-		}
-	}
+	
 	
 
 
 	if (n > 0) {
+		for (int i = 0; i < 4; i++)
+		{
+			if (o1 == IRSensor_ray[i] || o2 == IRSensor_ray[i])
+			{
+				int j = 0;
+				for (std::vector<MyLink>::iterator itr = blocks.begin(); itr != blocks.end(); ++itr) {
+					if (o1 == itr->geom || o2 == itr->geom)
+					{
+						//std::cout << i << "\t" << j << std::endl;
+						//std::cout << contact[0].geom.pos[0] << "\t" << contact[0].geom.pos[1] << "\t" <<  contact[0].geom.pos[2] << std::endl;
+						RasPiMouse.ir_sensor[i].calcDistance(contact[0].geom.pos[0], contact[0].geom.pos[1], contact[0].geom.pos[2]);
+						return;
+					}
+					j++;
+				}
+
+				return;
+			}
+		}
+
 		for (int i=0; i<n; i++) {
 			contact[i].surface.mode = dContactApprox1|dContactSoftERP|dContactSoftCFM|dContactSlip1|dContactSlip2;
 
@@ -575,7 +581,7 @@ void RasPiMouseSimulatorObj::m_nearCallback(dGeomID o1, dGeomID o2)
 			}
 			else
 			{
-				contact[i].surface.mu   = 0.5;
+				contact[i].surface.mu   = 200.0;
 			}
 			
 			contact[i].surface.slip1 = 0.001;
@@ -664,13 +670,13 @@ void RasPiMouseSimulatorObj::control()
 {
 	double vx = RasPiMouse.target_vx;
 	double va = RasPiMouse.target_va;
-	double wheel_distance = (wheelLeft.y - wheelRight.y)/2.0;
+	double wheel_distance = ((wheelLeft.y - wheelLeft.lz / 2.0) - (wheelRight.y - wheelRight.lz/2.0)) / 2.0;
 	double wheel_radius = wheelLeft.lx;
 
 	double right_motor_speed = (vx + va*wheel_distance) / wheel_radius;
 	double left_motor_speed = (vx - va*wheel_distance) / wheel_radius;
 
-	
+	//std::cout << right_motor_speed << "\t" << left_motor_speed << std::endl;
 	dJointSetHingeParam(wheelLeft.joint, dParamVel, left_motor_speed);
 	dJointSetHingeParam(wheelLeft.joint, dParamFMax, 20.);
 
@@ -686,12 +692,17 @@ void RasPiMouseSimulatorObj::control()
 	current_vy = v * sin(RasPiMouse.current_pa);
 	current_va = o;
 
-	
+	//std::cout << dJointGetHingeParam(wheelRight.joint, dParamVel) << "\t" << dJointGetHingeParam(wheelLeft.joint, dParamVel) << std::endl;
 
 	RasPiMouse.current_px += current_vx*st;
 	RasPiMouse.current_py += current_vy*st;
 	RasPiMouse.current_pa += current_va*st;
 
+	if (RasPiMouse.current_pa > M_PI * 2)
+	{
+		//std::cout << RasPiMouse.current_pa << std::endl;
+		RasPiMouse.current_pa -= M_PI * 2;
+	}
 }
 
 /**
@@ -706,9 +717,10 @@ void RasPiMouseSimulatorObj::setIRSensorRay()
 	dBodyGetRelPointPos(middlePlate.body, DEFAULT_IRSENSOR2_X + DEFAULT_MAX_IRSENSOR_DISTANCE*cos(DEFAULT_IRSENSOR2_RADIUS), DEFAULT_IRSENSOR2_Y + DEFAULT_MAX_IRSENSOR_DISTANCE*sin(DEFAULT_IRSENSOR2_RADIUS), DEFAULT_IRSENSOR2_Z, pos1);
 	RasPiMouse.ir_sensor[3].setPos(pos0[0], pos0[1], pos0[2]);
 	//std::cout << pos0[0] << "\t" << pos0[1] << "\t" << pos0[2] << std::endl;
+	
 	dGeomRaySet(IRSensor_ray[3], pos0[0], pos0[1], pos0[2], pos1[0] - pos0[0], pos1[1] - pos0[1], pos1[2] - pos0[2]);
 	RasPiMouse.ir_sensor[3].resetDistance();
-
+	//std::cout << pos1[0] << "\t" << pos1[1] << "\t" << pos1[2] << std::endl;
 
 
 
@@ -717,7 +729,7 @@ void RasPiMouseSimulatorObj::setIRSensorRay()
 	RasPiMouse.ir_sensor[2].setPos(pos0[0], pos0[1], pos0[2]);
 	dGeomRaySet(IRSensor_ray[2], pos0[0], pos0[1], pos0[2], pos1[0] - pos0[0], pos1[1] - pos0[1], pos1[2] - pos0[2]);
 	RasPiMouse.ir_sensor[2].resetDistance();
-
+	
 
 	dBodyGetRelPointPos(middlePlate.body, DEFAULT_IRSENSOR1_X, -DEFAULT_IRSENSOR1_Y, DEFAULT_IRSENSOR1_Z, pos0);
 	dBodyGetRelPointPos(middlePlate.body, DEFAULT_IRSENSOR1_X + DEFAULT_MAX_IRSENSOR_DISTANCE*cos(-DEFAULT_IRSENSOR1_RADIUS), -DEFAULT_IRSENSOR1_Y + DEFAULT_MAX_IRSENSOR_DISTANCE*sin(-DEFAULT_IRSENSOR1_RADIUS), DEFAULT_IRSENSOR1_Z, pos1);

@@ -186,8 +186,18 @@ void DrawThread_RasPiMouse::drawRobot()
 
 		dsSetColorAlpha(1.0, 0, 0, 1.0);
 		
-
-
+		for (int i = 0; i < 4; i++)
+		{
+			dVector3 stpos, dir, epos;
+			dGeomRayGet(m_so->IRSensor_ray[i], stpos, dir);
+			
+			for (int j = 0; j < 4; j++)
+			{
+				epos[j] = stpos[j] + (dir[j] * m_so->RasPiMouse.ir_sensor[i].data);
+			}
+			dsDrawLine(stpos, epos);
+		}
+		/*
 		dVector3 ray_pos0, ray_pos1;
 
 		dBodyGetRelPointPos(m_so->middlePlate.body, DEFAULT_IRSENSOR2_X, DEFAULT_IRSENSOR2_Y, DEFAULT_IRSENSOR2_Z, ray_pos0);
@@ -213,7 +223,7 @@ void DrawThread_RasPiMouse::drawRobot()
 		dBodyGetRelPointPos(m_so->middlePlate.body, DEFAULT_IRSENSOR2_X, -DEFAULT_IRSENSOR2_Y, DEFAULT_IRSENSOR2_Z, ray_pos0);
 		dBodyGetRelPointPos(m_so->middlePlate.body, DEFAULT_IRSENSOR2_X + m_so->RasPiMouse.ir_sensor[0].data*cos(-DEFAULT_IRSENSOR2_RADIUS), -DEFAULT_IRSENSOR2_Y + m_so->RasPiMouse.ir_sensor[0].data*sin(-DEFAULT_IRSENSOR2_RADIUS), DEFAULT_IRSENSOR2_Z, ray_pos1);
 		dsDrawLine(ray_pos0, ray_pos1);
-
+		*/
 		//RasPiMouse.ir_sensor[0].data
 		if (m_so->plane_exist)
 		{
