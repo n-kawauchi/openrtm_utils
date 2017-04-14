@@ -592,8 +592,8 @@ void EV3SimulatorObj::makeRobot()
 
 	
 
-	double KP = DEFAULT_SPRINFG_VALUE;
-	double KD = 0;
+	double KP = DEFAULT_SPRING_VALUE;
+	double KD = DEFAULT_DUMPER_VALUE;
 	double erp = st*KP / (st*KP + KD);
 	double cfm = 1 / (st*KP + KD);
 
