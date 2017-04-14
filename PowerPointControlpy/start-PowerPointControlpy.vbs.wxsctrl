@@ -2,5 +2,5 @@
       Name="PowerPointControlpy" Show="normal"
       WorkingDirectory="%Directory.Id%"
       Icon="openrtm_utils_0.ico" IconIndex="0" > 
-  <Icon Id="openrtm_utils_0.ico" SourceFile="openrtm_utils_0.ico"/>
+  <Icon Id="openrtm_utils_0.ico" SourceFile="powerpointrtc2.ico"/>
 </Shortcut>
