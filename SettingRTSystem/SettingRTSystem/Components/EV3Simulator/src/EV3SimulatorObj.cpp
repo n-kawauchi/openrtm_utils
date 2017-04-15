@@ -770,7 +770,7 @@ void EV3SimulatorObj::control()
 {
 	double vx = ev3.target_vx;
 	double va = ev3.target_va;
-	double wheel_distance = ((wheelLeft.y - wheelLeft.lz / 2.0) - (wheelRight.y - wheelRight.lz / 2.0)) / 2.0;
+	double wheel_distance = (wheelLeft.y - wheelRight.y) / 2.0;
 	double wheel_radius = wheelLeft.lx;
 
 	double right_motor_speed = (vx + va*wheel_distance) / wheel_radius;
@@ -797,9 +797,18 @@ void EV3SimulatorObj::control()
 	double current_vy = v * sin(ev3.current_pa);
 	double current_va = o;
 
-	ev3.current_px += current_vx*st;
-	ev3.current_py += current_vy*st;
-	ev3.current_pa += current_va*st;
+	//ev3.current_px += current_vx*st;
+	//ev3.current_py += current_vy*st;
+	//ev3.current_pa += current_va*st;
+
+	dVector3 b;
+	dBodyGetRelPointPos(EV3Block.body, DEFAULT_WHEEL_X, 0, 0, b);
+	
+	ev3.current_px = b[0];
+	ev3.current_py = b[1];
+	const dReal *r = dBodyGetRotation(EV3Block.body);
+	ev3.current_pa = atan2(r[4], r[0]);
+
 	//std::cout << lp << "\t" << rp << std::endl;
 	/*
 
