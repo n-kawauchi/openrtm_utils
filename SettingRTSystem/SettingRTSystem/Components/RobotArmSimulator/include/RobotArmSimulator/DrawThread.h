@@ -60,10 +60,15 @@ public:
 		*@brief カメラ位置再設定フラグを立てる
 		*/
 		void setRCPFlag();
+		/**
+		*@brief 描画を停止する
+		*/
+		void stop();
 		
 
 		double fps;
 		bool RCP_flag;
+		bool stop_flag;
 
 
 private:

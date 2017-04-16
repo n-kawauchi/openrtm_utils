@@ -28,6 +28,7 @@ DrawThread_Four_legged_Robot::DrawThread_Four_legged_Robot(SimulatorObj_Four_leg
 	obj = this;
 	m_pause = 0;
 	RCP_flag = false;
+	stop_flag = false;
 }
 
 /**
@@ -44,12 +45,22 @@ void simLoop(int pause)
 	ts.tv_nsec = 0;
 	nanosleep(&ts, NULL);
 #endif
-	if(obj)
+	if (obj)
 	{
-		obj->m_pause = pause;
-		obj->drawRobot();
-		obj->resetCameraPosition();
+		if (!obj->stop_flag)
+		{
+			obj->m_pause = pause;
+			obj->drawRobot();
+			obj->resetCameraPosition();
+		}
+		else
+		{
+			
+			dsStop();
+			
+		}
 	}
+
 	
 }
 
@@ -84,7 +95,10 @@ int DrawThread_Four_legged_Robot::svc()
 	int argc = 0;
 	char *argv[] = {""};
 
-	dsSimulationLoop(argc,argv,800,480,&fn);
+	dsSimulationLoop(argc, argv, 800, 480, &fn);
+	
+
+	
 
 	return 0;
 }
@@ -99,6 +113,8 @@ void DrawThread_Four_legged_Robot::setDrawStuff()
   fn.start   = &start;
   fn.step    = &simLoop;
   fn.command = NULL;
+  fn.stop = NULL;
+
   static std::string drawstuff = search_file("drawstuff/textures", "PATH", ";");
 
   coil::replaceString(drawstuff, "\\", "/");
@@ -192,4 +208,20 @@ void DrawThread_Four_legged_Robot::setRCPFlag()
 	m_so->mu.lock();
 	RCP_flag = true;
 	m_so->mu.unlock();
+}
+
+
+/**
+*@brief •`‰æ‚ð’âŽ~‚·‚é
+*/
+void DrawThread_Four_legged_Robot::stop()
+{
+	
+	m_so->mu.lock();
+	stop_flag = true;
+	m_so->mu.unlock();
+	
+	wait();
+	
+
 }

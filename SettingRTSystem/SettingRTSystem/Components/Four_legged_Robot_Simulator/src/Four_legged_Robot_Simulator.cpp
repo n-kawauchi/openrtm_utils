@@ -169,6 +169,7 @@ Four_legged_Robot_Simulator::~Four_legged_Robot_Simulator()
 	delete m_so;
 	if (m_dt)
 	{
+		m_dt->stop();
 		delete m_dt;
 	}
 }

@@ -53,6 +53,8 @@ RobotArmSimulator::RobotArmSimulator(RTC::Manager* manager)
 
     // </rtc-template>
 {
+	m_so = new SimulatorObj();
+	m_dt = NULL;
 }
 
 /*!
@@ -60,6 +62,12 @@ RobotArmSimulator::RobotArmSimulator(RTC::Manager* manager)
  */
 RobotArmSimulator::~RobotArmSimulator()
 {
+	delete m_so;
+	if (m_dt)
+	{
+		m_dt->stop();
+		delete m_dt;
+	}
 }
 
 
@@ -73,8 +81,7 @@ RTC::ReturnCode_t RobotArmSimulator::onInitialize()
   // Set OutPort buffer
   addOutPort("jpos", m_jposOut);
 
-  m_so = new SimulatorObj();
-  m_dt = NULL;
+  
   
 
   m_ManipulatorCommonInterface_Common = new ManipulatorCommonInterface_CommonSVC_impl(m_so->rb);

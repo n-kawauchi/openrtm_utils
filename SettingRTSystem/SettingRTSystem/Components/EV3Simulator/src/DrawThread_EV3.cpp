@@ -30,6 +30,7 @@ DrawThread_EV3::DrawThread_EV3(EV3SimulatorObj *so, double dt)
 
 	obj = this;
 	RCP_flag = false;
+	stop_flag = false;
 }
 
 /**
@@ -46,10 +47,17 @@ void simLoop(int pause)
 	ts.tv_nsec = 0;
 	nanosleep(&ts, NULL);
 #endif
-	if(obj)
+	if (obj)
 	{
-		obj->drawRobot();
-		obj->resetCameraPosition();
+		if (!obj->stop_flag)
+		{
+			obj->drawRobot();
+			obj->resetCameraPosition();
+		}
+		else
+		{
+			dsStop();
+		}
 	}
 }
 
@@ -99,6 +107,7 @@ void DrawThread_EV3::setDrawStuff()
   fn.start   = &start;
   fn.step    = &simLoop;
   fn.command = NULL;
+  fn.stop = NULL;
   
   static std::string drawstuff = search_file("drawstuff/textures", "PATH", ";");
   
@@ -238,4 +247,17 @@ void DrawThread_EV3::setRCPFlag()
 	m_so->mu.lock();
 	RCP_flag = true;
 	m_so->mu.unlock();
+}
+
+
+/**
+*@brief •`‰æ‚ð’âŽ~‚·‚é
+*/
+void DrawThread_EV3::stop()
+{
+	m_so->mu.lock();
+	stop_flag = true;
+	m_so->mu.unlock();
+	wait();
+
 }

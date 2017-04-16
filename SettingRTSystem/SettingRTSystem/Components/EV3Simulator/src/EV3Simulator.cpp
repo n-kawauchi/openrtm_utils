@@ -105,6 +105,7 @@ EV3Simulator::~EV3Simulator()
 	delete m_so;
 	if (m_dt)
 	{
+		m_dt->stop();
 		delete m_dt;
 	}
 }
