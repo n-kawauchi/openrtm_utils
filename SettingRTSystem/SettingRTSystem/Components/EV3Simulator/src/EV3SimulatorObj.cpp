@@ -267,9 +267,9 @@ void EV3SimulatorObj::makeParam(double offset_z)
 	touchSensorLeft[3].axisx = 1;
 	touchSensorLeft[3].axisy = 0;
 	touchSensorLeft[3].axisz = 0;
-	touchSensorLeft[3].red = 0.6;
-	touchSensorLeft[3].green = 0.6;
-	touchSensorLeft[3].blue = 0.6;
+	touchSensorLeft[3].red = 1.0;
+	touchSensorLeft[3].green = 0.0;
+	touchSensorLeft[3].blue = 0.0;
 
 	touchSensorRight[0].m = DEFAULT_TOUCHSENSOR_MASS;
 	touchSensorRight[0].lx = touchsensor_stick_distance * touchsensor_stick_length;
@@ -316,9 +316,9 @@ void EV3SimulatorObj::makeParam(double offset_z)
 	touchSensorRight[3].axisx = 1;
 	touchSensorRight[3].axisy = 0;
 	touchSensorRight[3].axisz = 0;
-	touchSensorRight[3].red = 0.6;
-	touchSensorRight[3].green = 0.6;
-	touchSensorRight[3].blue = 0.6;
+	touchSensorRight[3].red = 1.0;
+	touchSensorRight[3].green = 0.0;
+	touchSensorRight[3].blue = 0.0;
 
 	double gyro_stick_length = ((DEFAULT_BODY_X - DEFAULT_BODY_LENGTH / 2.0) - DEFAULT_GYROSENSOR_X);
 	gyroSensor[0].m = DEFAULT_GYROSENSOR_MASS;
