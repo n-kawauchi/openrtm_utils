@@ -21,9 +21,17 @@ set(EigenDir ${EIGEN_DIRECTORIY})
 set(comp_srcs Four_legged_Robot_Simulator.cpp SimulatorObj_Four_legged_Robot.cpp DrawThread_Four_legged_Robot.cpp ${FourLeggedRobotDir}/Four_legged_Robot.cpp ${FourLeggedRobotDir}/CrawlGait.cpp ${FourLeggedRobotDir}/Direction_Object.cpp ${FourLeggedRobotDir}/IntermittentCrawlGait.cpp ${FourLeggedRobotDir}/Leg_Object.cpp ${FourLeggedRobotDir}/Stability_Margin.cpp ${FourLeggedRobotDir}/GaitBase.cpp ${FourLeggedRobotDir}/Four_legged_Robot.h ${FourLeggedRobotDir}/CrawlGait.h ${FourLeggedRobotDir}/Direction_Object.h ${FourLeggedRobotDir}/IntermittentCrawlGait.h ${FourLeggedRobotDir}/Leg_Object.h ${FourLeggedRobotDir}/Stability_Margin.h ${FourLeggedRobotDir}/GaitBase.h ${FourLeggedRobotDir}/Body_Object.cpp ${FourLeggedRobotDir}/Body_Object.h ${FourLeggedRobotDir}/TrotGait.cpp ${FourLeggedRobotDir}/TrotGait.h ${ODEDir}/drawstuff/src/resources.rc searchFile.cpp )
 set(standalone_srcs Four_legged_Robot_SimulatorComp.cpp)
 
-set(SHlWAPI shlwapi)
 
-set(ODELIB optimized;ode;debug;oded;optimized;drawstuff;debug;drawstuffd;;user32.lib;winmm;opengl32;glu32)
+
+if(MSVC)
+
+	set(SHlWAPI shlwapi)
+	set(ODELIB optimized;ode;debug;oded;optimized;drawstuff;debug;drawstuffd;;user32.lib;winmm;opengl32;glu32)
+
+else(MSVC)
+	set(ODELIB optimized;ode;debug;oded;optimized;drawstuff;debug;drawstuffd;;GL;GLU)
+
+endif(MSVC)
 
 
 

@@ -25,7 +25,15 @@ set(comp_srcs RobotArmSimulator.cpp ManipulatorCommonInterface_CommonSVC_impl.cp
 set(standalone_srcs RobotArmSimulatorComp.cpp)
 
 
-set(ODELIB optimized;ode;debug;oded;optimized;drawstuff;debug;drawstuffd;;user32.lib;winmm;opengl32;glu32)
+if(MSVC)
+
+	set(SHlWAPI shlwapi)
+	set(ODELIB optimized;ode;debug;oded;optimized;drawstuff;debug;drawstuffd;;user32.lib;winmm;opengl32;glu32)
+
+else(MSVC)
+	set(ODELIB optimized;ode;debug;oded;optimized;drawstuff;debug;drawstuffd;;GL;GLU)
+
+endif(MSVC)
 
 if (DEFINED OPENRTM_INCLUDE_DIRS)
   string(REGEX REPLACE "-I" ";"
@@ -78,11 +86,11 @@ if(NOT TARGET ALL_IDL_TGT)
   add_custom_target(ALL_IDL_TGT)
 endif(NOT TARGET ALL_IDL_TGT)
 add_dependencies(${PROJECT_NAME} ALL_IDL_TGT)
-target_link_libraries(${PROJECT_NAME} ${OPENRTM_LIBRARIES} ${ODELIB} shlwapi.lib)
+target_link_libraries(${PROJECT_NAME} ${OPENRTM_LIBRARIES} ${ODELIB} ${SHlWAPI})
 
 add_executable(${PROJECT_NAME}Comp ${standalone_srcs}
   ${comp_srcs} ${comp_headers} ${ALL_IDL_SRCS})
-target_link_libraries(${PROJECT_NAME}Comp ${OPENRTM_LIBRARIES} ${ODELIB} shlwapi.lib)
+target_link_libraries(${PROJECT_NAME}Comp ${OPENRTM_LIBRARIES} ${ODELIB} ${SHlWAPI})
 
 install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}Comp
     EXPORT ${PROJECT_NAME}

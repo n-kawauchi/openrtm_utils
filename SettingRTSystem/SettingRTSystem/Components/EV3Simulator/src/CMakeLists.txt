@@ -10,11 +10,15 @@ set(ODEDir ${ODE_DIRECTORIY})
 set(comp_srcs EV3Simulator.cpp DrawThread_EV3.cpp EV3SimulatorObj.cpp searchFile.cpp ${ODEDir}/drawstuff/src/resources.rc )
 set(standalone_srcs EV3SimulatorComp.cpp)
 
+if(MSVC)
 
-set(SHlWAPI shlwapi)
-set(ODELIB optimized;ode;debug;oded;optimized;drawstuff;debug;drawstuffd;;user32.lib;winmm;opengl32;glu32)
+	set(SHlWAPI shlwapi)
+	set(ODELIB optimized;ode;debug;oded;optimized;drawstuff;debug;drawstuffd;;user32.lib;winmm;opengl32;glu32)
 
+else(MSVC)
+	set(ODELIB optimized;ode;debug;oded;optimized;drawstuff;debug;drawstuffd;;GL;GLU)
 
+endif(MSVC)
 
 
 if (DEFINED OPENRTM_INCLUDE_DIRS)

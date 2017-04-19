@@ -12,8 +12,14 @@ set(comp_srcs RaspberryPiMouseSimulator.cpp DrawThread_RasPiMouse.cpp RasPiMouse
 set(standalone_srcs RaspberryPiMouseSimulatorComp.cpp)
 
 
-set(SHlWAPI shlwapi)
-set(ODELIB optimized;ode;debug;oded;optimized;drawstuff;debug;drawstuffd;;user32.lib;winmm;opengl32;glu32)
+if(MSVC)
+	set(SHlWAPI shlwapi)
+	set(ODELIB optimized;ode;debug;oded;optimized;drawstuff;debug;drawstuffd;;user32.lib;winmm;opengl32;glu32)
+
+else(MSVC)
+	set(ODELIB optimized;ode;debug;oded;optimized;drawstuff;debug;drawstuffd;;GL;GLU)
+
+endif(MSVC)
 
 
 
