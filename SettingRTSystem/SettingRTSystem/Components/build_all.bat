@@ -69,3 +69,5 @@ cmd /c WrapToZero\build_all.bat
 cmd /c test_ArmController\build_all.bat
 cmd /c EV3Simulator\build_all.bat
 cmd /c RaspberryPiMouseSimulator\build_all.bat
+cmd /c JoystickPySDL2\build_all.bat
+cmd /c TankJoystickControllerRTC_Py\build_all.bat

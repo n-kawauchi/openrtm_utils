@@ -69,3 +69,5 @@ sh WrapToZero/build_all.sh
 sh test_ArmController/build_all.sh
 sh EV3Simulator/build_all.sh
 sh RaspberryPiMouseSimulator/build_all.sh
+sh JoystickPySDL2/build_all.sh
+sh TankJoystickControllerRTC_Py/build_all.sh
