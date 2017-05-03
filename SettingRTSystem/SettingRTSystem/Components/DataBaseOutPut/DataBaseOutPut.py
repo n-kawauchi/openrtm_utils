@@ -345,7 +345,7 @@ class DataBaseOutPut(OpenRTM_aist.DataFlowComponentBase):
                         
                         try:
                                 f2 = self._database._ptr().executeQuery(self.DSName, self.DataBase_Name[0],SQL)
-                                print SQL
+                                print(SQL)
                                 if f2:
                                         
                                         self._d_m_out.data = []
@@ -383,7 +383,7 @@ class DataBaseOutPut(OpenRTM_aist.DataFlowComponentBase):
                                         OpenRTM_aist.setTimestamp(self._d_m_out)
                                         self._m_outOut.write()
                         except:
-                                print "ERROR"
+                                print("ERROR")
                 
 		return RTC.RTC_OK
 	

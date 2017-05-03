@@ -127,7 +127,7 @@ def main():
                         #            f.write(pathsetcmd)
                         #            f.write("python " + globalpath + "\\" + comp_name + "\\" + comp_file)
                         #    shutil.copyfile(comp_file_path, os.path.join(rtc_dir, comp_file))
-                    #print os.path.join(comp_root, comp_file)
+                    #print(os.path.join(comp_root, comp_file))
                 #
                 
     

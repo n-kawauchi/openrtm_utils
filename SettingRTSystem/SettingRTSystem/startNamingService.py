@@ -20,7 +20,7 @@ except:
     if os.name == 'posix':
         subprocess.Popen("rtm-naming&".split(" "),shell=True)
     elif os.name == 'nt':
-        #print "start python " + '"' + os.path.join(os.environ["RTM_ROOT"],"bin/rtm-naming.py").replace("/","\\") + '"'
+        #print("start python " + '"' + os.path.join(os.environ["RTM_ROOT"],"bin/rtm-naming.py").replace("/","\\") + '"')
         subprocess.Popen("start \"\" \"%RTM_ROOT%bin\\rtm-naming.bat\"", shell=True)
         #subprocess.Popen("start rtm-naming", shell=True)
 

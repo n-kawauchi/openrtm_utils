@@ -37,14 +37,14 @@ class MultipleOrderedEC(OpenRTM_aist.PeriodicExecutionContext):
         
         self._rtcout = OpenRTM_aist.Manager.instance().getLogbuf("rtobject.mp_ec")
         self.prop = OpenRTM_aist.Manager.instance().getConfig()
-        #print OpenRTM_aist.Manager.instance().getConfig()
+        #print(OpenRTM_aist.Manager.instance().getConfig())
         self.SetGui = "YES"
         self.FileName = ""
         #self.DebugFlag = ""
         self.SetGui = self.getProperty(self.prop, "exec_cxt.periodic.gui", self.SetGui)
-        #print self.SetGui
+        #print(self.SetGui)
         self.FileName = self.getProperty(self.prop, "exec_cxt.periodic.filename", self.FileName)
-        #print self.FileName
+        #print(self.FileName)
         #self.DebugFlag = self.getProperty(self.prop, "exec_cxt.periodic.debug", self.DebugFlag)
         
         self.rs = []
@@ -68,7 +68,7 @@ class MultipleOrderedEC(OpenRTM_aist.PeriodicExecutionContext):
 
         self._mutex_del2 = threading.RLock()
         if self.SetGui == "YES":
-            #print pyqtExist
+            #print(pyqtExist)
             if pyqtExist:
                 self.g_task = GUITask(self)
                 self.g_task.activate()
@@ -86,7 +86,7 @@ class MultipleOrderedEC(OpenRTM_aist.PeriodicExecutionContext):
     def getProperty(self, prop, key, value):
         
         if  prop.findNode(key) != None:
-            #print value
+            #print(value)
             value = prop.getProperty(key)
         return value
           
@@ -142,15 +142,15 @@ class MultipleOrderedEC(OpenRTM_aist.PeriodicExecutionContext):
         sd = c.r in self._worker._comps
         
         #if self.DebugFlag == "YES":
-        #    print c.v
-        #print c.v, c.r
+        #    print(c.v)
+        #print(c.v, c.r)
 
 
         if sd == True:
             #t0_ = OpenRTM_aist.Time()
             c.r._sm.worker()
             #t1_ = OpenRTM_aist.Time()
-            #print c.v,(t1_ - t0_).getTime().toDouble()
+            #print(c.v,(t1_ - t0_).getTime().toDouble())
         else:
             
             for i in range(0, len(self._worker._comps)):
@@ -294,7 +294,7 @@ class MultipleOrderedEC(OpenRTM_aist.PeriodicExecutionContext):
                             for j in range(0, len(self.rs[self.r_num].rs[i].SR[0])):
                                 self.rs[self.r_num].rs[i].SR[0][j].s = 1
                                 """sd = self.rs[self.r_num].rs[i].SR[0][j].r in self._worker._comps
-                                print self.rs[self.r_num].rs[i].SR[0][j].v,self.rs[self.r_num].rs[i].SR[0][j].r
+                                print(self.rs[self.r_num].rs[i].SR[0][j].v,self.rs[self.r_num].rs[i].SR[0][j].r)
                                 if sd == True:
                                     self.rs[self.r_num].rs[i].SR[0][j].r._sm.worker()"""
                                 self.workerComp(self.rs[self.r_num].rs[i].SR[0][j])

@@ -539,13 +539,13 @@ class CalcControl(OpenRTM_aist.DataFlowComponentBase):
               
               tdt = ""
               tmp = None
-              if self.ConfInPorts.has_key(dn):
+              if dn in self.ConfInPorts:
                   if self.conf_port_type[0] != "DataInPort":
                       del self.ConfInPorts[dn]
                   else:
                       tmp = self.ConfInPorts[dn]
                       tdt = "DataInPort"
-              if self.ConfOutPorts.has_key(dn):
+              if dn in self.ConfOutPorts:
                   if self.conf_port_type[0] != "DataOutPort":
                       del self.ConfOutPorts[dn]
                   else:
@@ -723,14 +723,14 @@ class CalcControl(OpenRTM_aist.DataFlowComponentBase):
   def udAPort(self, ip, OutPorts, InPorts):
       
       for n,p in ip.attachports.items():
-        if OutPorts.has_key(p) == True:
+        if (p in OutPorts) == True:
             
             op = OutPorts[p]
             if len(op.attachports) != 0:
                 
                 Flag = True
                 for i,j in op.attachports.items():
-                    if InPorts.has_key(j) == True:
+                    if (j in InPorts) == True:
                         #if len(self.InPorts[j].buffdata) == 0:
                         if InPorts[j]._port.isNew() != True:
                             Flag = False

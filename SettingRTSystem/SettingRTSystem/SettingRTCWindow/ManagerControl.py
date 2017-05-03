@@ -164,7 +164,7 @@ class ManagerControl:
 
         #for n in ManagerControl.confNameList:
         #    p = self.getParam(n["name"])
-        #    print n["name"],p
+        #    print(n["name"],p)
         #    self.confList.append({"default":n["default"],"type":n["type"],"list":n["list"],"name":n["name"],"label":n["label"],"value":p.split(",")})
             
         

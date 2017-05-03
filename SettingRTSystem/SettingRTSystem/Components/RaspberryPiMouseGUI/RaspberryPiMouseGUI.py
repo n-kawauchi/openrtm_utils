@@ -123,7 +123,7 @@ class DataListener(OpenRTM_aist.ConnectorDataListenerT):
 				self.rot = self.rot + data.data.va*dt
 
 
-                        #print self.px,self.py,self.rot
+                        #print(self.px,self.py,self.rot)
 
 			else:
 				self.tm = time.time()
@@ -223,7 +223,7 @@ class RaspberryPiMouseGUI(OpenRTM_aist.DataFlowComponentBase):
 		
 		if self._current_poseIn.isNew():
 			data = self._current_poseIn.read()
-			#print data.data.position.x, data.data.position.y, data.data.heading
+			#print(data.data.position.x, data.data.position.y, data.data.heading)
 			self.dataListener.setPosition(data.data.position.x, data.data.position.y, data.data.heading)
 		return self.dataListener.getPositon()
 	

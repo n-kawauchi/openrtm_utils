@@ -111,9 +111,9 @@ openCVDllPath = "%OpenCV_DIR%\\"+arch+"\\"+vc_version+"\\bin"
 globalDllPath = "%RTM_ROOT%utils\\SettingRTSystem\\DLL"
 globalQtPluginPath = "%RTM_ROOT%utils\\SettingRTSystem\\DLL"
 
-#print openrtmDllPath
-#print omniORBDllPath
-#print openCVDllPath
+#print(openrtmDllPath)
+#print(omniORBDllPath)
+#print(openCVDllPath)
 
 ##
 # @brief サービスポート接続
@@ -614,7 +614,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
         self.rtcdPyFlag = True
         self.filepath = os.path.abspath(filename)
         #sys.stdout.write(filename)
-        #print filename
+        #print(filename)
         
         dirname = self.setFolder(filename)
 
@@ -622,7 +622,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
         
         #fileName = dirname[0]+"/"+dirname[1]
         fileName = os.path.join(dirname[0],dirname[1])
-        #print fileName
+        #print(fileName)
         if os.path.exists(fileName):
             f = open(fileName, 'rb')
             m = struct.unpack("i",f.read(4))[0]
@@ -685,7 +685,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
             if not os.path.exists(self.pyDirName):
                 os.mkdir(self.pyDirName)
 
-        #print dname+"/"+fname
+        #print(dname+"/"+fname)
         self.filename = fname
         self.home_dirname = dname
         return (dname, fname, self.cppDirName, self.pyDirName)
@@ -975,7 +975,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
             info = sys.exc_info()
             tbinfo = traceback.format_tb( info[2] )
             for tbi in tbinfo:
-                print tbi
+                print(tbi)
 
 
         
@@ -1004,7 +1004,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
             info = sys.exc_info()
             tbinfo = traceback.format_tb( info[2] )
             for tbi in tbinfo:
-                print tbi
+                print(tbi)
 
         
         f.close()
@@ -1054,7 +1054,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
 
         
 
-        #print components
+        #print(components)
         
         if cpp_path != None and py_path != None:
             
@@ -1132,7 +1132,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
                     
 
         for comp in components:
-            #print comp.is_composite_member,comp.is_composite,comp.name
+            #print(comp.is_composite_member,comp.is_composite,comp.name)
             if comp.is_composite_member == False:
                 prop = comp.properties
                 name = prop["naming.names"]
@@ -1418,8 +1418,8 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
             
         else:
             fd = file(filename,"r")
-            #print filename
-        #print fd
+            #print(filename)
+        #print(fd)
         prop.load(fd)
         fd.close()
 
@@ -1714,7 +1714,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
             info = sys.exc_info()
             tbinfo = traceback.format_tb( info[2] )
             for tbi in tbinfo:
-                print tbi
+                print(tbi)
             raise CORBA.NO_IMPLEMENT(0, CORBA.COMPLETED_NO)
         #os.system(com)
         
@@ -1759,7 +1759,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
             self.rtcdControlPyprocess.kill()
             self.rtcdControlPyprocess = None
         #self.rtcdPyFlag = True
-        #print self.pyDirName+"/rtc.conf"
+        #print(self.pyDirName+"/rtc.conf")
         f = open(self.pyDirName+"/rtc.conf", 'w')
         self.saveData(f, self.confList_py, ".", self.pyDirName, True, [], "Python")
         global defaultRtcdPyControlPath
@@ -1774,7 +1774,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
         elif os.name == 'nt':
             com = "python " + "\""+str(os.path.join(defaultRtcdPyControlPath, "rtcdControlPy.py"))+"\"" + " -f " + self.pyDirName.replace("\\","/") + "/rtc.conf"
         
-        #print com
+        #print(com)
         
         try:
             self.rtcdControlPyprocess = subprocess.Popen(com)
@@ -1782,7 +1782,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
             info = sys.exc_info()
             tbinfo = traceback.format_tb( info[2] )
             for tbi in tbinfo:
-                print tbi
+                print(tbi)
             raise CORBA.NO_IMPLEMENT(0, CORBA.COMPLETED_NO)
         #os.system(com)
         
@@ -1863,7 +1863,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
                         s += rtc_name
                         if c != len(compositeList)-1:
                             s += ","
-                    #print c.name.split(".")
+                    #print(c.name.split("."))
                     
 
                 if len(compositeList) != 0 and d.data != "":
@@ -1922,7 +1922,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
         if os.path.exists(filename):
             
             
-            #print "manager.modules.loadRTCs: "+filename+"\n"
+            #print("manager.modules.loadRTCs: "+filename+"\n")
             
             filename = os.path.relpath(filename, savefile)
             filename = filename.replace("\\","/")
@@ -1984,7 +1984,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
                 info = sys.exc_info()
                 tbinfo = traceback.format_tb( info[2] )
                 for tbi in tbinfo:
-                    print tbi
+                    print(tbi)
             #os.system(com)
             
         #name = self.home_dirname+"/rtsystem.bat"
@@ -2002,7 +2002,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
                 info = sys.exc_info()
                 tbinfo = traceback.format_tb( info[2] )
                 for tbi in tbinfo:
-                    print tbi
+                    print(tbi)
             #os.system(com)
         
         return True
@@ -2014,7 +2014,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
     # @return True
     def setExRTCList(self, name):
         self.exRTCList = name[:]
-        #print self.exRTCList
+        #print(self.exRTCList)
         return True
 
     ##
@@ -2212,7 +2212,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
             info = sys.exc_info()
             tbinfo = traceback.format_tb( info[2] )
             for tbi in tbinfo:
-                print tbi
+                print(tbi)
         
         """
         if os.name == 'nt':
@@ -2263,8 +2263,8 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
         """homedir_fp
         f = open(os.path.join(dname,fname), 'w')
         """
-        #print self.home_dirname
-        #print path_list
+        #print(self.home_dirname)
+        #print(path_list)
         #self.confList_cpp = []
         #self.confList_py = []
         return True
@@ -2615,7 +2615,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
             info = sys.exc_info()
             tbinfo = traceback.format_tb( info[2] )
             for tbi in tbinfo:
-                print tbi
+                print(tbi)
 
     ##
     # @brief リストから選択して起動するRTCの情報を保存
@@ -2645,7 +2645,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
             info = sys.exc_info()
             tbinfo = traceback.format_tb( info[2] )
             for tbi in tbinfo:
-                print tbi
+                print(tbi)
 
     ##
     # @brief 全てのサブプロセスを終了させる
@@ -2715,7 +2715,7 @@ class ConfDataInterface_i (RTCConfData__POA.ConfDataInterface):
         #cmd = "cd " + workspace + "\n"
         #f.write(cmd)
         
-        #print self.runRTCList
+        #print(self.runRTCList)
         for k,v in self.runRTCList.items():
             if len(v) != 0:
                 if v[0]["type"] != 0:
@@ -2815,8 +2815,8 @@ class rtcConfSet(OpenRTM_aist.DataFlowComponentBase):
 		
 		#self._rtcconf.createComp("MySecondComponent",1)
 
-		#print self._rtcconf.getProfileList()
-		#print self._rtcconf.getProfile("MyFirstComponent")
+		#print(self._rtcconf.getProfileList())
+		#print(self._rtcconf.getProfile("MyFirstComponent"))
 
         
 
@@ -2915,12 +2915,12 @@ class rtcConfSet(OpenRTM_aist.DataFlowComponentBase):
 				info = sys.exc_info()
 				tbinfo = traceback.format_tb( info[2] )
 				for tbi in tbinfo:
-						print tbi
+						print(tbi)
 		#self._rtcconf.createComp("MySecondComponent",1)
 		#self._rtcconf.createComp("MySecondComponent",1)
 		
-		#print self._rtcControl_cpp._ptr().createComp("MyFirstComponent","..\\..\\..\\..\\Components\\MyFirstComponent\\src\\Release")
-		#print self._rtcControl_py._ptr().createComp("MySecondComponent","..\\Components\\MySecondComponent")
+		#print(self._rtcControl_cpp._ptr().createComp("MyFirstComponent","..\\..\\..\\..\\Components\\MyFirstComponent\\src\\Release"))
+		#print(self._rtcControl_py._ptr().createComp("MySecondComponent","..\\Components\\MySecondComponent"))
 		
 		return RTC.RTC_OK
 	
@@ -2932,7 +2932,7 @@ class rtcConfSet(OpenRTM_aist.DataFlowComponentBase):
 	def onDeactivated(self, ec_id):
 		try:
 				pass
-				#print self._rtcControl_py._ptr().getCompList()
+				#print(self._rtcControl_py._ptr().getCompList())
 				#self._rtcconf.save_RTCs(None,".")
 				#self._rtcconf.save_RTCs(".",".")
 				#self._rtcconf.clean_RTCs()
@@ -2943,15 +2943,15 @@ class rtcConfSet(OpenRTM_aist.DataFlowComponentBase):
 				info = sys.exc_info()
 				tbinfo = traceback.format_tb( info[2] )
 				for tbi in tbinfo:
-						print tbi
+						print(tbi)
 		#self._rtcconf.updateCompList()
-		#print  self._rtcconf.runRTCList
+		#print(self._rtcconf.runRTCList)
 		#self._rtcconf.removeComp("MySecondComponent","2")
-		#print self._rtcconf.runRTCList
-		#print self._rtcControl_py._ptr().getCompList()
-		#print self._rtcControl_cpp._ptr().removeComp("MyFirstComponent")
-		#print self._rtcControl_py._ptr().removeComp("MySecondComponent")
-		#print self._rtcControl_py._ptr().getCompList()
+		#print(self._rtcconf.runRTCList)
+		#print(self._rtcControl_py._ptr().getCompList())
+		#print(self._rtcControl_cpp._ptr().removeComp("MyFirstComponent"))
+		#print(self._rtcControl_py._ptr().removeComp("MySecondComponent"))
+		#print(self._rtcControl_py._ptr().getCompList())
 		return RTC.RTC_OK
 	
 	##
@@ -2960,7 +2960,7 @@ class rtcConfSet(OpenRTM_aist.DataFlowComponentBase):
 	# @param ec_id target ExecutionContext Id
 	# @return RTC::ReturnCode_t
 	def onExecute(self, ec_id):
-		#print len(self._rtcControl_pyPort.get_connector_profiles())
+		#print(len(self._rtcControl_pyPort.get_connector_profiles()))
 		
 		
 		
@@ -2968,7 +2968,7 @@ class rtcConfSet(OpenRTM_aist.DataFlowComponentBase):
 		# *** Implement me
 		# Must return: result, data
 		#self._rtcconf.save("")
-		#print self._rtcControl_py._ptr().getRTC()
+		#print(self._rtcControl_py._ptr().getRTC())
 		return RTC.RTC_OK
 	
 	#	##

@@ -148,9 +148,9 @@ class rtcdWidget(MTabWidget):
         self.compList = []
 
         self.selItem = None
-        #print self.getRTCList("localhost")
+        #print(self.getRTCList("localhost"))
         #self.setRTCTree()
-        #print self.compList
+        #print(self.compList)
 
 
     ##
@@ -198,7 +198,7 @@ class rtcdWidget(MTabWidget):
     def treeWidgetSlot(self, obj):
         
         self.selItem = self.getTreeNode(obj)
-        #print self.getSelectRTC()
+        #print(self.getSelectRTC())
 
     ##
     # @brief ツリーで選択中のRTCを取得
@@ -352,7 +352,7 @@ class rtcdWidget(MTabWidget):
             info = sys.exc_info()
             tbinfo = traceback.format_tb( info[2] )
             for tbi in tbinfo:
-                print tbi
+                print(tbi)
 
     ##
     # @brief ファイル読み込みボタンのスロット

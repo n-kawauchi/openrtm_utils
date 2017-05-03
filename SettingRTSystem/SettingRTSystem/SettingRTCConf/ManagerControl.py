@@ -189,7 +189,7 @@ class ManagerControl:
     # @param name RTC名
     def deleteComp(self, name):
         
-        if self.compList.has_key(name):
+        if name in self.compList:
             if len(self.compList[name]["compList"]) != 0:
                 self.compList[name]["compList"][-1].exit()
                 del self.compList[name]["compList"][-1]
@@ -203,7 +203,7 @@ class ManagerControl:
     # @param comp RTCオブジェクト
     def addComp(self, name, comp):
         
-        if self.compList.has_key(name):
+        if name in self.compList:
             self.compList[name]["compList"].append(comp)
 
     ##
@@ -228,7 +228,7 @@ class ManagerControl:
         
 
         preLoadComp = None
-        if self.compList.has_key(filename):
+        if filename in self.compList:
             func = self.compList[filename]["func"]
             preLoadComp = self.compList[filename]
             

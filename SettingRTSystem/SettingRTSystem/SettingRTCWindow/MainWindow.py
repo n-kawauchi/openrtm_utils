@@ -257,7 +257,7 @@ class MainWindow(QtGui.QMainWindow):
         ipaddress = str(self.rtcd_widget.WidList["textBox"]["Widget"].text().toLocal8Bit())
         confsetComp = self.searchRTC("rtcConfSet0.rtc",ipaddress)
         confsetPort = confsetComp[0].get_port_by_name("rtcconf")
-        #print confsetPort
+        #print(confsetPort)
 
         confsetComp[0].activate_in_ec(0)
         portname = confsetComp[0].name + "." + confsetPort.name + "." + self.control_comp.get_sdo_id() + "." + self.control_comp._rtcconfPort.getName()
@@ -293,7 +293,7 @@ class MainWindow(QtGui.QMainWindow):
                 info = sys.exc_info()
                 tbinfo = traceback.format_tb( info[2] )
                 for tbi in tbinfo:
-                    print tbi
+                    print(tbi)
 
         self.mgrc_cpp.SetParam()
         self.mgrc_py.SetParam()
@@ -328,7 +328,7 @@ class MainWindow(QtGui.QMainWindow):
                 info = sys.exc_info()
                 tbinfo = traceback.format_tb( info[2] )
                 for tbi in tbinfo:
-                    print tbi
+                    print(tbi)
             
             self.rtclistArea.setWidget(self.rtclistWindow)
 
@@ -351,7 +351,7 @@ class MainWindow(QtGui.QMainWindow):
             info = sys.exc_info()
             tbinfo = traceback.format_tb( info[2] )
             for tbi in tbinfo:
-                print tbi
+                print(tbi)
 
     
     ##
@@ -372,7 +372,7 @@ class MainWindow(QtGui.QMainWindow):
             info = sys.exc_info()
             tbinfo = traceback.format_tb( info[2] )
             for tbi in tbinfo:
-                print tbi
+                print(tbi)
             return None
 
     ##
@@ -418,7 +418,7 @@ class MainWindow(QtGui.QMainWindow):
                 info = sys.exc_info()
                 tbinfo = traceback.format_tb( info[2] )
                 for tbi in tbinfo:
-                    print tbi
+                    print(tbi)
 
     ##
     # @brief Pythonの設定ファイルにGUIの設定を反映
@@ -433,7 +433,7 @@ class MainWindow(QtGui.QMainWindow):
                 info = sys.exc_info()
                 tbinfo = traceback.format_tb( info[2] )
                 for tbi in tbinfo:
-                    print tbi
+                    print(tbi)
     
 
     
@@ -458,7 +458,7 @@ class MainWindow(QtGui.QMainWindow):
             info = sys.exc_info()
             tbinfo = traceback.format_tb( info[2] )
             for tbi in tbinfo:
-                print tbi
+                print(tbi)
         return result
     ##
     # @brief ファイル保存のスロット
@@ -482,7 +482,7 @@ class MainWindow(QtGui.QMainWindow):
             info = sys.exc_info()
             tbinfo = traceback.format_tb( info[2] )
             for tbi in tbinfo:
-                print tbi
+                print(tbi)
         return result
     ##
     # @brief パッケージを作成、保存のスロット

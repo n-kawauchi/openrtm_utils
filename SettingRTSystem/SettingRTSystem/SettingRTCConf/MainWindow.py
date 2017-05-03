@@ -270,16 +270,16 @@ class MainWindow(QtGui.QMainWindow):
 
             
             """for c in self.mgrc.mgr.getComponents():
-                print c.get_sdo_id()
+                print(c.get_sdo_id())
                 for l in c.get_configuration().get_configuration_sets():
-                    print l.id
-                    print l.description
+                    print(l.id)
+                    print(l.description)
                     #prop = OpenRTM_aist.SDOPackage.NVList
                     #OpenRTM_aist.toProperties(prop,l.configuration_data)
-                    #print prop
+                    #print(prop)
                     for d in l.configuration_data:
-                        print d.name
-                        print d.value.value()"""
+                        print(d.name)
+                        print(d.value.value())"""
                 
         else:
             self.mesBox(u"既にコンフィギュレーションファイルは開いています")

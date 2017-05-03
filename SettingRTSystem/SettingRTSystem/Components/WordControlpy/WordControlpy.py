@@ -160,7 +160,7 @@ class WordControlpy(WriterControl):
   def getProperty(self, prop, key, value):
         
         if  prop.findNode(key) != None:
-            #print value
+            #print(value)
             value = prop.getProperty(key)
         return value
     
@@ -179,7 +179,7 @@ class WordControlpy(WriterControl):
       if sfn == "NewFile":
         self.m_word.Open("")
       else:
-        print sfn,tfn
+        print(sfn,tfn)
         self.m_word.Open(tfn)"""
 
       #self.m_word.closeCom()
@@ -198,7 +198,7 @@ class WordControlpy(WriterControl):
       self.m_word.setFontSize(self.fontSize)
       self.m_word.setFontName(self.fontName)
       self.m_word.bold = self.bold
-      #print SetCoding(m_str, self.conf_Code[0])
+      #print(SetCoding(m_str, self.conf_Code[0]))
       self.m_word.setWord(SetCoding(m_str, self.conf_Code[0]))
 
 

@@ -101,12 +101,12 @@ class Robot:
 		elif y_under_limit >  self.scale_pos_y + self.parent.camera_position_y:
 				self.parent.camera_position_y = -self.scale_pos_y + y_under_limit
 
-		#print x_upper_limit,self.scale_pos_x,self.parent.camera_position_x
+		#print(x_upper_limit,self.scale_pos_x,self.parent.camera_position_x)
 
 		self.scale_pos_x += self.parent.camera_position_x
 		self.scale_pos_y += self.parent.camera_position_y
 		
-		#print self.parent.camera_position_x, self.parent.camera_position_y
+		#print(self.parent.camera_position_x, self.parent.camera_position_y)
 
 	##
 	# @brief ロボットの描画パスを設定
@@ -328,7 +328,7 @@ class RenderArea(QtGui.QWidget):
 		upper_y_line_num = float(height/2 - self.camera_position_y)/height*line_num
 		under_y_line_num = float(height/2 + self.camera_position_y)/height*line_num
 		
-		#print upper_x_line_num,under_x_line_num,upper_y_line_num,under_y_line_num
+		#print(upper_x_line_num,under_x_line_num,upper_y_line_num,under_y_line_num)
 		for i in range(0,int(upper_x_line_num)):
 			painter.drawLine(line_space*i+width/2+self.camera_position_x, 0, line_space*i+width/2+self.camera_position_x, height)
 		for i in range(1,int(under_x_line_num)+1):
@@ -402,7 +402,7 @@ class Window(QtGui.QWidget):
 	# @param self
 	def update_component(self):
 		x,y,r = self.comp.getCurrentPosition()
-		#print x,y,r
+		#print(x,y,r)
 		self.RenderArea.robot.setPosition(x,y,r)
 		#self.RenderArea.robot.setPosition(0.1,0,0)
 		

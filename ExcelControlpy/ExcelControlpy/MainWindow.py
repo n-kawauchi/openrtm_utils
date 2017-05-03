@@ -284,11 +284,11 @@ class MainWindow(QtGui.QMainWindow):
         self.infotextBox.setText(u"未作成")
 
         """tmp = self.getTreeNode(obj)
-        print tmp.getParent()
-        print tmp.getChildCount()
-        print tmp.getDisplayValue()
+        print(tmp.getParent())
+        print(tmp.getChildCount())
+        print(tmp.getDisplayValue())
         self.selItem = tmp
-        print OOoRTC.JudgePort(self, self._paths)"""
+        print(OOoRTC.JudgePort(self, self._paths))"""
 
     ##
     # @brief ツリーの選択位置が変わったときに各テキストボックスの内容を変更する関数
@@ -338,9 +338,9 @@ class MainWindow(QtGui.QMainWindow):
     def portListSlot(self, string):
         self.updateInPortList()
         pn = str(self.portListcomboBox.currentText().toLocal8Bit())
-        if self.rtc.InPorts.has_key(pn) == True:
+        if (pn in self.rtc.InPorts) == True:
             self.updateTree(self.rtc.InPorts[pn])
-        elif self.rtc.OutPorts.has_key(pn) == True:
+        elif (pn in self.rtc.OutPorts) == True:
             self.updateTree(self.rtc.OutPorts[pn])
 
     ##
@@ -658,11 +658,11 @@ class MainWindow(QtGui.QMainWindow):
     def addSlot(self):
         
         pn = str(self.portListcomboBox.currentText().toLocal8Bit())
-        if self.rtc.InPorts.has_key(pn) == True:
+        if (pn in self.rtc.InPorts) == True:
             self.setPortParam(self.rtc.InPorts[pn])
             self.updateSaveSheet()
             return
-        elif self.rtc.OutPorts.has_key(pn) == True:
+        elif (pn in self.rtc.OutPorts) == True:
             self.setPortParam(self.rtc.OutPorts[pn])
             self.updateSaveSheet()
             return
@@ -717,12 +717,12 @@ class MainWindow(QtGui.QMainWindow):
             self.massageBoxFunc('',t_comp[0][-2]+u"の"+t_comp[0][-1]+u"と通信するデータポートを作成しました。")
 
         
-        """print self.coltextBox.text()
-        print self.rawtextBox.text()
-        print self.lentextBox.text()
-        print self.namingServertextBox.text()
-        print self.rowcheckBox.checkState()
-        print QtCore.Qt.Checked"""
+        """print(self.coltextBox.text())
+        print(self.rawtextBox.text())
+        print(self.lentextBox.text())
+        print(self.namingServertextBox.text())
+        print(self.rowcheckBox.checkState())
+        print(QtCore.Qt.Checked)"""
 
     ##
     # @brief ツリーノード取得
@@ -776,12 +776,12 @@ class MainWindow(QtGui.QMainWindow):
     #
     def deleteSlot(self):
         pn = str(self.portListcomboBox.currentText().toLocal8Bit())
-        if self.rtc.InPorts.has_key(pn) == True:
+        if (pn in self.rtc.InPorts) == True:
             i = self.rtc.InPorts[pn]
             self.rtc.mRemoveInPort(i)
             self.delPortTC(i)
             return
-        elif self.rtc.OutPorts.has_key(pn) == True:
+        elif (pn in self.rtc.OutPorts) == True:
             o = self.rtc.OutPorts[pn]
             self.rtc.mRemoveOutPort(o)
             self.delPortTC(o)
@@ -878,7 +878,7 @@ class MainWindow(QtGui.QMainWindow):
     #
     def attachTC(self, m_port):
         iname = str(self.inPortcomboBox.currentText().toLocal8Bit())
-        if self.rtc.InPorts.has_key(iname) == True:
+        if (iname in self.rtc.InPorts) == True:
                         
             m_port.attachports[iname] = iname
             self.rtc.InPorts[iname].attachports[m_port._name] = m_port._name
@@ -903,7 +903,7 @@ class MainWindow(QtGui.QMainWindow):
     def attachBSlot(self):
         pn = str(self.portListcomboBox.currentText().toLocal8Bit())
         
-        if self.rtc.OutPorts.has_key(pn) == True:
+        if (pn in self.rtc.OutPorts) == True:
             o = self.rtc.OutPorts[pn]
             self.attachTC(o)
             return
@@ -931,9 +931,9 @@ class MainWindow(QtGui.QMainWindow):
     def detachTC(self, m_port):
         iname = str(self.attachcomboBox.currentText().toLocal8Bit())
 
-        if m_port.attachports.has_key(iname) == True:
+        if (iname in m_port.attachports) == True:
             del m_port.attachports[iname]
-            if self.rtc.InPorts[iname].attachports.has_key(m_port._name) == True:
+            if (m_port._name in self.rtc.InPorts[iname].attachports) == True:
                 del self.rtc.InPorts[iname].attachports[m_port._name]
                 UpdateSaveSheet()  
                 UpdateAttachPort(dlg_control, m_port)
@@ -950,7 +950,7 @@ class MainWindow(QtGui.QMainWindow):
     def detachBSlot(self):
         pn = str(self.portListcomboBox.currentText().toLocal8Bit())
         
-        if self.rtc.OutPorts.has_key(pn) == True:
+        if (pn in self.rtc.OutPorts) == True:
             o = self.rtc.OutPorts[pn]
             self.detachTC(o)
             return
@@ -1000,7 +1000,7 @@ class MainWindow(QtGui.QMainWindow):
             namingserver = OOoRTC.SetNamingServer(address, orb, self.massageBoxFunc, "Unicode")
             if namingserver == None:
                 return
-            #print namingserver
+            #print(namingserver)
             tmp = QtGui.QTreeWidgetItem(["/"])
             self.treeWidget.addTopLevelItem(tmp)
             root = TreeNode(tmp, self)

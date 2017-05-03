@@ -97,7 +97,7 @@ class PowerPointControlpy(ImpressControl):
   def getProperty(self, prop, key, value):
         
         if  prop.findNode(key) != None:
-            #print value
+            #print(value)
             value = prop.getProperty(key)
         return value
 
@@ -115,7 +115,7 @@ class PowerPointControlpy(ImpressControl):
       if sfn == "NewFile":
         self.m_powerpoint.Open("")
       else:
-        print sfn,tfn
+        print(sfn,tfn)
         self.m_powerpoint.initCom()
         self.m_powerpoint.Open(tfn)"""
         #self.m_powerpoint.closeCom()

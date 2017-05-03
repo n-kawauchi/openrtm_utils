@@ -67,7 +67,7 @@ import os
 # help()
 #------------------------------------------------------------
 def help():
-    print """
+    print("""
 Usage:
   %s [OPTIONS]
 
@@ -90,7 +90,7 @@ Examples:
  generating wxs include file under omniORB
     $ %s -i -output omniORB_inc.wxs -t C:\distribution\omniORB-4.1.5-vc10
 
-""" % (sys.argv[0], sys.argv[0])
+""" % (sys.argv[0], sys.argv[0]))
 
 
 def check_targetdir(dirname):
@@ -134,7 +134,7 @@ def tool_main():
                                        'target=',
                                        'root-dir-no-name'])
     except getopt.GetoptError:
-        print 'given options are not correct.'
+        print('given options are not correct.')
         sys.exit(-1)
     is_include = False
     dir_prefix = ""
@@ -172,7 +172,7 @@ def tool_main():
 
         # Unknown
         else:
-            print "Unknown option" # never come here
+            print("Unknown option") # never come here
             sys.exit(-1)
 
     ftree = CreateFileTree(target_dir, output_file,
@@ -252,7 +252,7 @@ class CreateFileTree():
         self.curr_node = element
 
     def set_curr_node(self, dirname):
-        if self.dirlist.has_key(dirname):
+        if dirname in self.dirlist:
             self.curr_node = self.dirlist[dirname]
         else:
             sys.stderr.write("Unknown directory name %s. Aborting." % (dirname))
@@ -286,8 +286,8 @@ class CreateFileTree():
             return res
 
     def append_directory(self, dirname):
-        if self.dirlist.has_key(dirname):
-            print "already registered?"
+        if dirname in self.dirlist:
+            print("already registered?")
             sys.exit(-1)
         element = self.doc.createElement('Directory')
         id = self.to_id(dirname, 0) + self.dirid_suffix
@@ -367,7 +367,7 @@ class CreateFileTree():
             elif os.path.isdir(path):
                 dirs.append(path)
             else:
-                print "Unknown file type.", f
+                print("Unknown file type.", f)
                 os.sys.exit(-1)
         return dirs, files
 

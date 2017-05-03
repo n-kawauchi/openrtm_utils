@@ -155,7 +155,7 @@ class rtcdControlPy(OpenRTM_aist.DataFlowComponentBase):
 		"""
 		self._rtcControl_py = RTCDataInterface_i(self)
 		
-		#print self._rtcControl_py.createComp("MySecondComponent","..\\Components\\MySecondComponent")
+		#print(self._rtcControl_py.createComp("MySecondComponent","..\\Components\\MySecondComponent"))
 		
 
 
@@ -259,7 +259,7 @@ class rtcdControlPy(OpenRTM_aist.DataFlowComponentBase):
                     info = sys.exc_info()
                     tbinfo = traceback.format_tb( info[2] )
                     for tbi in tbinfo:
-                        print tbi"""
+                        print(tbi)"""
                 
 		return RTC.RTC_OK
 	
@@ -280,14 +280,14 @@ class rtcdControlPy(OpenRTM_aist.DataFlowComponentBase):
 	# @return RTC::ReturnCode_t
 	def onDeactivated(self, ec_id):
             #for c in self._rtcControl_py.compList["MySecondComponent"]["compList"]:
-            #    print c._exiting
+            #    print(c._exiting)
             """try:
-                print self._rtcControl_py.getCompList()
+                print(self._rtcControl_py.getCompList())
             except:
                 info = sys.exc_info()
                 tbinfo = traceback.format_tb( info[2] )
                 for tbi in tbinfo:
-                    print tbi"""
+                    print(tbi)"""
             return RTC.RTC_OK
 	
 		##
@@ -319,7 +319,7 @@ class rtcdControlPy(OpenRTM_aist.DataFlowComponentBase):
 	# @return RTC::ReturnCode_t
 	def onExecute(self, ec_id):
 		
-		#print self.getNameList()
+		#print(self.getNameList())
 		return RTC.RTC_OK
 	
 	#	##
@@ -429,7 +429,7 @@ def main():
         #comp = manager.createComponent("rtcdControlPy")
 
         comp = mgr.createComponent("PeriodicECSharedComposite?&instance_name=CompositeRTC")
-        #print comp.getObjRef().add_members
+        #print(comp.getObjRef().add_members)
         comp.getObjRef().get_owned_organizations()[0].add_members([comp1.getObjRef()])
         #comp.getObjRef().get_owned_organizations()[0].add_members([comp2.getObjRef()])
 

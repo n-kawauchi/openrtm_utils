@@ -170,10 +170,10 @@ class rtcConfSetReq(OpenRTM_aist.DataFlowComponentBase):
 		
 		"""try:
 			self._rtcconf._ptr().open("./test.txt")
-			#print self._rtcconf._ptr().getDataSeq_Cpp()
+			#print(self._rtcconf._ptr().getDataSeq_Cpp())
 			self._rtcconf._ptr().startRTCD_Cpp()
 			self._rtcconf._ptr().startRTCD_Py()
-			print self._rtcconf._ptr().getData_Cpp("corba.nameservers")
+			print(self._rtcconf._ptr().getData_Cpp("corba.nameservers"))
 			#self._rtcconf._ptr().setData_Cpp(RTCConfData.confData("corba.nameservers","test"))
 		except:
 			pass"""

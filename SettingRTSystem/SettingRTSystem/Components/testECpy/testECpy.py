@@ -176,7 +176,7 @@ class testECpy(OpenRTM_aist.DataFlowComponentBase):
 		#
 	def onExecute(self, ec_id):
 		var = raw_input()
-		print self.getNamingNames()[0]
+		print(self.getNamingNames()[0])
 		return RTC.RTC_OK
 	
 		##

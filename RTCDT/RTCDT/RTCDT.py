@@ -576,7 +576,7 @@ class RTCDT(OpenRTM_aist.DataFlowComponentBase):
 			if type == "int" or type == "short":
 				return int(v)
 			elif type == "long":
-				return long(v)
+				return int(v)
 			elif type == "float" or type == "double":
 				return float(v)
 			elif type == "string":
@@ -757,7 +757,7 @@ def main():
 	file_arg = ""
 	if len(sys.argv) > 1:
 		root, ext = os.path.splitext(sys.argv[1])
-		print ext
+		#print(ext)
 		if ext == ".rtc":
 			file_arg = sys.argv[1]
 			del sys.argv[1]

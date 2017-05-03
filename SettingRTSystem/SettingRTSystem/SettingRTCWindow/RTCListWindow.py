@@ -1070,7 +1070,7 @@ class RenderRTC(RenderPath):
         
         self.profile = profile
         self.mode = mode
-        #print self.parentWidget()
+        #print(self.parentWidget())
 
         self.rtc_defsize_x = 50
         self.rtc_defsize_y = 60
@@ -1104,7 +1104,7 @@ class RenderRTC(RenderPath):
 
         for i in self.profile.sports:
             self.addServicePort(i)
-            #print i.keys()
+            #print(i.keys())
 
         
         
@@ -1184,7 +1184,7 @@ class RenderRTC(RenderPath):
         if count < rc:
             count = rc
 
-        print count
+        print(count)
         size = self.rtc_defsize*self.rtc_scale*count*1.5"""
 
         """cdps_l = len(self.countPort(Port.LEFT)) + 2
@@ -1817,7 +1817,7 @@ class RTCItem(QtGui.QGroupBox):
     # @brief 未使用
     # @param self
     def valueChanged(self, v):
-        print self.scene.items()
+        print(self.scene.items())
         for i in self.scene.items():
             pass
             #painter = QtGui.QPainter()
@@ -1948,7 +1948,7 @@ class ScrollArea(QtGui.QScrollArea):
     # @param self
     # @param v 現在位置
     def valueChanged(self, v):
-        #print v
+        #print(v)
         #bar = self.verticalScrollBar()
         #bar->setValue(bar->value() - scrollSize);
         self.widget().update()

@@ -85,7 +85,7 @@ def GetDataSType(data_type):
         return dt, [float, sig, m_value, data_type]
     elif data_type == 'TimedLong':
         dt = RTC.TimedLong(RTC.Time(0,0),0)
-        return dt, [long, sig, m_value, data_type]
+        return dt, [int, sig, m_value, data_type]
     elif data_type == 'TimedFloat':
         dt = RTC.TimedFloat(RTC.Time(0,0),0)
         return dt, [float, sig, m_value, data_type]
@@ -100,7 +100,7 @@ def GetDataSType(data_type):
         return dt, [float, sig, m_value, data_type]
     elif data_type == 'TimedULong':
         dt = RTC.TimedULong(RTC.Time(0,0),0)
-        return dt, [long, sig, m_value, data_type]
+        return dt, [int, sig, m_value, data_type]
     elif data_type == 'TimedUFloat':
         dt = RTC.TimedUFloat(RTC.Time(0,0),0)
         return dt, [float, sig, m_value, data_type]
@@ -133,7 +133,7 @@ def GetDataSType(data_type):
         return dt, [float, sec, m_value, data_type]
     elif data_type == 'TimedLongSeq':
         dt = RTC.TimedLongSeq(RTC.Time(0,0),[])
-        return dt, [long, sec, m_value, data_type]
+        return dt, [int, sec, m_value, data_type]
     elif data_type == 'TimedFloatSeq':
         dt = RTC.TimedFloatSeq(RTC.Time(0,0),[])
         return dt, [float, sec, m_value, data_type]
@@ -148,7 +148,7 @@ def GetDataSType(data_type):
         return dt, [float, sec, m_value, data_type]
     elif data_type == 'TimedULongSeq':
         dt = RTC.TimedULongSeq(RTC.Time(0,0),[])
-        return dt, [long, sec, m_value, data_type]
+        return dt, [int, sec, m_value, data_type]
     elif data_type == 'TimedUFloatSeq':
         dt = RTC.TimedUFloatSeq(RTC.Time(0,0),[])
         return dt, [float, sec, m_value, data_type]

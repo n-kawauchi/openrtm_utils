@@ -52,7 +52,7 @@ class RTC_FinalizeListener:
     # @param ret
     #
     def callback(self, ec_id, ret):
-        print self.rtc,self.comp_list
+        print(self.rtc,self.comp_list)
 
 ##
 # @class LoadRTCs
@@ -78,7 +78,7 @@ class LoadRTCs:
         value = ""
         value = self.getProperty(prop, "manager.modules.loadRTCs", value)
         if value != "":
-            #print value
+            #print(value)
             if os.path.exists(value):
                 f = open(value, 'rb')
                 m = struct.unpack("i",f.read(4))[0]
@@ -101,7 +101,7 @@ class LoadRTCs:
     def getProperty(self, prop, key, value):
         
         if  prop.findNode(key) != None:
-            #print value
+            #print(value)
             value = prop.getProperty(key)
         return value
 
@@ -116,7 +116,7 @@ class LoadRTCs:
         filepath = os.path.relpath(filepath)
         
         preLoadComp = None
-        if self.compList.has_key(filename):
+        if filename in self.compList:
             func = self.compList[filename]["func"]
             preLoadComp = self.compList[filename]
             
@@ -163,7 +163,7 @@ class LoadRTCs:
     # @return 成功でTrue、失敗でFalse    
     def removeComp(self, filename):
         self.updateCompList()
-        if self.compList.has_key(filename):
+        if filename in self.compList:
             if len(self.compList[filename]["compList"]) != 0:
                 self.compList[filename]["compList"][-1]["component"].exit()
                 del self.compList[filename]["compList"][-1]
@@ -180,7 +180,7 @@ class LoadRTCs:
         pass
         for i,c in self.compList.items():
             for j in c["compList"]:
-                #print j.getObjRef().get_owned_contexts()
+                #print(j.getObjRef().get_owned_contexts())
                 if j["component"]._exiting:
                     c["compList"].remove(j)
                     

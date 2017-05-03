@@ -46,7 +46,7 @@ def getNode(node):
                     info = sys.exc_info()
                     tbinfo = traceback.format_tb( info[2] )
                     for tbi in tbinfo:
-                        print tbi
+                        print(tbi)
         elif v.is_manager:
             
             if v.name == "manager_composite.mgr":
@@ -56,7 +56,7 @@ def getNode(node):
                     info = sys.exc_info()
                     tbinfo = traceback.format_tb( info[2] )
                     for tbi in tbinfo:
-                        print tbi
+                        print(tbi)
         else:            
             getNode(v)
 

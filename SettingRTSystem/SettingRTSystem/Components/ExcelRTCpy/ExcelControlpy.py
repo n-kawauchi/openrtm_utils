@@ -885,10 +885,10 @@ def main():
     """m_excel = ExcelObject()
     m_excel.Open("")
     cell,sheet,m_len = m_excel.getCell(1, "A", "Sheet1", "C", False)
-    print type(cell.Value2)
+    print(type(cell.Value2))
     cell.Interior.ColorIndex = 6
     #m_excel.setCellValue(1, "A", "Sheet1", True, [[0,1,2],[0,1,2]])
-    #print m_excel.getCellValue(1,"A","Sheet1","B")
+    #print(m_excel.getCellValue(1,"A","Sheet1","B"))
     cell,sheet,m_len = m_excel.getCell(1, "A", "Sheet1", "C")
     v = []
     for i in range(0,len(cell.Value2[0])):
@@ -898,7 +898,7 @@ def main():
         v.append(cell.Value2[0][i])
     cell.Value2 = v#"""
 
-    #print thread.get_ident()
+    #print(thread.get_ident())
     
 
     mgr = OpenRTM_aist.Manager.init(sys.argv)

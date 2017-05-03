@@ -196,7 +196,7 @@ class ECandStateSharedComposite(OpenRTM_aist.PeriodicECSharedComposite):
 		#
 	def onExecute(self, ec_id):
 		
-		#print self._members
+		#print(self._members)
 		self._rtcout.RTC_TRACE("onExecute(%d)", ec_id)
 		ecs = self.get_owned_contexts()
 		sdos = self._org.get_members()

@@ -11,7 +11,7 @@ if "PACKAGE_DIRECTORIY" in os.environ:
 	package_dir = os.environ["PACKAGE_DIRECTORIY"].replace("\"","")
 	sys.path.append(package_dir)
 
-#print os.environ
+#print(os.environ)
 if "SettingRTSystemPath" in os.environ:
 	sys.path.append(os.environ["SettingRTSystemPath"])
 	sys.path.append(os.path.join(os.environ["SettingRTSystemPath"],"RTCD_IDL"))
