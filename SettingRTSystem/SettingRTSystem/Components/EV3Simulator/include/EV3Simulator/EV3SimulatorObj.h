@@ -7,7 +7,7 @@
 #ifndef EV3SIMULATOROBJ_H
 #define EV3SIMULATOROBJ_H
 
-#define dDOUBLE
+//#define dDOUBLE
 
 #include <coil/Mutex.h>
 #include <fstream>

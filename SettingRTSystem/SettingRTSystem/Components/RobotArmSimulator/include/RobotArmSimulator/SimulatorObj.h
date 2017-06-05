@@ -7,7 +7,7 @@
 #ifndef SIMULATOROBJ_H
 #define SIMULATOROBJ_H
 
-#define dDOUBLE
+//#define dDOUBLE
 
 #include <coil/Mutex.h>
 #include <fstream>

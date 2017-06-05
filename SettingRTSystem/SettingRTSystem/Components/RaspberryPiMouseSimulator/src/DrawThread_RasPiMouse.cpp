@@ -2,6 +2,9 @@
 #include "DrawThread_RasPiMouse.h"
 #include "searchFile.h"
 #include <coil/stringutil.h>
+#include <coil/Time.h>
+#include <coil/TimeValue.h>
+
 
 //std::ofstream ofs( "test.txt" );
 
@@ -13,7 +16,7 @@
 #define dsDrawTriangle    dsDrawTriangleD
 #endif
 
-DrawThread_RasPiMouse *obj = NULL;
+DrawThread_RasPiMouse *obj_drawthread = NULL;
 
 
 /**
@@ -28,7 +31,7 @@ DrawThread_RasPiMouse::DrawThread_RasPiMouse(RasPiMouseSimulatorObj *so, double 
 
 	fps = 1.0 / dt;
 
-	obj = this;
+	obj_drawthread = this;
 	RCP_flag = false;
 	stop_flag = false;
 }
@@ -40,21 +43,15 @@ DrawThread_RasPiMouse::DrawThread_RasPiMouse(RasPiMouseSimulatorObj *so, double 
 void simLoop(int pause)
 {
 
-#ifdef WIN32
-	Sleep(1000.0 / obj->fps);
-#else
-	struct timespec ts;
-	ts.tv_sec = 1;
-	ts.tv_nsec = 0;
-	nanosleep(&ts, NULL);
-#endif
+	coil::sleep((coil::TimeValue)(1.0/obj_drawthread->fps));
 
-	if (obj)
+
+	if (obj_drawthread)
 	{
-		if (!obj->stop_flag)
+		if (!obj_drawthread->stop_flag)
 		{
-			obj->drawRobot();
-			obj->resetCameraPosition();
+			obj_drawthread->drawRobot();
+			obj_drawthread->resetCameraPosition();
 		}
 		else
 		{
@@ -112,7 +109,12 @@ void DrawThread_RasPiMouse::setDrawStuff()
   fn.command = NULL;
   fn.stop = NULL;
   
+#ifdef WIN32
   static std::string drawstuff = search_file("drawstuff/textures", "PATH", ";");
+#else
+  static std::string drawstuff = search_file("drawstuff/textures", "PATH", ":");
+#endif
+
   
   coil::replaceString(drawstuff, "\\", "/");
   

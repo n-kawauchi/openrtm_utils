@@ -7,7 +7,7 @@
 #ifndef SIMULATOROBJ_Four_legged_Robot_H
 #define SIMULATOROBJ_Four_legged_Robot_H
 
-#define dDOUBLE
+//#define dDOUBLE
 
 #include <coil/Mutex.h>
 #include <fstream>

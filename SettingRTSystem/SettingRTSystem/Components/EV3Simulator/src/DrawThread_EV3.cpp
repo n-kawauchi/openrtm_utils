@@ -2,6 +2,8 @@
 #include "DrawThread_EV3.h"
 #include "searchFile.h"
 #include <coil/stringutil.h>
+#include <coil/Time.h>
+#include <coil/TimeValue.h>
 
 //std::ofstream ofs( "test.txt" );
 
@@ -13,7 +15,7 @@
 #define dsDrawTriangle    dsDrawTriangleD
 #endif
 
-DrawThread_EV3 *obj = NULL;
+DrawThread_EV3 *obj_drawthread = NULL;
 
 
 /**
@@ -28,7 +30,7 @@ DrawThread_EV3::DrawThread_EV3(EV3SimulatorObj *so, double dt)
 
 	fps = 1.0 / dt;
 
-	obj = this;
+	obj_drawthread = this;
 	RCP_flag = false;
 	stop_flag = false;
 }
@@ -39,20 +41,13 @@ DrawThread_EV3::DrawThread_EV3(EV3SimulatorObj *so, double dt)
 */
 void simLoop(int pause)
 {
-#ifdef WIN32
-	Sleep(1000.0 / obj->fps);
-#else
-	struct timespec ts;
-	ts.tv_sec = 1;
-	ts.tv_nsec = 0;
-	nanosleep(&ts, NULL);
-#endif
-	if (obj)
+	coil::sleep((coil::TimeValue)(1.0/obj_drawthread->fps));
+	if (obj_drawthread)
 	{
-		if (!obj->stop_flag)
+		if (!obj_drawthread->stop_flag)
 		{
-			obj->drawRobot();
-			obj->resetCameraPosition();
+			obj_drawthread->drawRobot();
+			obj_drawthread->resetCameraPosition();
 		}
 		else
 		{
@@ -109,7 +104,11 @@ void DrawThread_EV3::setDrawStuff()
   fn.command = NULL;
   fn.stop = NULL;
   
+#ifdef WIN32
   static std::string drawstuff = search_file("drawstuff/textures", "PATH", ";");
+#else
+  static std::string drawstuff = search_file("drawstuff/textures", "PATH", ":");
+#endif
   
   coil::replaceString(drawstuff, "\\", "/");
   

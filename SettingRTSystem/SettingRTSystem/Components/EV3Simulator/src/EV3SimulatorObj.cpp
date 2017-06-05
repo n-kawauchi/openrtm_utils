@@ -9,7 +9,7 @@
 #include <fstream>
 #include <coil/stringutil.h>
 
-EV3SimulatorObj *obj = NULL;
+EV3SimulatorObj *obj_ev3sim = NULL;
 
 EV3Obj::EV3Obj() :
 target_vx(0),
@@ -146,7 +146,7 @@ EV3SimulatorObj::EV3SimulatorObj()
 	makeRobot();
 	//makePlane(100,100,10);
 
-	obj = this;
+	obj_ev3sim = this;
 }
 
 /**
@@ -702,9 +702,9 @@ void EV3SimulatorObj::m_nearCallback(dGeomID o1, dGeomID o2)
 */
 static void nearCallback(void *data, dGeomID o1, dGeomID o2) {
 	
-	if(obj)
+	if(obj_ev3sim)
 	{
-		obj->m_nearCallback(o1, o2);
+		obj_ev3sim->m_nearCallback(o1, o2);
 	}
   
 		

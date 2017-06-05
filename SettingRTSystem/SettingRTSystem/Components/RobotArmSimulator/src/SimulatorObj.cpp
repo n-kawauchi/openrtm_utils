@@ -6,7 +6,7 @@
 
 #include "SimulatorObj.h"
 
-SimulatorObj *obj = NULL;
+SimulatorObj *obj_robotarmsim = NULL;
 
 
 /**
@@ -34,7 +34,7 @@ SimulatorObj::SimulatorObj()
 	makeParam();
 	makeRobot();
 
-	obj = this;
+	obj_robotarmsim = this;
 }
 
 /**
@@ -332,9 +332,9 @@ void SimulatorObj::m_nearCallback(dGeomID o1, dGeomID o2)
 */
 static void nearCallback(void *data, dGeomID o1, dGeomID o2) {
 	
-	if(obj)
+	if(obj_robotarmsim)
 	{
-		obj->m_nearCallback(o1, o2);
+		obj_robotarmsim->m_nearCallback(o1, o2);
 	}
   
 		

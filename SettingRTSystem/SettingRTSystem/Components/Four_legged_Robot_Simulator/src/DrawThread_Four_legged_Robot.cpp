@@ -2,6 +2,8 @@
 #include "DrawThread_Four_legged_Robot.h"
 #include "searchFile.h"
 #include <coil/stringutil.h>
+#include <coil/Time.h>
+#include <coil/TimeValue.h>
 
 //std::ofstream ofs( "test.txt" );
 
@@ -12,7 +14,7 @@
 #define dsDrawTriangle    dsDrawTriangleD
 #endif
 
-DrawThread_Four_legged_Robot *obj = NULL;
+DrawThread_Four_legged_Robot *obj_drawthread = NULL;
 
 
 /**
@@ -25,7 +27,7 @@ DrawThread_Four_legged_Robot::DrawThread_Four_legged_Robot(SimulatorObj_Four_leg
 
 	setDrawStuff();
 
-	obj = this;
+	obj_drawthread = this;
 	m_pause = 0;
 	RCP_flag = false;
 	stop_flag = false;
@@ -37,21 +39,15 @@ DrawThread_Four_legged_Robot::DrawThread_Four_legged_Robot(SimulatorObj_Four_leg
 */
 void simLoop(int pause)
 {
-#ifdef WIN32
-	Sleep(1000.0 / obj->fps);
-#else
-	struct timespec ts;
-	ts.tv_sec = 1;
-	ts.tv_nsec = 0;
-	nanosleep(&ts, NULL);
-#endif
-	if (obj)
+	coil::sleep((coil::TimeValue)(1.0/obj_drawthread->fps));
+
+	if (obj_drawthread)
 	{
-		if (!obj->stop_flag)
+		if (!obj_drawthread->stop_flag)
 		{
-			obj->m_pause = pause;
-			obj->drawRobot();
-			obj->resetCameraPosition();
+			obj_drawthread->m_pause = pause;
+			obj_drawthread->drawRobot();
+			obj_drawthread->resetCameraPosition();
 		}
 		else
 		{

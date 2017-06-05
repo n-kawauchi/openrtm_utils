@@ -6,7 +6,7 @@
 
 #include "SimulatorObj_Four_legged_Robot.h"
 
-SimulatorObj_Four_legged_Robot *obj = NULL;
+SimulatorObj_Four_legged_Robot *obj_fourleggedrobot = NULL;
 
 
 
@@ -39,7 +39,7 @@ SimulatorObj_Four_legged_Robot::SimulatorObj_Four_legged_Robot()
 	makeParam();
 	makeRobot();
 
-	obj = this;
+	obj_fourleggedrobot = this;
 }
 
 /**
@@ -311,9 +311,9 @@ void SimulatorObj_Four_legged_Robot::m_nearCallback(dGeomID o1, dGeomID o2)
 */
 static void nearCallback(void *data, dGeomID o1, dGeomID o2) {
 	
-	if(obj)
+	if(obj_fourleggedrobot)
 	{
-		obj->m_nearCallback(o1, o2);
+		obj_fourleggedrobot->m_nearCallback(o1, o2);
 	}
   
 		
