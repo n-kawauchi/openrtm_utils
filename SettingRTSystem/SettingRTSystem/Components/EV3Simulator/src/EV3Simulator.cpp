@@ -86,6 +86,7 @@ EV3Simulator::EV3Simulator(RTC::Manager* manager)
     m_angleIn("angle", m_angle),
 	m_pos_updateIn("pos_update", m_pos_update),
     m_odometryOut("odometry", m_odometry),
+    m_current_velOut("current_vel", m_current_vel),
     m_ultrasonicOut("ultrasonic", m_ultrasonic),
     m_gyroOut("gyro", m_gyro),
     m_light_reflectOut("light_reflect", m_light_reflect),
@@ -123,6 +124,7 @@ RTC::ReturnCode_t EV3Simulator::onInitialize()
   
   // Set OutPort buffer
   addOutPort("odometry", m_odometryOut);
+  addOutPort("current_vel", m_current_velOut);
   addOutPort("ultrasonic", m_ultrasonicOut);
   addOutPort("gyro", m_gyroOut);
   addOutPort("light_reflect", m_light_reflectOut);
@@ -258,6 +260,13 @@ RTC::ReturnCode_t EV3Simulator::onExecute(RTC::UniqueId ec_id)
 	m_odometry.data.position.y = m_so->ev3.current_py;
 	m_odometry.data.heading = m_so->ev3.current_pa;
 	m_odometryOut.write();
+
+
+	setTimestamp(m_current_vel);
+	m_current_vel.data.vx = m_so->ev3.current_vx;
+	m_current_vel.data.vy = m_so->ev3.current_vy;
+	m_current_vel.data.va = m_so->ev3.current_va;
+	m_current_velOut.write();
 
 	setTimestamp(m_ultrasonic);
 	m_ultrasonic.ranges.length(1);

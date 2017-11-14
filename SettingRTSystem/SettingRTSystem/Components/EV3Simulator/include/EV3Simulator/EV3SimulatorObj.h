@@ -170,6 +170,7 @@ public:
 	bool getLeftTouch(double limit);
 	double target_vx, target_va;
 	double current_px, current_py, current_pa;
+	double current_vx, current_vy, current_va;
 	double gyro_data;
 	double target_mangle, velocity_mmotor;
 	double current_ultrasonicSensorData, current_colourSensorData;

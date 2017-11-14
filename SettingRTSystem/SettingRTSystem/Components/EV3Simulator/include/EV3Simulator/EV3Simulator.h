@@ -360,6 +360,13 @@ class EV3Simulator
    * - Unit: m, rad
    */
   OutPort<RTC::TimedPose2D> m_odometryOut;
+  RTC::TimedVelocity2D m_current_vel;
+  /*!
+   * 現在の位置・姿勢
+   * - Type: RTC::TimedPose2D
+   * - Unit: m, rad
+   */
+  OutPort<RTC::TimedVelocity2D> m_current_velOut;
   RTC::RangeData m_ultrasonic;
   /*!
    * 超音波センサで計測した距離

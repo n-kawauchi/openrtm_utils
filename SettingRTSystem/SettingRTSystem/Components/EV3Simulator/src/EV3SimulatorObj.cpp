@@ -17,6 +17,9 @@ target_va(0),
 current_px(0),
 current_py(0),
 current_pa(0),
+current_vx(0),
+current_vy(0),
+current_va(0),
 current_ultrasonicSensorData(0),
 current_colourSensorData(0),
 target_mangle(0),
@@ -808,6 +811,10 @@ void EV3SimulatorObj::control()
 	ev3.current_py = b[1];
 	const dReal *r = dBodyGetRotation(EV3Block.body);
 	ev3.current_pa = atan2(r[4], r[0]);
+
+	ev3.current_vx = v;
+	ev3.current_vy = 0;
+	ev3.current_va = o;
 
 	//std::cout << lp << "\t" << rp << std::endl;
 	/*
